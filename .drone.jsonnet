@@ -512,7 +512,7 @@ local unit_deps = [
   pipeline.behat(
     browser='firefox',
     filter='@smokeTest&&~@notifications-app-required',
-    num='1/3',
+    num='2/3',
     trigger=trigger,
     depends_on=unit_deps
   ),
