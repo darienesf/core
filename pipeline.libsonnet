@@ -227,6 +227,11 @@ local optionalSuffix(value) = if value != '' then '-' + value else value;
         os: 'linux',
         arch: 'amd64',
       },
+      environment: {
+        FILES_EXTERNAL_TYPE: external,
+        COVERAGE: coverage,
+        PRIMARY_OBJECTSTORE: object,
+      },
       steps: [
         $.cache({ restore: true }),
         $.composer(image='owncloudci/php:7.1'),
@@ -237,7 +242,7 @@ local optionalSuffix(value) = if value != '' then '-' + value else value;
           image: 'owncloudci/php:' + php,
           pull: 'always',
           commands: [
-
+            './tests/drone/test-phpunit.sh',
           ],
         },
       ],
