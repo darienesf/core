@@ -1,7 +1,11 @@
+local optionalSuffix(value) = if value != '' then '-' + value else value;
+
 {
   cache(settings={})::
+    local step_name = "cache-" + if "restore" in settings then "restore" else if "rebuild" in settings then "rebuild" else if "flush" in settings then "flush" else "unknown";
+
     {
-      name: 'restore',
+      name: step_name,
       image: 'plugins/s3-cache:1',
       pull: 'always',
       settings: {
@@ -214,9 +218,11 @@
     local database_name = database_split[0];
     local database_version = database_split[1];
 
+    local pipeline_name = 'phpunit-php' + php + '-' + std.join('', database_split) + optionalSuffix(external) + optionalSuffix(object);
+
     {
       kind: 'pipeline',
-      name: 'phpunit-php' + php + '-' + std.join('', database_split),
+      name: pipeline_name,
       platform: {
         os: 'linux',
         arch: 'amd64',
@@ -239,10 +245,10 @@
       depends_on: depends_on,
     },
 
-  behat(browser='', suite='', filter='', num='', trigger={}, depends_on=[])::
+  behat(browser='', suite='', filter='', num='', trigger={}, depends_on=[], pipeline_name='')::
     {
       kind: 'pipeline',
-      name: 'behat',
+      name: if pipeline_name != '' then pipeline_name else'behat' + optionalSuffix(browser) + optionalSuffix(suite) + optionalSuffix(filter) + optionalSuffix(num),
       platform: {
         os: 'linux',
         arch: 'amd64',
