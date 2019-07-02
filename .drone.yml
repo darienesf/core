@@ -7,7 +7,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -48,7 +48,7 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
-- name: restore
+- name: cache-rebuild
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -67,7 +67,7 @@ steps:
     instance:
     - drone.owncloud.com
 
-- name: restore
+- name: cache-flush
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -102,7 +102,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -169,7 +169,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -236,7 +236,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -303,7 +303,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -386,7 +386,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -430,6 +430,8 @@ steps:
 - name: test
   pull: always
   image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/test-phpunit.sh
 
 trigger:
   ref:
@@ -453,7 +455,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -497,6 +499,8 @@ steps:
 - name: test
   pull: always
   image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/test-phpunit.sh
 
 trigger:
   ref:
@@ -520,7 +524,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -564,6 +568,8 @@ steps:
 - name: test
   pull: always
   image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/test-phpunit.sh
 
 trigger:
   ref:
@@ -587,7 +593,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -631,6 +637,8 @@ steps:
 - name: test
   pull: always
   image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/test-phpunit.sh
 
 trigger:
   ref:
@@ -654,7 +662,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -698,6 +706,8 @@ steps:
 - name: test
   pull: always
   image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/test-phpunit.sh
 
 trigger:
   ref:
@@ -721,7 +731,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -765,6 +775,8 @@ steps:
 - name: test
   pull: always
   image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/test-phpunit.sh
 
 trigger:
   ref:
@@ -788,7 +800,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -832,6 +844,8 @@ steps:
 - name: test
   pull: always
   image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/test-phpunit.sh
 
 trigger:
   ref:
@@ -855,7 +869,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -899,6 +913,8 @@ steps:
 - name: test
   pull: always
   image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/test-phpunit.sh
 
 trigger:
   ref:
@@ -922,7 +938,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -966,6 +982,8 @@ steps:
 - name: test
   pull: always
   image: owncloudci/php:7.2
+  commands:
+  - ./tests/drone/test-phpunit.sh
 
 trigger:
   ref:
@@ -989,7 +1007,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -1033,6 +1051,8 @@ steps:
 - name: test
   pull: always
   image: owncloudci/php:7.2
+  commands:
+  - ./tests/drone/test-phpunit.sh
 
 trigger:
   ref:
@@ -1056,7 +1076,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -1100,6 +1120,8 @@ steps:
 - name: test
   pull: always
   image: owncloudci/php:7.2
+  commands:
+  - ./tests/drone/test-phpunit.sh
 
 trigger:
   ref:
@@ -1123,7 +1145,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -1167,6 +1189,8 @@ steps:
 - name: test
   pull: always
   image: owncloudci/php:7.2
+  commands:
+  - ./tests/drone/test-phpunit.sh
 
 trigger:
   ref:
@@ -1190,7 +1214,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -1234,6 +1258,8 @@ steps:
 - name: test
   pull: always
   image: owncloudci/php:7.3
+  commands:
+  - ./tests/drone/test-phpunit.sh
 
 trigger:
   ref:
@@ -1257,7 +1283,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -1301,6 +1327,8 @@ steps:
 - name: test
   pull: always
   image: owncloudci/php:7.3
+  commands:
+  - ./tests/drone/test-phpunit.sh
 
 trigger:
   ref:
@@ -1324,7 +1352,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -1368,6 +1396,8 @@ steps:
 - name: test
   pull: always
   image: owncloudci/php:7.3
+  commands:
+  - ./tests/drone/test-phpunit.sh
 
 trigger:
   ref:
@@ -1391,7 +1421,7 @@ platform:
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -1435,6 +1465,8 @@ steps:
 - name: test
   pull: always
   image: owncloudci/php:7.3
+  commands:
+  - ./tests/drone/test-phpunit.sh
 
 trigger:
   ref:
@@ -1451,14 +1483,428 @@ depends_on:
 
 ---
 kind: pipeline
-name: phpunit-php7.1-mariadb10.3
+name: phpunit-php7.1-mariadb10.3-webdav
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
+  pull: always
+  image: plugins/s3-cache:1
+  settings:
+    access_key:
+      from_secret: cache_s3_access_key
+    endpoint:
+      from_secret: cache_s3_endpoint
+    restore: true
+    secret_key:
+      from_secret: cache_s3_secret_key
+  when:
+    instance:
+    - drone.owncloud.com
+
+- name: composer
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-composer-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: vendorbin
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make vendor-bin-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: yarn
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-nodejs-deps
+  environment:
+    NPM_CONFIG_CACHE: /drone/src/.cache/npm
+    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
+    bower_storage__packages: /drone/src/.cache/bower
+
+- name: test
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/test-phpunit.sh
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/stable10
+  - "refs/heads/release-*"
+  - "refs/tags/**"
+  - "refs/pull/**"
+
+depends_on:
+- coding-standard
+- phan-php7.1
+- stan-php7.1
+
+---
+kind: pipeline
+name: phpunit-php7.1-mariadb10.3-samba
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: cache-restore
+  pull: always
+  image: plugins/s3-cache:1
+  settings:
+    access_key:
+      from_secret: cache_s3_access_key
+    endpoint:
+      from_secret: cache_s3_endpoint
+    restore: true
+    secret_key:
+      from_secret: cache_s3_secret_key
+  when:
+    instance:
+    - drone.owncloud.com
+
+- name: composer
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-composer-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: vendorbin
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make vendor-bin-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: yarn
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-nodejs-deps
+  environment:
+    NPM_CONFIG_CACHE: /drone/src/.cache/npm
+    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
+    bower_storage__packages: /drone/src/.cache/bower
+
+- name: test
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/test-phpunit.sh
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/stable10
+  - "refs/heads/release-*"
+  - "refs/tags/**"
+  - "refs/pull/**"
+
+depends_on:
+- coding-standard
+- phan-php7.1
+- stan-php7.1
+
+---
+kind: pipeline
+name: phpunit-php7.1-mariadb10.3-windows
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: cache-restore
+  pull: always
+  image: plugins/s3-cache:1
+  settings:
+    access_key:
+      from_secret: cache_s3_access_key
+    endpoint:
+      from_secret: cache_s3_endpoint
+    restore: true
+    secret_key:
+      from_secret: cache_s3_secret_key
+  when:
+    instance:
+    - drone.owncloud.com
+
+- name: composer
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-composer-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: vendorbin
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make vendor-bin-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: yarn
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-nodejs-deps
+  environment:
+    NPM_CONFIG_CACHE: /drone/src/.cache/npm
+    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
+    bower_storage__packages: /drone/src/.cache/bower
+
+- name: test
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/test-phpunit.sh
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/stable10
+  - "refs/heads/release-*"
+  - "refs/tags/**"
+  - "refs/pull/**"
+
+depends_on:
+- coding-standard
+- phan-php7.1
+- stan-php7.1
+
+---
+kind: pipeline
+name: phpunit-php7.1-mariadb10.3-swift
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: cache-restore
+  pull: always
+  image: plugins/s3-cache:1
+  settings:
+    access_key:
+      from_secret: cache_s3_access_key
+    endpoint:
+      from_secret: cache_s3_endpoint
+    restore: true
+    secret_key:
+      from_secret: cache_s3_secret_key
+  when:
+    instance:
+    - drone.owncloud.com
+
+- name: composer
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-composer-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: vendorbin
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make vendor-bin-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: yarn
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-nodejs-deps
+  environment:
+    NPM_CONFIG_CACHE: /drone/src/.cache/npm
+    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
+    bower_storage__packages: /drone/src/.cache/bower
+
+- name: test
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/test-phpunit.sh
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/stable10
+  - "refs/heads/release-*"
+  - "refs/tags/**"
+  - "refs/pull/**"
+
+depends_on:
+- coding-standard
+- phan-php7.1
+- stan-php7.1
+
+---
+kind: pipeline
+name: phpunit-php7.1-mariadb10.3-scality
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: cache-restore
+  pull: always
+  image: plugins/s3-cache:1
+  settings:
+    access_key:
+      from_secret: cache_s3_access_key
+    endpoint:
+      from_secret: cache_s3_endpoint
+    restore: true
+    secret_key:
+      from_secret: cache_s3_secret_key
+  when:
+    instance:
+    - drone.owncloud.com
+
+- name: composer
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-composer-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: vendorbin
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make vendor-bin-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: yarn
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-nodejs-deps
+  environment:
+    NPM_CONFIG_CACHE: /drone/src/.cache/npm
+    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
+    bower_storage__packages: /drone/src/.cache/bower
+
+- name: test
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/test-phpunit.sh
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/stable10
+  - "refs/heads/release-*"
+  - "refs/tags/**"
+  - "refs/pull/**"
+
+depends_on:
+- coding-standard
+- phan-php7.1
+- stan-php7.1
+
+---
+kind: pipeline
+name: phpunit-php7.1-mariadb10.3-minio
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: cache-restore
+  pull: always
+  image: plugins/s3-cache:1
+  settings:
+    access_key:
+      from_secret: cache_s3_access_key
+    endpoint:
+      from_secret: cache_s3_endpoint
+    restore: true
+    secret_key:
+      from_secret: cache_s3_secret_key
+  when:
+    instance:
+    - drone.owncloud.com
+
+- name: composer
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-composer-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: vendorbin
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make vendor-bin-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: yarn
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-nodejs-deps
+  environment:
+    NPM_CONFIG_CACHE: /drone/src/.cache/npm
+    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
+    bower_storage__packages: /drone/src/.cache/bower
+
+- name: test
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/test-phpunit.sh
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/stable10
+  - "refs/heads/release-*"
+  - "refs/tags/**"
+  - "refs/pull/**"
+
+depends_on:
+- coding-standard
+- phan-php7.1
+- stan-php7.1
+
+---
+kind: pipeline
+name: behat-apiMain
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -1518,14 +1964,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: phpunit-php7.1-mariadb10.3
+name: behat-apiAuth
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -1585,14 +2031,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: phpunit-php7.1-mariadb10.3
+name: behat-apiCapabilities
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -1652,14 +2098,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: phpunit-php7.1-mariadb10.3
+name: behat-apiComments
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -1719,14 +2165,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: phpunit-php7.1-mariadb10.3
+name: behat-apiFavorites
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -1786,14 +2232,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: phpunit-php7.1-mariadb10.3
+name: behat-apiFederation
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -1853,14 +2299,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: phpunit-php7.1-mariadb10.3
+name: behat-apiProvisioning-v1
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -1920,14 +2366,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-apiProvisioning-v2
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -1987,14 +2433,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-apiSharees
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -2054,14 +2500,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-apiShareManagement
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -2121,14 +2567,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-apiShareOperations
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -2188,14 +2634,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-apiShareReshare
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -2255,14 +2701,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-apiShareUpdate
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -2322,14 +2768,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-apiSharingNotifications
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -2389,14 +2835,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-apiTags
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -2456,14 +2902,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-apiTrashbin
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -2523,14 +2969,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-apiVersions
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -2590,14 +3036,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-apiWebdavLocks
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -2657,14 +3103,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-apiWebdavMove
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -2724,14 +3170,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-apiWebdavOperations
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -2791,14 +3237,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-apiWebdavProperties
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -2858,14 +3304,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-apiWebdavUpload
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -2925,14 +3371,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-cliAppManagement
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -2992,14 +3438,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-cliProvisioning
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -3059,14 +3505,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-cliMain
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -3126,14 +3572,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-cliBackground
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -3193,14 +3639,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-cliTrashbin
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -3260,14 +3706,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUIAdminSettings
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -3327,14 +3773,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUIComments
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -3394,14 +3840,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUICreateDelete
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -3461,14 +3907,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUIFavorites
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -3528,14 +3974,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUIFiles
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -3595,14 +4041,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUILogin
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -3662,14 +4108,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUIMoveFilesFolders
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -3729,14 +4175,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUIPersonalSettings
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -3796,14 +4242,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUIRenameFiles
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -3863,14 +4309,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUIRenameFolders
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -3930,14 +4376,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUIRestrictSharing
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -3997,14 +4443,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUISharingAcceptShares
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -4064,14 +4510,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUISharingExternal
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -4131,14 +4577,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUISharingInternalGroups
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -4198,14 +4644,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUISharingInternalUsers
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -4265,14 +4711,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUISharingNotifications
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -4332,14 +4778,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUISharingPublic
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -4399,14 +4845,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUITags
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -4466,14 +4912,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUITrashbin
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -4533,14 +4979,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUIUpload
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -4600,14 +5046,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUIWebdavLocks
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -4667,14 +5113,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-chrome-webUIWebdavLockProtection
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -4734,14 +5180,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-firefox-smokeTest-1/3
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -4801,14 +5247,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-firefox-smokeTest-2/3
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
@@ -4868,483 +5314,14 @@ depends_on:
 
 ---
 kind: pipeline
-name: behat
+name: behat-firefox-smokeTest-3/3
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-- name: restore
-  pull: always
-  image: plugins/s3-cache:1
-  settings:
-    access_key:
-      from_secret: cache_s3_access_key
-    endpoint:
-      from_secret: cache_s3_endpoint
-    restore: true
-    secret_key:
-      from_secret: cache_s3_secret_key
-  when:
-    instance:
-    - drone.owncloud.com
-
-- name: composer
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-composer-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: vendorbin
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make vendor-bin-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: yarn
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-nodejs-deps
-  environment:
-    NPM_CONFIG_CACHE: /drone/src/.cache/npm
-    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
-    bower_storage__packages: /drone/src/.cache/bower
-
-- name: test
-  pull: always
-  image: owncloudci/php:7.1
-
-trigger:
-  ref:
-  - refs/heads/master
-  - refs/heads/stable10
-  - "refs/heads/release-*"
-  - "refs/tags/**"
-  - "refs/pull/**"
-
-depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
-
----
-kind: pipeline
-name: behat
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: restore
-  pull: always
-  image: plugins/s3-cache:1
-  settings:
-    access_key:
-      from_secret: cache_s3_access_key
-    endpoint:
-      from_secret: cache_s3_endpoint
-    restore: true
-    secret_key:
-      from_secret: cache_s3_secret_key
-  when:
-    instance:
-    - drone.owncloud.com
-
-- name: composer
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-composer-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: vendorbin
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make vendor-bin-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: yarn
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-nodejs-deps
-  environment:
-    NPM_CONFIG_CACHE: /drone/src/.cache/npm
-    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
-    bower_storage__packages: /drone/src/.cache/bower
-
-- name: test
-  pull: always
-  image: owncloudci/php:7.1
-
-trigger:
-  ref:
-  - refs/heads/master
-  - refs/heads/stable10
-  - "refs/heads/release-*"
-  - "refs/tags/**"
-  - "refs/pull/**"
-
-depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
-
----
-kind: pipeline
-name: behat
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: restore
-  pull: always
-  image: plugins/s3-cache:1
-  settings:
-    access_key:
-      from_secret: cache_s3_access_key
-    endpoint:
-      from_secret: cache_s3_endpoint
-    restore: true
-    secret_key:
-      from_secret: cache_s3_secret_key
-  when:
-    instance:
-    - drone.owncloud.com
-
-- name: composer
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-composer-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: vendorbin
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make vendor-bin-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: yarn
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-nodejs-deps
-  environment:
-    NPM_CONFIG_CACHE: /drone/src/.cache/npm
-    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
-    bower_storage__packages: /drone/src/.cache/bower
-
-- name: test
-  pull: always
-  image: owncloudci/php:7.1
-
-trigger:
-  ref:
-  - refs/heads/master
-  - refs/heads/stable10
-  - "refs/heads/release-*"
-  - "refs/tags/**"
-  - "refs/pull/**"
-
-depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
-
----
-kind: pipeline
-name: behat
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: restore
-  pull: always
-  image: plugins/s3-cache:1
-  settings:
-    access_key:
-      from_secret: cache_s3_access_key
-    endpoint:
-      from_secret: cache_s3_endpoint
-    restore: true
-    secret_key:
-      from_secret: cache_s3_secret_key
-  when:
-    instance:
-    - drone.owncloud.com
-
-- name: composer
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-composer-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: vendorbin
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make vendor-bin-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: yarn
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-nodejs-deps
-  environment:
-    NPM_CONFIG_CACHE: /drone/src/.cache/npm
-    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
-    bower_storage__packages: /drone/src/.cache/bower
-
-- name: test
-  pull: always
-  image: owncloudci/php:7.1
-
-trigger:
-  ref:
-  - refs/heads/master
-  - refs/heads/stable10
-  - "refs/heads/release-*"
-  - "refs/tags/**"
-  - "refs/pull/**"
-
-depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
-
----
-kind: pipeline
-name: behat
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: restore
-  pull: always
-  image: plugins/s3-cache:1
-  settings:
-    access_key:
-      from_secret: cache_s3_access_key
-    endpoint:
-      from_secret: cache_s3_endpoint
-    restore: true
-    secret_key:
-      from_secret: cache_s3_secret_key
-  when:
-    instance:
-    - drone.owncloud.com
-
-- name: composer
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-composer-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: vendorbin
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make vendor-bin-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: yarn
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-nodejs-deps
-  environment:
-    NPM_CONFIG_CACHE: /drone/src/.cache/npm
-    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
-    bower_storage__packages: /drone/src/.cache/bower
-
-- name: test
-  pull: always
-  image: owncloudci/php:7.1
-
-trigger:
-  ref:
-  - refs/heads/master
-  - refs/heads/stable10
-  - "refs/heads/release-*"
-  - "refs/tags/**"
-  - "refs/pull/**"
-
-depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
-
----
-kind: pipeline
-name: behat
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: restore
-  pull: always
-  image: plugins/s3-cache:1
-  settings:
-    access_key:
-      from_secret: cache_s3_access_key
-    endpoint:
-      from_secret: cache_s3_endpoint
-    restore: true
-    secret_key:
-      from_secret: cache_s3_secret_key
-  when:
-    instance:
-    - drone.owncloud.com
-
-- name: composer
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-composer-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: vendorbin
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make vendor-bin-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: yarn
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-nodejs-deps
-  environment:
-    NPM_CONFIG_CACHE: /drone/src/.cache/npm
-    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
-    bower_storage__packages: /drone/src/.cache/bower
-
-- name: test
-  pull: always
-  image: owncloudci/php:7.1
-
-trigger:
-  ref:
-  - refs/heads/master
-  - refs/heads/stable10
-  - "refs/heads/release-*"
-  - "refs/tags/**"
-  - "refs/pull/**"
-
-depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
-
----
-kind: pipeline
-name: behat
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: restore
-  pull: always
-  image: plugins/s3-cache:1
-  settings:
-    access_key:
-      from_secret: cache_s3_access_key
-    endpoint:
-      from_secret: cache_s3_endpoint
-    restore: true
-    secret_key:
-      from_secret: cache_s3_secret_key
-  when:
-    instance:
-    - drone.owncloud.com
-
-- name: composer
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-composer-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: vendorbin
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make vendor-bin-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: yarn
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-nodejs-deps
-  environment:
-    NPM_CONFIG_CACHE: /drone/src/.cache/npm
-    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
-    bower_storage__packages: /drone/src/.cache/bower
-
-- name: test
-  pull: always
-  image: owncloudci/php:7.1
-
-trigger:
-  ref:
-  - refs/heads/master
-  - refs/heads/stable10
-  - "refs/heads/release-*"
-  - "refs/tags/**"
-  - "refs/pull/**"
-
-depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
-
----
-kind: pipeline
-name: behat
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: restore
+- name: cache-restore
   pull: always
   image: plugins/s3-cache:1
   settings:
