@@ -211,14 +211,15 @@ local unit_deps = [
   ),
 
   # objectstore
-  pipeline.phpunit(
-    php='7.1',
-    db='mariadb:10.3',
-    coverage=true,
-    object='swift',
-    trigger=trigger,
-    depends_on=unit_deps
-  ),
+  // This is the same as the pipeline above?!
+  // pipeline.phpunit(
+  //   php='7.1',
+  //   db='mariadb:10.3',
+  //   coverage=true,
+  //   object='swift',
+  //   trigger=trigger,
+  //   depends_on=unit_deps
+  // ),
   pipeline.phpunit(
     php='7.1',
     db='mariadb:10.3',
