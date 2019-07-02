@@ -4,6 +4,7 @@ local trigger = {
   ref: [
     'refs/heads/master',
     'refs/heads/stable10',
+    'refs/heads/drone-jsonnet',
     'refs/heads/release-*',
     'refs/tags/**',
     'refs/pull/**',
