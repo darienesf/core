@@ -510,6 +510,7 @@ local unit_deps = [
 
   # firefox
   pipeline.behat(
+    pipeline_name='behat-firefox-smokeTest-1/3',
     browser='firefox',
     filter='@smokeTest&&~@notifications-app-required',
     num='2/3',
@@ -517,6 +518,7 @@ local unit_deps = [
     depends_on=unit_deps
   ),
   pipeline.behat(
+    pipeline_name='behat-firefox-smokeTest-2/3',
     browser='firefox',
     filter='@smokeTest&&~@notifications-app-required',
     num='1/3',
@@ -524,6 +526,7 @@ local unit_deps = [
     depends_on=unit_deps
   ),
   pipeline.behat(
+    pipeline_name='behat-firefox-smokeTest-3/3',
     browser='firefox',
     filter='@smokeTest&&~@notifications-app-required',
     num='3/3',
