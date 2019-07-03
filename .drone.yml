@@ -2875,6 +2875,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiMain
 
 services:
 - name: server-https
@@ -3006,6 +3007,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiAuth
 
 services:
 - name: server-https
@@ -3137,6 +3139,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiAuthOcs
 
 services:
 - name: server-https
@@ -3268,6 +3271,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiCapabilities
 
 services:
 - name: server-https
@@ -3399,6 +3403,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiComments
 
 services:
 - name: server-https
@@ -3530,6 +3535,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiFavorites
 
 services:
 - name: server-https
@@ -3661,6 +3667,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiFederation
 
 services:
 - name: server-https
@@ -3792,6 +3799,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiProvisioning-v1
 
 services:
 - name: server-https
@@ -3923,6 +3931,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiProvisioning-v2
 
 services:
 - name: server-https
@@ -4054,6 +4063,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiProvisioningGroups-v1
 
 services:
 - name: server-https
@@ -4185,6 +4195,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiProvisioningGroups-v2
 
 services:
 - name: server-https
@@ -4316,6 +4327,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiSharees
 
 services:
 - name: server-https
@@ -4447,6 +4459,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiShareManagement
 
 services:
 - name: server-https
@@ -4578,6 +4591,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiShareManagementBasic
 
 services:
 - name: server-https
@@ -4709,6 +4723,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiShareOperations
 
 services:
 - name: server-https
@@ -4840,6 +4855,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiShareReshare
 
 services:
 - name: server-https
@@ -4971,6 +4987,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiShareUpdate
 
 services:
 - name: server-https
@@ -5102,6 +5119,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiSharingNotifications
 
 services:
 - name: server-https
@@ -5233,6 +5251,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiTags
 
 services:
 - name: server-https
@@ -5364,6 +5383,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiTrashbin
 
 services:
 - name: server-https
@@ -5495,6 +5515,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiVersions
 
 services:
 - name: server-https
@@ -5626,6 +5647,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiWebdavLocks
 
 services:
 - name: server-https
@@ -5757,6 +5779,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiWebdavLocks2
 
 services:
 - name: server-https
@@ -5888,6 +5911,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiWebdavMove
 
 services:
 - name: server-https
@@ -6019,6 +6043,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiWebdavOperations
 
 services:
 - name: server-https
@@ -6150,6 +6175,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiWebdavProperties
 
 services:
 - name: server-https
@@ -6281,6 +6307,7 @@ steps:
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: apiWebdavUpload
 
 services:
 - name: server-https
@@ -6414,6 +6441,7 @@ steps:
   environment:
     MAILHOG_HOST: email
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: cliAppManagement
 
 services:
 - name: server-https
@@ -6546,6 +6574,7 @@ steps:
   environment:
     MAILHOG_HOST: email
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: cliProvisioning
 
 services:
 - name: email
@@ -6682,6 +6711,7 @@ steps:
   environment:
     MAILHOG_HOST: email
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: cliMain
 
 services:
 - name: server-https
@@ -6814,6 +6844,7 @@ steps:
   environment:
     MAILHOG_HOST: email
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: cliBackground
 
 services:
 - name: server-https
@@ -6946,6 +6977,7 @@ steps:
   environment:
     MAILHOG_HOST: email
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: cliTrashbin
 
 services:
 - name: server-https
@@ -7082,6 +7114,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUIAdminSettings
 
 services:
 - name: email
@@ -7222,6 +7255,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUIComments
 
 services:
 - name: server-https
@@ -7358,6 +7392,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUICreateDelete
 
 services:
 - name: server-https
@@ -7494,6 +7529,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUIFavorites
 
 services:
 - name: server-https
@@ -7630,6 +7666,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUIFiles
 
 services:
 - name: server-https
@@ -7766,6 +7803,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUILogin
 
 services:
 - name: email
@@ -7906,6 +7944,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUIMoveFilesFolders
 
 services:
 - name: server-https
@@ -8042,6 +8081,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUIPersonalSettings
 
 services:
 - name: email
@@ -8182,6 +8222,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUIRenameFiles
 
 services:
 - name: server-https
@@ -8318,6 +8359,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUIRenameFolders
 
 services:
 - name: server-https
@@ -8454,6 +8496,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUIRestrictSharing
 
 services:
 - name: server-https
@@ -8590,6 +8633,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUISharingAcceptShares
 
 services:
 - name: server-https
@@ -8726,6 +8770,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUISharingAutocompletion
 
 services:
 - name: server-https
@@ -8862,6 +8907,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUISharingExternal
 
 services:
 - name: email
@@ -9002,6 +9048,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUISharingInternalGroups
 
 services:
 - name: email
@@ -9142,6 +9189,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUISharingInternalUsers
 
 services:
 - name: email
@@ -9282,6 +9330,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUISharingNotifications
 
 services:
 - name: email
@@ -9422,6 +9471,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUISharingPublic
 
 services:
 - name: email
@@ -9562,6 +9612,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUITags
 
 services:
 - name: server-https
@@ -9698,6 +9749,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUITrashbin
 
 services:
 - name: server-https
@@ -9834,6 +9886,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUIUpload
 
 services:
 - name: server-https
@@ -9970,6 +10023,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUIWebdavLocks
 
 services:
 - name: server-https
@@ -10106,6 +10160,7 @@ steps:
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
+    TEST_SUITE: webUIWebdavLockProtection
 
 services:
 - name: server-https

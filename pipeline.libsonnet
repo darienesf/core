@@ -58,13 +58,14 @@ local dbServices = {
 };
 
 local behatSteps = {
-  api(image, server_protocol, browser)::
+  api(suite, image, server_protocol, browser)::
     [{
       name: 'api-acceptance-tests',
       image: image,
       pull: 'always',
       environment: {
         TEST_SERVER_URL: server_protocol + '://server-' + server_protocol,
+        TEST_SUITE: suite,
       },
       commands: [
         'touch /drone/saved-settings.sh',
@@ -73,14 +74,15 @@ local behatSteps = {
       ],
     }],
 
-  cli(image, server_protocol, browser)::
+  cli(suite, image, server_protocol, browser)::
     [{
       name: 'cli-acceptance-tests',
       image: image,
       pull: 'always',
       environment: {
-        TEST_SERVER_URL: server_protocol + '://server-' + server_protocol,
         MAILHOG_HOST: 'email',
+        TEST_SERVER_URL: server_protocol + '://server-' + server_protocol,
+        TEST_SUITE: suite,
       },
       commands: [
         'touch /drone/saved-settings.sh',
@@ -90,14 +92,15 @@ local behatSteps = {
     }],
 
 
-  'local-cli'(image, server_protocol, browser)::
+  'local-cli'(suite,image, server_protocol, browser)::
     [{
       name: 'cli-acceptance-tests',
       image: image,
       pull: 'always',
       environment: {
-        TEST_SERVER_URL: server_protocol + '://server-' + server_protocol,
         MAILHOG_HOST: 'email',
+        TEST_SERVER_URL: server_protocol + '://server-' + server_protocol,
+        TEST_SUITE: suite,
       },
       commands: [
         'touch /drone/saved-settings.sh',
@@ -107,13 +110,14 @@ local behatSteps = {
       ],
     }],
 
-  webui(image, server_protocol, browser)::
+  webui(suite, image, server_protocol, browser)::
     [{
       name: 'cli-acceptance-tests',
       image: image,
       pull: 'always',
       environment: {
         TEST_SERVER_URL: server_protocol + '://server-' + server_protocol,
+        TEST_SUITE: suite,
         BROWSER: browser,
         SELENIUM_HOST: browser,
         SELENIUM_PORT: 4444,
@@ -127,8 +131,8 @@ local behatSteps = {
       ],
     }],
 
-  get(type, image, server_protocol, browser)::
-     if type != '' then $[type](image, server_protocol, browser) else [],
+  get(type, suite, image, server_protocol, browser)::
+     if type != '' then $[type](suite, image, server_protocol, browser) else [],
 };
 
 
@@ -420,7 +424,7 @@ local behatSteps = {
 
     {
       kind: 'pipeline',
-      name: if pipeline_name != '' then pipeline_name else 'phpunit-php' + php + '-' + std.join('', database_split) + optionalSuffix(external) + optionalSuffix(object),
+      name: if pipeline_name != '' then pipeline_name else 'phpunit-php' + php + '-' + std.join('', database_split) + optionalSuffix(external) + optionalSuffix(primary_object) + optionalSuffix(object),
       platform: {
         os: 'linux',
         arch: 'amd64',
@@ -503,7 +507,7 @@ local behatSteps = {
         $.installServer(image=image, db_name=db_name),
         $.installTestingApp(image=image),
         $.fixPermissions(image=image),
-      ] + behatSteps.get(type, image=image, server_protocol=server_protocol, browser=browser),
+      ] + behatSteps.get(type=type, suite=suite, image=image, server_protocol=server_protocol, browser=browser),
       services: [
         (if email then {
           name: 'email',
