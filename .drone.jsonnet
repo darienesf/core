@@ -177,10 +177,10 @@ local unit_deps = [
     depends_on=unit_deps
   ),
 
-  # externalstore
+  # Files External
   pipeline.phpunit(
     php='7.1',
-    db='mariadb:10.3',
+    db='sqlite',
     coverage=true,
     external='webdav',
     trigger=trigger,
@@ -188,20 +188,20 @@ local unit_deps = [
   ),
   pipeline.phpunit(
     php='7.1',
-    db='mariadb:10.3',
+    db='sqlite',
     coverage=true,
     external='samba',
     trigger=trigger,
     depends_on=unit_deps
   ),
-  pipeline.phpunit(
-    php='7.1',
-    db='mariadb:10.3',
-    coverage=true,
-    external='windows',
-    trigger=trigger,
-    depends_on=unit_deps
-  ),
+  // pipeline.phpunit(
+  //   php='7.1',
+  //   db='sqlite',
+  //   coverage=true,
+  //   external='smb_windows',
+  //   trigger=trigger,
+  //   depends_on=unit_deps
+  // ),
   pipeline.phpunit(
     pipeline_name='phpunit-php7.1-mariadb10.3-swift-external',
     php='7.1',
