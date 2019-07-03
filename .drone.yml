@@ -376,20 +376,6 @@ steps:
   commands:
   - make test-js
 
-- name: codecov
-  pull: always
-  image: plugins/codecov:2
-  settings:
-    files:
-    - "*.xml"
-    flags:
-    - javascript
-    paths:
-    - tests/output/coverage
-  environment:
-    CODECOV_TOKEN:
-      from_secret: codecov_token
-
 trigger:
   ref:
   - refs/heads/master

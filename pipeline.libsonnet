@@ -364,27 +364,27 @@ local behatSteps = {
             'make test-js',
           ],
         },
-        {
-          name: 'codecov',
-          image: 'plugins/codecov:2',
-          pull: 'always',
-          environment: {
-            CODECOV_TOKEN: {
-              from_secret: 'codecov_token',
-            },
-          },
-          settings: {
-            flags: [
-              'javascript',
-            ],
-            paths: [
-              'tests/output/coverage',
-            ],
-            files: [
-              '*.xml',
-            ],
-          },
-        },
+        // {
+        //   name: 'codecov',
+        //   image: 'plugins/codecov:2',
+        //   pull: 'always',
+        //   environment: {
+        //     CODECOV_TOKEN: {
+        //       from_secret: 'codecov_token',
+        //     },
+        //   },
+        //   settings: {
+        //     flags: [
+        //       'javascript',
+        //     ],
+        //     paths: [
+        //       'tests/output/coverage',
+        //     ],
+        //     files: [
+        //       '*.xml',
+        //     ],
+        //   },
+        // },
       ],
       trigger: trigger,
       depends_on: depends_on,
