@@ -234,6 +234,28 @@ local behatSteps = {
       ],
     },
 
+  prepareFilesPrimaryS3(image)::
+    {
+      name: 'prepare-files_primary_s3',
+      image: image,
+      pull: 'always',
+      environment: {
+        OBJECTSTORE: 'files_primary_s3',
+      },
+      commands: [
+        'cd /drone/src/apps',
+        'git clone https://github.com/owncloud/files_primary_s3.git',
+        'cd files_primary_s3',
+        'composer install',
+        'cp tests/drone/files_primary_s3.config.php /drone/src/config',
+        'cd /drone/src',
+        'php occ a:l',
+        'php occ a:e files_primary_s3',
+        'php occ a:l',
+        'php ./occ s3:create-bucket owncloud --accept-warning',
+      ],
+    },
+
   fixPermissions(image='owncloudci/php:7.1')::
     {
       name: 'fix-permissions',
@@ -415,6 +437,7 @@ local behatSteps = {
         $.yarn(image='owncloudci/php:7.1'),
         $.installServer(image='owncloudci/php:' + php, db_name=database_name),
         $.installTestingApp(image='owncloudci/php:' + php),
+        (if object == 'minio' then $.prepareFilesPrimaryS3(image='owncloudci/php:' + php)),
         {
           name: 'test',
           image: 'owncloudci/php:' + php,
@@ -453,7 +476,7 @@ local behatSteps = {
             KEYSTONE_SERVICE: 'testceph',
             OSD_SIZE: 500,
           },
-        })
+        }),
       ] + dbServices.get(database_name, database_version),
       trigger: trigger,
       depends_on: depends_on,
