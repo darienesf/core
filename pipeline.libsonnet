@@ -481,6 +481,14 @@ local behatSteps = {
             OSD_SIZE: 500,
           },
         }),
+        (if object == 'scality' then {
+          name: 'scality',
+          image: 'owncloudci/scality-s3server',
+          pull: 'always',
+          environment: {
+            HOST_NAME: 'scality',
+          },
+        })
       ] + dbServices.get(database_name, database_version),
       trigger: trigger,
       depends_on: depends_on,

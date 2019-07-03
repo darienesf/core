@@ -2669,7 +2669,7 @@ depends_on:
 
 ---
 kind: pipeline
-name: phpunit-php7.1-sqlite-scality
+name: phpunit-php7.1-sqlite-files_primary_s3-scality
 
 platform:
   os: linux
@@ -2770,6 +2770,12 @@ steps:
     PRIMARY_OBJECTSTORE: files_primary_s3
 
 services:
+- name: scality
+  pull: always
+  image: owncloudci/scality-s3server
+  environment:
+    HOST_NAME: scality
+
 trigger:
   ref:
   - refs/heads/master
