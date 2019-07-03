@@ -421,9 +421,12 @@ local behatSteps = {
       depends_on: depends_on,
     },
 
-  behat(browser='', suite='', type='', filter='', num='', email=false, trigger={}, depends_on=[], pipeline_name='')::
+  behat(browser='', suite='', type='', filter='', num='', email=false, server_protocol='https', trigger={}, depends_on=[], pipeline_name='')::
     local db_name = 'mariadb';
     local db_version = '';
+
+    local image = 'owncloudci/php:7.1';
+
     {
       kind: 'pipeline',
       name: if pipeline_name != '' then pipeline_name else'behat' + optionalSuffix(browser) + optionalSuffix(suite) + optionalSuffix(filter) + optionalSuffix(num),
@@ -433,18 +436,40 @@ local behatSteps = {
       },
       steps: [
         $.cache({ restore: true }),
-        $.composer(image='owncloudci/php:7.1'),
-        $.vendorbin(image='owncloudci/php:7.1'),
-        $.yarn(image='owncloudci/php:7.1'),
-        $.installServer(image='owncloudci/php:7.1', db_name=db_name),
-        $.installTestingApp(image='owncloudci/php:7.1')
-      ] + behatSteps.get(type, image='owncloudci/php7.1', server_protocol='https', browser=browser),
+        $.composer(image=image),
+        $.vendorbin(image=image),
+        $.yarn(image=image),
+        $.installServer(image=image, db_name=db_name),
+        $.installTestingApp(image=image)
+      ] + behatSteps.get(type, image=image, server_protocol=server_protocol, browser=browser),
       services: [
         (if email then {
           name: 'email',
           pull: 'always',
           image: 'mailhog/mailhog',
-        })
+        }),
+        (if server_protocol == 'http' then {
+          name: 'server-http',
+          image: image,
+          pull: 'always',
+          environment: {
+            APACHE_WEBROOT: '/drone/src/',
+          },
+          command: [ '/usr/local/bin/apachectl', '-e', 'debug' , '-D', 'FOREGROUND' ]
+        }),
+        (if server_protocol == 'https' then {
+          name: 'server-https',
+          image: image,
+          pull: 'always',
+          environment: {
+            APACHE_WEBROOT: '/drone/src/',
+            APACHE_CONFIG_TEMPLATE: 'ssl',
+            APACHE_SSL_CERT_CN: 'server-https',
+            APACHE_SSL_CERT: '/drone/server.crt',
+            APACHE_SSL_KEY: '/drone/server.key',
+          },
+          command: [ '/usr/local/bin/apachectl', '-e', 'debug' , '-D', 'FOREGROUND' ]
+        }),
       ] + dbServices.get(db_name, db_version),
       trigger: trigger,
       depends_on: depends_on,

@@ -610,8 +610,9 @@ local unit_deps = [
     browser='firefox',
     type='webui',
     filter='@smokeTest&&~@notifications-app-required',
-    num='2/3',
+    num='1/3',
     email=true,
+    server_protocol='http',
     trigger=trigger,
     depends_on=unit_deps
   ),
@@ -620,7 +621,9 @@ local unit_deps = [
     browser='firefox',
     type='webui',
     filter='@smokeTest&&~@notifications-app-required',
-    num='1/3',
+    num='2/3',
+    email=true,
+    server_protocol='http',
     trigger=trigger,
     depends_on=unit_deps
   ),
@@ -631,6 +634,7 @@ local unit_deps = [
     filter='@smokeTest&&~@notifications-app-required',
     num='3/3',
     email=true,
+    server_protocol='http',
     trigger=trigger,
     depends_on=unit_deps
   ),
