@@ -2728,9 +2728,15 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -2830,9 +2836,123 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
+  pull: always
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/stable10
+  - refs/heads/drone-jsonnet
+  - "refs/heads/release-*"
+  - "refs/tags/**"
+  - "refs/pull/**"
+
+depends_on:
+- coding-standard
+- phan-php7.1
+- stan-php7.1
+
+---
+kind: pipeline
+name: behat-apiAuthOcs
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: cache-restore
+  pull: always
+  image: plugins/s3-cache:1
+  settings:
+    access_key:
+      from_secret: cache_s3_access_key
+    endpoint:
+      from_secret: cache_s3_endpoint
+    restore: true
+    secret_key:
+      from_secret: cache_s3_secret_key
+  when:
+    instance:
+    - drone.owncloud.com
+
+- name: composer
   pull: always
   image: owncloudci/php:7.1
+  commands:
+  - make install-composer-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: vendorbin
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make vendor-bin-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: yarn
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-nodejs-deps
+  environment:
+    NPM_CONFIG_CACHE: /drone/src/.cache/npm
+    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
+    bower_storage__packages: /drone/src/.cache/bower
+
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
+- name: api-acceptance-tests
+  pull: always
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -2932,9 +3052,15 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -3034,9 +3160,15 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -3136,9 +3268,15 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -3238,9 +3376,15 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -3340,9 +3484,15 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -3442,9 +3592,231 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
+  pull: always
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/stable10
+  - refs/heads/drone-jsonnet
+  - "refs/heads/release-*"
+  - "refs/tags/**"
+  - "refs/pull/**"
+
+depends_on:
+- coding-standard
+- phan-php7.1
+- stan-php7.1
+
+---
+kind: pipeline
+name: behat-apiProvisioningGroups-v1
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: cache-restore
+  pull: always
+  image: plugins/s3-cache:1
+  settings:
+    access_key:
+      from_secret: cache_s3_access_key
+    endpoint:
+      from_secret: cache_s3_endpoint
+    restore: true
+    secret_key:
+      from_secret: cache_s3_secret_key
+  when:
+    instance:
+    - drone.owncloud.com
+
+- name: composer
   pull: always
   image: owncloudci/php:7.1
+  commands:
+  - make install-composer-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: vendorbin
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make vendor-bin-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: yarn
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-nodejs-deps
+  environment:
+    NPM_CONFIG_CACHE: /drone/src/.cache/npm
+    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
+    bower_storage__packages: /drone/src/.cache/bower
+
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
+- name: api-acceptance-tests
+  pull: always
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/stable10
+  - refs/heads/drone-jsonnet
+  - "refs/heads/release-*"
+  - "refs/tags/**"
+  - "refs/pull/**"
+
+depends_on:
+- coding-standard
+- phan-php7.1
+- stan-php7.1
+
+---
+kind: pipeline
+name: behat-apiProvisioningGroups-v2
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: cache-restore
+  pull: always
+  image: plugins/s3-cache:1
+  settings:
+    access_key:
+      from_secret: cache_s3_access_key
+    endpoint:
+      from_secret: cache_s3_endpoint
+    restore: true
+    secret_key:
+      from_secret: cache_s3_secret_key
+  when:
+    instance:
+    - drone.owncloud.com
+
+- name: composer
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-composer-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: vendorbin
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make vendor-bin-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: yarn
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-nodejs-deps
+  environment:
+    NPM_CONFIG_CACHE: /drone/src/.cache/npm
+    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
+    bower_storage__packages: /drone/src/.cache/bower
+
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
+- name: api-acceptance-tests
+  pull: always
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -3544,9 +3916,15 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -3646,9 +4024,123 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
+  pull: always
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/stable10
+  - refs/heads/drone-jsonnet
+  - "refs/heads/release-*"
+  - "refs/tags/**"
+  - "refs/pull/**"
+
+depends_on:
+- coding-standard
+- phan-php7.1
+- stan-php7.1
+
+---
+kind: pipeline
+name: behat-apiShareManagementBasic
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: cache-restore
+  pull: always
+  image: plugins/s3-cache:1
+  settings:
+    access_key:
+      from_secret: cache_s3_access_key
+    endpoint:
+      from_secret: cache_s3_endpoint
+    restore: true
+    secret_key:
+      from_secret: cache_s3_secret_key
+  when:
+    instance:
+    - drone.owncloud.com
+
+- name: composer
   pull: always
   image: owncloudci/php:7.1
+  commands:
+  - make install-composer-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: vendorbin
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make vendor-bin-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: yarn
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-nodejs-deps
+  environment:
+    NPM_CONFIG_CACHE: /drone/src/.cache/npm
+    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
+    bower_storage__packages: /drone/src/.cache/bower
+
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
+- name: api-acceptance-tests
+  pull: always
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -3748,9 +4240,15 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -3850,9 +4348,15 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -3952,9 +4456,15 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -4054,9 +4564,15 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -4156,9 +4672,15 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -4258,9 +4780,15 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -4360,9 +4888,15 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -4462,9 +4996,123 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
+  pull: always
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/stable10
+  - refs/heads/drone-jsonnet
+  - "refs/heads/release-*"
+  - "refs/tags/**"
+  - "refs/pull/**"
+
+depends_on:
+- coding-standard
+- phan-php7.1
+- stan-php7.1
+
+---
+kind: pipeline
+name: behat-apiWebdavLocks2
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: cache-restore
+  pull: always
+  image: plugins/s3-cache:1
+  settings:
+    access_key:
+      from_secret: cache_s3_access_key
+    endpoint:
+      from_secret: cache_s3_endpoint
+    restore: true
+    secret_key:
+      from_secret: cache_s3_secret_key
+  when:
+    instance:
+    - drone.owncloud.com
+
+- name: composer
   pull: always
   image: owncloudci/php:7.1
+  commands:
+  - make install-composer-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: vendorbin
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make vendor-bin-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: yarn
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-nodejs-deps
+  environment:
+    NPM_CONFIG_CACHE: /drone/src/.cache/npm
+    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
+    bower_storage__packages: /drone/src/.cache/bower
+
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
+- name: api-acceptance-tests
+  pull: always
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -4564,9 +5212,15 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -4666,9 +5320,15 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -4768,9 +5428,15 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -4870,9 +5536,15 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: api-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
+  environment:
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -4972,9 +5644,17 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make
+  - su-exec www-data ./tests/acceptance/run.sh --type cli
+  environment:
+    MAILHOG_HOST: email
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -5074,9 +5754,16 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-cli TESTING_REMOTE_SYSTEM=true
+  environment:
+    MAILHOG_HOST: email
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -5176,9 +5863,16 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-cli TESTING_REMOTE_SYSTEM=true
+  environment:
+    MAILHOG_HOST: email
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -5278,9 +5972,16 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-cli TESTING_REMOTE_SYSTEM=true
+  environment:
+    MAILHOG_HOST: email
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -5380,9 +6081,16 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-cli TESTING_REMOTE_SYSTEM=true
+  environment:
+    MAILHOG_HOST: email
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -5482,9 +6190,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -5584,9 +6303,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -5686,9 +6416,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -5788,9 +6529,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -5890,9 +6642,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -5992,9 +6755,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -6094,9 +6868,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -6196,9 +6981,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -6298,9 +7094,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -6400,9 +7207,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -6502,9 +7320,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -6604,9 +7433,133 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
+  pull: always
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/stable10
+  - refs/heads/drone-jsonnet
+  - "refs/heads/release-*"
+  - "refs/tags/**"
+  - "refs/pull/**"
+
+depends_on:
+- coding-standard
+- phan-php7.1
+- stan-php7.1
+
+---
+kind: pipeline
+name: behat-chrome-webUISharingAutocompletion
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: cache-restore
+  pull: always
+  image: plugins/s3-cache:1
+  settings:
+    access_key:
+      from_secret: cache_s3_access_key
+    endpoint:
+      from_secret: cache_s3_endpoint
+    restore: true
+    secret_key:
+      from_secret: cache_s3_secret_key
+  when:
+    instance:
+    - drone.owncloud.com
+
+- name: composer
   pull: always
   image: owncloudci/php:7.1
+  commands:
+  - make install-composer-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: vendorbin
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make vendor-bin-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: yarn
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-nodejs-deps
+  environment:
+    NPM_CONFIG_CACHE: /drone/src/.cache/npm
+    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
+    bower_storage__packages: /drone/src/.cache/bower
+
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
+- name: cli-acceptance-tests
+  pull: always
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -6706,9 +7659,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -6808,9 +7772,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -6910,9 +7885,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -7012,9 +7998,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -7114,9 +8111,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -7216,9 +8224,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -7318,9 +8337,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -7420,9 +8450,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -7522,9 +8563,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -7624,9 +8676,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: chrome
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: chrome
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -7726,9 +8789,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: firefox
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: firefox
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -7828,9 +8902,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: firefox
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: firefox
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb
@@ -7930,9 +9015,20 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: test
+- name: cli-acceptance-tests
   pull: always
-  image: owncloudci/php:7.1
+  image: owncloudci/php7.1
+  commands:
+  - touch /drone/saved-settings.sh
+  - . /drone/saved-settings.sh
+  - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
+  environment:
+    BROWSER: firefox
+    MAILHOG_HOST: email
+    PLATFORM: Linux
+    SELENIUM_HOST: firefox
+    SELENIUM_PORT: 4444
+    TEST_SERVER_URL: https://server-https
 
 services:
 - name: mariadb

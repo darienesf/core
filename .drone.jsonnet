@@ -241,136 +241,193 @@ local unit_deps = [
   # acceptance
   pipeline.behat(
     suite='apiMain',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiAuth',
+    type='api',
+    trigger=trigger,
+    depends_on=unit_deps
+  ),
+  pipeline.behat(
+    suite='apiAuthOcs',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiCapabilities',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiComments',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiFavorites',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiFederation',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiProvisioning-v1',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiProvisioning-v2',
+    type='api',
+    trigger=trigger,
+    depends_on=unit_deps
+  ),
+  pipeline.behat(
+    suite='apiProvisioningGroups-v1',
+    type='api',
+    trigger=trigger,
+    depends_on=unit_deps
+  ),
+  pipeline.behat(
+    suite='apiProvisioningGroups-v2',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiSharees',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiShareManagement',
+    type='api',
+    trigger=trigger,
+    depends_on=unit_deps
+  ),
+  pipeline.behat(
+    suite='apiShareManagementBasic',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiShareOperations',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiShareReshare',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiShareUpdate',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiSharingNotifications',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiTags',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiTrashbin',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiVersions',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiWebdavLocks',
+    type='api',
+    trigger=trigger,
+    depends_on=unit_deps
+  ),
+  pipeline.behat(
+    suite='apiWebdavLocks2',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiWebdavMove',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiWebdavOperations',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiWebdavProperties',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='apiWebdavUpload',
+    type='api',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='cliAppManagement',
+    type='local-cli',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='cliProvisioning',
+    type='cli',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='cliMain',
+    type='cli',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='cliBackground',
+    type='cli',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     suite='cliTrashbin',
+    type='cli',
     trigger=trigger,
     depends_on=unit_deps
   ),
@@ -379,132 +436,161 @@ local unit_deps = [
   pipeline.behat(
     browser='chrome',
     suite='webUIAdminSettings',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUIComments',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUICreateDelete',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUIFavorites',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUIFiles',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUILogin',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUIMoveFilesFolders',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUIPersonalSettings',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUIRenameFiles',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUIRenameFolders',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUIRestrictSharing',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUISharingAcceptShares',
+    type='webui',
+    trigger=trigger,
+    depends_on=unit_deps
+  ),
+  pipeline.behat(
+    browser='chrome',
+    suite='webUISharingAutocompletion',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUISharingExternal',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUISharingInternalGroups',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUISharingInternalUsers',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUISharingNotifications',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUISharingPublic',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUITags',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUITrashbin',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUIUpload',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUIWebdavLocks',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.behat(
     browser='chrome',
     suite='webUIWebdavLockProtection',
+    type='webui',
     trigger=trigger,
     depends_on=unit_deps
   ),
@@ -513,6 +599,7 @@ local unit_deps = [
   pipeline.behat(
     pipeline_name='behat-firefox-smokeTest-1/3',
     browser='firefox',
+    type='webui',
     filter='@smokeTest&&~@notifications-app-required',
     num='2/3',
     trigger=trigger,
@@ -521,6 +608,7 @@ local unit_deps = [
   pipeline.behat(
     pipeline_name='behat-firefox-smokeTest-2/3',
     browser='firefox',
+    type='webui',
     filter='@smokeTest&&~@notifications-app-required',
     num='1/3',
     trigger=trigger,
@@ -529,6 +617,7 @@ local unit_deps = [
   pipeline.behat(
     pipeline_name='behat-firefox-smokeTest-3/3',
     browser='firefox',
+    type='webui',
     filter='@smokeTest&&~@notifications-app-required',
     num='3/3',
     trigger=trigger,

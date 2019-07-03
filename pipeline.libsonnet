@@ -57,6 +57,81 @@ local dbServices = {
     if db != '' then $[db](version) else [],
 };
 
+local behatSteps = {
+  api(image, server_protocol, browser)::
+    [{
+      name: 'api-acceptance-tests',
+      image: image,
+      pull: 'always',
+      environment: {
+        TEST_SERVER_URL: server_protocol + '://server-' + server_protocol,
+      },
+      commands: [
+        'touch /drone/saved-settings.sh',
+        '. /drone/saved-settings.sh',
+        'make test-acceptance-api TESTING_REMOTE_SYSTEM=true',
+      ],
+    }],
+
+  cli(image, server_protocol, browser)::
+    [{
+      name: 'cli-acceptance-tests',
+      image: image,
+      pull: 'always',
+      environment: {
+        TEST_SERVER_URL: server_protocol + '://server-' + server_protocol,
+        MAILHOG_HOST: 'email',
+      },
+      commands: [
+        'touch /drone/saved-settings.sh',
+        '. /drone/saved-settings.sh',
+        'make test-acceptance-cli TESTING_REMOTE_SYSTEM=true',
+      ],
+    }],
+
+
+  'local-cli'(image, server_protocol, browser)::
+    [{
+      name: 'cli-acceptance-tests',
+      image: image,
+      pull: 'always',
+      environment: {
+        TEST_SERVER_URL: server_protocol + '://server-' + server_protocol,
+        MAILHOG_HOST: 'email',
+      },
+      commands: [
+        'touch /drone/saved-settings.sh',
+        '. /drone/saved-settings.sh',
+        'make',
+        'su-exec www-data ./tests/acceptance/run.sh --type cli',
+      ],
+    }],
+
+  webui(image, server_protocol, browser)::
+    [{
+      name: 'cli-acceptance-tests',
+      image: image,
+      pull: 'always',
+      environment: {
+        TEST_SERVER_URL: server_protocol + '://server-' + server_protocol,
+        BROWSER: browser,
+        SELENIUM_HOST: browser,
+        SELENIUM_PORT: 4444,
+        PLATFORM: 'Linux',
+        MAILHOG_HOST: 'email',
+      },
+      commands: [
+        'touch /drone/saved-settings.sh',
+        '. /drone/saved-settings.sh',
+        'make test-acceptance-webui TESTING_REMOTE_SYSTEM=true',
+      ],
+    }],
+
+  get(type, image, server_protocol, browser)::
+     if type != '' then $[type](image, server_protocol, browser) else [],
+};
+
+
 {
   cache(settings={})::
     local step_name = "cache-" + if "restore" in settings then "restore" else if "rebuild" in settings then "rebuild" else if "flush" in settings then "flush" else "unknown";
@@ -346,7 +421,7 @@ local dbServices = {
       depends_on: depends_on,
     },
 
-  behat(browser='', suite='', filter='', num='', trigger={}, depends_on=[], pipeline_name='')::
+  behat(browser='', suite='', type='', filter='', num='', trigger={}, depends_on=[], pipeline_name='')::
     local db_name = 'mariadb';
     local db_version = '';
     {
@@ -362,16 +437,8 @@ local dbServices = {
         $.vendorbin(image='owncloudci/php:7.1'),
         $.yarn(image='owncloudci/php:7.1'),
         $.installServer(image='owncloudci/php:7.1', db_name=db_name),
-        $.installTestingApp(image='owncloudci/php:7.1'),
-        {
-          name: 'test',
-          image: 'owncloudci/php:7.1',
-          pull: 'always',
-          commands: [
-
-          ],
-        },
-      ],
+        $.installTestingApp(image='owncloudci/php:7.1')
+      ] + behatSteps.get(type, image='owncloudci/php7.1', server_protocol='https', browser=browser),
       services: dbServices.get(db_name, db_version),
       trigger: trigger,
       depends_on: depends_on,
