@@ -390,17 +390,15 @@ local behatSteps = {
       depends_on: depends_on,
     },
 
-  phpunit(php='', db='', coverage=false, external='', object='', trigger={}, depends_on=[])::
+  phpunit(php='', db='', coverage=false, external='', object='', trigger={}, depends_on=[], pipeline_name='')::
     local database_split = std.split(db, ':');
 
     local database_name = database_split[0];
     local database_version = database_split[1];
 
-    local pipeline_name = 'phpunit-php' + php + '-' + std.join('', database_split) + optionalSuffix(external) + optionalSuffix(object);
-
     {
       kind: 'pipeline',
-      name: pipeline_name,
+      name: if pipeline_name != '' then pipeline_name else 'phpunit-php' + php + '-' + std.join('', database_split) + optionalSuffix(external) + optionalSuffix(object),
       platform: {
         os: 'linux',
         arch: 'amd64',

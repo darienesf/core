@@ -203,6 +203,7 @@ local unit_deps = [
     depends_on=unit_deps
   ),
   pipeline.phpunit(
+    pipeline_name='phpunit-php7.1-mariadb10.3-swift-external',
     php='7.1',
     db='mariadb:10.3',
     coverage=true,
@@ -212,15 +213,15 @@ local unit_deps = [
   ),
 
   # objectstore
-  // This is the same as the pipeline above?!
-  // pipeline.phpunit(
-  //   php='7.1',
-  //   db='mariadb:10.3',
-  //   coverage=true,
-  //   object='swift',
-  //   trigger=trigger,
-  //   depends_on=unit_deps
-  // ),
+  pipeline.phpunit(
+    pipeline_name='phpunit-php7.1-mariadb10.3-swift-objectstore',
+    php='7.1',
+    db='mariadb:10.3',
+    coverage=true,
+    object='swift',
+    trigger=trigger,
+    depends_on=unit_deps
+  ),
   pipeline.phpunit(
     php='7.1',
     db='mariadb:10.3',
