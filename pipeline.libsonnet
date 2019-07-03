@@ -233,6 +233,15 @@ local behatSteps = {
       ],
     },
 
+  fixPermissions(image='owncloudci/php:7.1')::
+    {
+      name: 'fix-permissions',
+      image: image,
+      pull: 'always',
+      commands: [
+        "chown www-data /drone/src -R",
+      ],
+    },
 
   install(trigger={}, depends_on=[])::
     {
@@ -440,7 +449,8 @@ local behatSteps = {
         $.vendorbin(image=image),
         $.yarn(image=image),
         $.installServer(image=image, db_name=db_name),
-        $.installTestingApp(image=image)
+        $.installTestingApp(image=image),
+        $.fixPermissions(image=image),
       ] + behatSteps.get(type, image=image, server_protocol=server_protocol, browser=browser),
       services: [
         (if email then {

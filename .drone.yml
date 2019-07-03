@@ -2728,6 +2728,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -2851,6 +2857,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: api-acceptance-tests
   pull: always
@@ -2976,6 +2988,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -3099,6 +3117,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: api-acceptance-tests
   pull: always
@@ -3224,6 +3248,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -3347,6 +3377,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: api-acceptance-tests
   pull: always
@@ -3472,6 +3508,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -3595,6 +3637,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: api-acceptance-tests
   pull: always
@@ -3720,6 +3768,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -3843,6 +3897,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: api-acceptance-tests
   pull: always
@@ -3968,6 +4028,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -4091,6 +4157,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: api-acceptance-tests
   pull: always
@@ -4216,6 +4288,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -4339,6 +4417,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: api-acceptance-tests
   pull: always
@@ -4464,6 +4548,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -4587,6 +4677,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: api-acceptance-tests
   pull: always
@@ -4712,6 +4808,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -4835,6 +4937,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: api-acceptance-tests
   pull: always
@@ -4960,6 +5068,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -5083,6 +5197,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: api-acceptance-tests
   pull: always
@@ -5208,6 +5328,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -5331,6 +5457,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: api-acceptance-tests
   pull: always
@@ -5456,6 +5588,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -5579,6 +5717,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: api-acceptance-tests
   pull: always
@@ -5704,6 +5848,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -5827,6 +5977,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: api-acceptance-tests
   pull: always
@@ -5952,6 +6108,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -6075,6 +6237,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: cli-acceptance-tests
   pull: always
@@ -6201,6 +6369,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: cli-acceptance-tests
   pull: always
@@ -6331,6 +6505,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -6455,6 +6635,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: cli-acceptance-tests
   pull: always
@@ -6581,6 +6767,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -6705,6 +6897,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: cli-acceptance-tests
   pull: always
@@ -6839,6 +7037,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -6967,6 +7171,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: cli-acceptance-tests
   pull: always
@@ -7097,6 +7307,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -7226,6 +7442,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -7354,6 +7576,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: cli-acceptance-tests
   pull: always
@@ -7488,6 +7716,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -7616,6 +7850,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: cli-acceptance-tests
   pull: always
@@ -7750,6 +7990,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -7878,6 +8124,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: cli-acceptance-tests
   pull: always
@@ -8008,6 +8260,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -8136,6 +8394,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: cli-acceptance-tests
   pull: always
@@ -8266,6 +8530,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -8394,6 +8664,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: cli-acceptance-tests
   pull: always
@@ -8528,6 +8804,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -8660,6 +8942,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: cli-acceptance-tests
   pull: always
@@ -8794,6 +9082,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -8926,6 +9220,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: cli-acceptance-tests
   pull: always
@@ -9060,6 +9360,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -9188,6 +9494,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: cli-acceptance-tests
   pull: always
@@ -9318,6 +9630,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -9446,6 +9764,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: cli-acceptance-tests
   pull: always
@@ -9576,6 +9900,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -9704,6 +10034,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: cli-acceptance-tests
   pull: always
@@ -9834,6 +10170,12 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -9962,6 +10304,12 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
 
 - name: cli-acceptance-tests
   pull: always
