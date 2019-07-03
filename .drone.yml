@@ -2156,7 +2156,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
-    FILES_EXTERNAL_TYPE: webdav
+    FILES_EXTERNAL_TYPE: webdav_apache
 
 services:
 - name: apache-webdav
@@ -2274,7 +2274,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
-    FILES_EXTERNAL_TYPE: samba
+    FILES_EXTERNAL_TYPE: smb_samba
 
 services:
 - name: smb-samba

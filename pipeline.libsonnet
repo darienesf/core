@@ -442,7 +442,7 @@ local behatSteps = {
           image: 'owncloudci/php:' + php,
           pull: 'always',
           environment: {
-            FILES_EXTERNAL_TYPE: external,
+            FILES_EXTERNAL_TYPE: (if external == 'webdav' then 'webdav_apache' else (if external == 'samba' then 'smb_samba' else external)),
             COVERAGE: coverage,
             PRIMARY_OBJECTSTORE: primary_object,
           },
