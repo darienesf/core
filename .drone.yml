@@ -280,6 +280,21 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
@@ -1912,6 +1927,7 @@ trigger:
   ref:
   - refs/heads/master
   - refs/heads/stable10
+  - refs/heads/drone-jsonnet
   - "refs/heads/release-*"
   - "refs/tags/**"
   - "refs/pull/**"

@@ -67,6 +67,28 @@ local optionalSuffix(value) = if value != '' then '-' + value else value;
       ],
     },
 
+  installServer(image='owncloudci/php:7.1', db='', server_protocol='https')::
+    {
+      name: 'install-server',
+      image: image,
+      pull: 'always',
+      environment: {
+        DB_TYPE: db,
+      },
+      commands: [
+        './tests/drone/install-server.sh',
+        'php occ a:l',
+        'php occ config:system:set trusted_domains 1 --value=server-' + server_protocol,
+        'php occ config:system:set trusted_domains 2 --value=federated-' + server_protocol,
+        'php occ log:manage --level 2',
+        'php occ config:list',
+        'php occ security:certificates:import /drone/server.crt',
+        'php occ security:certificates:import /drone/federated.crt',
+        'php occ security:certificates',
+      ],
+    },
+
+
   install(trigger={}, depends_on=[])::
     {
       kind: 'pipeline',
@@ -152,6 +174,7 @@ local optionalSuffix(value) = if value != '' then '-' + value else value;
         $.composer(image='owncloudci/php:' + php),
         $.vendorbin(image='owncloudci/php:' + php),
         $.yarn(image='owncloudci/php:' + php),
+        $.installServer(image='owncloudci/php:' + php),
         {
           name: 'test',
           image: 'owncloudci/php:' + php,
