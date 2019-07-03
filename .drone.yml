@@ -453,6 +453,15 @@ steps:
   commands:
   - ./tests/drone/test-phpunit.sh
 
+services:
+- name: mariadb
+  image: mariadb:10.3
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
 trigger:
   ref:
   - refs/heads/master
@@ -522,6 +531,15 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - ./tests/drone/test-phpunit.sh
+
+services:
+- name: mysql
+  image: mysql:5.5
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -593,6 +611,15 @@ steps:
   commands:
   - ./tests/drone/test-phpunit.sh
 
+services:
+- name: mysql
+  image: mysql:5.7
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
 trigger:
   ref:
   - refs/heads/master
@@ -662,6 +689,15 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - ./tests/drone/test-phpunit.sh
+
+services:
+- name: mysql
+  image: mysql:8.0
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -733,6 +769,14 @@ steps:
   commands:
   - ./tests/drone/test-phpunit.sh
 
+services:
+- name: postgres
+  image: postgres:9.4
+  environment:
+    POSTGRES_DB: owncloud
+    POSTGRES_PASSWORD: owncloud
+    POSTGRES_USER: owncloud
+
 trigger:
   ref:
   - refs/heads/master
@@ -803,6 +847,14 @@ steps:
   commands:
   - ./tests/drone/test-phpunit.sh
 
+services:
+- name: postgres
+  image: postgres:10.3
+  environment:
+    POSTGRES_DB: owncloud
+    POSTGRES_PASSWORD: owncloud
+    POSTGRES_USER: owncloud
+
 trigger:
   ref:
   - refs/heads/master
@@ -872,6 +924,12 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - ./tests/drone/test-phpunit.sh
+
+services:
+- name: oracle
+  image: deepdiver/docker-oracle-xe-11g:2.0
+  environment:
+    ORACLE_DISABLE_ASYNCH_IO: true
 
 trigger:
   ref:
@@ -1013,6 +1071,15 @@ steps:
   commands:
   - ./tests/drone/test-phpunit.sh
 
+services:
+- name: mariadb
+  image: mariadb:10.3
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
 trigger:
   ref:
   - refs/heads/master
@@ -1083,6 +1150,15 @@ steps:
   commands:
   - ./tests/drone/test-phpunit.sh
 
+services:
+- name: mysql
+  image: mysql:5.5
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
 trigger:
   ref:
   - refs/heads/master
@@ -1152,6 +1228,14 @@ steps:
   image: owncloudci/php:7.2
   commands:
   - ./tests/drone/test-phpunit.sh
+
+services:
+- name: postgres
+  image: postgres:9.4
+  environment:
+    POSTGRES_DB: owncloud
+    POSTGRES_PASSWORD: owncloud
+    POSTGRES_USER: owncloud
 
 trigger:
   ref:
@@ -1293,6 +1377,15 @@ steps:
   commands:
   - ./tests/drone/test-phpunit.sh
 
+services:
+- name: mariadb
+  image: mariadb:10.3
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
 trigger:
   ref:
   - refs/heads/master
@@ -1363,6 +1456,15 @@ steps:
   commands:
   - ./tests/drone/test-phpunit.sh
 
+services:
+- name: mysql
+  image: mysql:5.5
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
 trigger:
   ref:
   - refs/heads/master
@@ -1432,6 +1534,14 @@ steps:
   image: owncloudci/php:7.3
   commands:
   - ./tests/drone/test-phpunit.sh
+
+services:
+- name: postgres
+  image: postgres:9.4
+  environment:
+    POSTGRES_DB: owncloud
+    POSTGRES_PASSWORD: owncloud
+    POSTGRES_USER: owncloud
 
 trigger:
   ref:
@@ -1573,6 +1683,15 @@ steps:
   commands:
   - ./tests/drone/test-phpunit.sh
 
+services:
+- name: mariadb
+  image: mariadb:10.3
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
 trigger:
   ref:
   - refs/heads/master
@@ -1642,6 +1761,15 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - ./tests/drone/test-phpunit.sh
+
+services:
+- name: mariadb
+  image: mariadb:10.3
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -1713,6 +1841,15 @@ steps:
   commands:
   - ./tests/drone/test-phpunit.sh
 
+services:
+- name: mariadb
+  image: mariadb:10.3
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
 trigger:
   ref:
   - refs/heads/master
@@ -1782,6 +1919,15 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - ./tests/drone/test-phpunit.sh
+
+services:
+- name: mariadb
+  image: mariadb:10.3
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -1853,6 +1999,15 @@ steps:
   commands:
   - ./tests/drone/test-phpunit.sh
 
+services:
+- name: mariadb
+  image: mariadb:10.3
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
 trigger:
   ref:
   - refs/heads/master
@@ -1922,6 +2077,15 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - ./tests/drone/test-phpunit.sh
+
+services:
+- name: mariadb
+  image: mariadb:10.3
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:

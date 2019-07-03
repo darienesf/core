@@ -1,5 +1,62 @@
 local optionalSuffix(value) = if value != '' then '-' + value else value;
 
+local dbServices = {
+  mariadb(version='')::
+    local v = if version != '' then version else '10.2';
+    [{
+      name: 'mariadb',
+      image: 'mariadb:' + v,
+      environment: {
+        MYSQL_USER: 'owncloud',
+        MYSQL_PASSWORD: 'owncloud',
+        MYSQL_DATABASE: 'owncloud',
+        MYSQL_ROOT_PASSWORD: 'owncloud',
+      },
+    }],
+
+  mysql(version='')::
+    local v = if version != '' then version else '5.5';
+    [{
+      name: 'mysql',
+      image: 'mysql:' + v,
+      environment: {
+        MYSQL_USER: 'owncloud',
+        MYSQL_PASSWORD: 'owncloud',
+        MYSQL_DATABASE: 'owncloud',
+        MYSQL_ROOT_PASSWORD: 'owncloud',
+      },
+      # see http://php.net/manual/en/mysqli.requirements.php
+      [if version == '8.0' then 'command']: ['--default-authentication-plugin=mysql_native_password'],
+    }],
+
+  postgres(version='')::
+    local v = if version != '' then version else '9.4';
+    [{
+      name: 'postgres',
+      image: 'postgres:' + v,
+      environment: {
+        POSTGRES_USER: 'owncloud',
+        POSTGRES_PASSWORD: 'owncloud',
+        POSTGRES_DB: 'owncloud',
+      },
+    }],
+
+  oracle(version='')::
+    [{
+      name: 'oracle',
+      image: 'deepdiver/docker-oracle-xe-11g:2.0',
+      environment: {
+        ORACLE_DISABLE_ASYNCH_IO: true,
+      },
+    }],
+
+  sqlite(version='')::
+    [],
+
+  get(db, version)::
+    if db != '' then $[db](version) else [],
+};
+
 {
   cache(settings={})::
     local step_name = "cache-" + if "restore" in settings then "restore" else if "rebuild" in settings then "rebuild" else if "flush" in settings then "flush" else "unknown";
@@ -269,6 +326,7 @@ local optionalSuffix(value) = if value != '' then '-' + value else value;
           ],
         },
       ],
+      services: dbServices.get(database_name, database_version),
       trigger: trigger,
       depends_on: depends_on,
     },
