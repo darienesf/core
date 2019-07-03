@@ -153,6 +153,7 @@ local behatSteps = {
       } + settings,
       when: {
         instance: [
+          'drone.owncloud.services',
           'drone.owncloud.com',
         ],
       } + if std.objectHas(settings, 'restore') then {} else { event: ['push'] },
