@@ -347,6 +347,8 @@ local dbServices = {
     },
 
   behat(browser='', suite='', filter='', num='', trigger={}, depends_on=[], pipeline_name='')::
+    local db_name = 'mariadb';
+    local db_version = '';
     {
       kind: 'pipeline',
       name: if pipeline_name != '' then pipeline_name else'behat' + optionalSuffix(browser) + optionalSuffix(suite) + optionalSuffix(filter) + optionalSuffix(num),
@@ -359,6 +361,8 @@ local dbServices = {
         $.composer(image='owncloudci/php:7.1'),
         $.vendorbin(image='owncloudci/php:7.1'),
         $.yarn(image='owncloudci/php:7.1'),
+        $.installServer(image='owncloudci/php:7.1', db_name=db_name),
+        $.installTestingApp(image='owncloudci/php:7.1'),
         {
           name: 'test',
           image: 'owncloudci/php:7.1',
@@ -368,6 +372,7 @@ local dbServices = {
           ],
         },
       ],
+      services: dbServices.get(db_name, db_version),
       trigger: trigger,
       depends_on: depends_on,
     },

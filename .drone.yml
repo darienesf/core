@@ -2703,9 +2703,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -2771,9 +2805,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -2839,9 +2907,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -2907,9 +3009,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -2975,9 +3111,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -3043,9 +3213,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -3111,9 +3315,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -3179,9 +3417,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -3247,9 +3519,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -3315,9 +3621,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -3383,9 +3723,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -3451,9 +3825,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -3519,9 +3927,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -3587,9 +4029,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -3655,9 +4131,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -3723,9 +4233,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -3791,9 +4335,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -3859,9 +4437,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -3927,9 +4539,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -3995,9 +4641,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -4063,9 +4743,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -4131,9 +4845,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -4199,9 +4947,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -4267,9 +5049,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -4335,9 +5151,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -4403,9 +5253,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -4471,9 +5355,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -4539,9 +5457,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -4607,9 +5559,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -4675,9 +5661,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -4743,9 +5763,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -4811,9 +5865,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -4879,9 +5967,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -4947,9 +6069,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -5015,9 +6171,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -5083,9 +6273,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -5151,9 +6375,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -5219,9 +6477,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -5287,9 +6579,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -5355,9 +6681,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -5423,9 +6783,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -5491,9 +6885,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -5559,9 +6987,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -5627,9 +7089,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -5695,9 +7191,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -5763,9 +7293,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -5831,9 +7395,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -5899,9 +7497,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -5967,9 +7599,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -6035,9 +7701,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -6103,9 +7803,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
@@ -6171,9 +7905,43 @@ steps:
     YARN_CACHE_FOLDER: /drone/src/.cache/yarn
     bower_storage__packages: /drone/src/.cache/bower
 
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
 - name: test
   pull: always
   image: owncloudci/php:7.1
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
 
 trigger:
   ref:
