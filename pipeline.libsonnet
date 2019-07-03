@@ -424,7 +424,37 @@ local behatSteps = {
           ],
         },
       ],
-      services: dbServices.get(database_name, database_version),
+      services: [
+        (if external == 'webdav' then {
+          name: 'apache-webdav',
+          image: 'owncloudci/php',
+          pull: 'always',
+          environment: {
+            APACHE_CONFIG_TEMPLATE: 'webdav',
+          },
+          command: [ '/usr/local/bin/apachectl', '-D', 'FOREGROUND' ]
+        }),
+        (if external == 'samba' then {
+          name: 'smb-samba',
+          image: 'owncloudci/samba',
+          pull: 'always',
+          command: ['-u', 'test;test', '-s', 'public;/tmp;yes;no;no;test;none;test', '-S'],
+        }),
+        (if external == 'swift' then {
+          name: 'ceph',
+          image: 'owncloudci/ceph',
+          pull: 'always',
+          environment: {
+            KEYSTONE_PUBLIC_PORT: 5034,
+            KEYSTONE_ADMIN_USER: 'test',
+            KEYSTONE_ADMIN_PASS: 'testing',
+            KEYSTONE_ADMIN_TENANT: 'testtenant',
+            KEYSTONE_ENDPOINT_REGION: 'testregion',
+            KEYSTONE_SERVICE: 'testceph',
+            OSD_SIZE: 500,
+          },
+        })
+      ] + dbServices.get(database_name, database_version),
       trigger: trigger,
       depends_on: depends_on,
     },
