@@ -5766,6 +5766,10 @@ steps:
     TEST_SERVER_URL: https://server-https
 
 services:
+- name: email
+  pull: always
+  image: mailhog/mailhog
+
 - name: mariadb
   image: mariadb:10.2
   environment:
@@ -6206,6 +6210,10 @@ steps:
     TEST_SERVER_URL: https://server-https
 
 services:
+- name: email
+  pull: always
+  image: mailhog/mailhog
+
 - name: mariadb
   image: mariadb:10.2
   environment:
@@ -6771,6 +6779,10 @@ steps:
     TEST_SERVER_URL: https://server-https
 
 services:
+- name: email
+  pull: always
+  image: mailhog/mailhog
+
 - name: mariadb
   image: mariadb:10.2
   environment:
@@ -6997,6 +7009,10 @@ steps:
     TEST_SERVER_URL: https://server-https
 
 services:
+- name: email
+  pull: always
+  image: mailhog/mailhog
+
 - name: mariadb
   image: mariadb:10.2
   environment:
@@ -7675,6 +7691,10 @@ steps:
     TEST_SERVER_URL: https://server-https
 
 services:
+- name: email
+  pull: always
+  image: mailhog/mailhog
+
 - name: mariadb
   image: mariadb:10.2
   environment:
@@ -7788,6 +7808,10 @@ steps:
     TEST_SERVER_URL: https://server-https
 
 services:
+- name: email
+  pull: always
+  image: mailhog/mailhog
+
 - name: mariadb
   image: mariadb:10.2
   environment:
@@ -7901,6 +7925,10 @@ steps:
     TEST_SERVER_URL: https://server-https
 
 services:
+- name: email
+  pull: always
+  image: mailhog/mailhog
+
 - name: mariadb
   image: mariadb:10.2
   environment:
@@ -8014,6 +8042,10 @@ steps:
     TEST_SERVER_URL: https://server-https
 
 services:
+- name: email
+  pull: always
+  image: mailhog/mailhog
+
 - name: mariadb
   image: mariadb:10.2
   environment:
@@ -8127,6 +8159,10 @@ steps:
     TEST_SERVER_URL: https://server-https
 
 services:
+- name: email
+  pull: always
+  image: mailhog/mailhog
+
 - name: mariadb
   image: mariadb:10.2
   environment:
@@ -8805,6 +8841,10 @@ steps:
     TEST_SERVER_URL: https://server-https
 
 services:
+- name: email
+  pull: always
+  image: mailhog/mailhog
+
 - name: mariadb
   image: mariadb:10.2
   environment:
@@ -9031,6 +9071,10 @@ steps:
     TEST_SERVER_URL: https://server-https
 
 services:
+- name: email
+  pull: always
+  image: mailhog/mailhog
+
 - name: mariadb
   image: mariadb:10.2
   environment:

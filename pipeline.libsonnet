@@ -421,7 +421,7 @@ local behatSteps = {
       depends_on: depends_on,
     },
 
-  behat(browser='', suite='', type='', filter='', num='', trigger={}, depends_on=[], pipeline_name='')::
+  behat(browser='', suite='', type='', filter='', num='', email=false, trigger={}, depends_on=[], pipeline_name='')::
     local db_name = 'mariadb';
     local db_version = '';
     {
@@ -439,7 +439,13 @@ local behatSteps = {
         $.installServer(image='owncloudci/php:7.1', db_name=db_name),
         $.installTestingApp(image='owncloudci/php:7.1')
       ] + behatSteps.get(type, image='owncloudci/php7.1', server_protocol='https', browser=browser),
-      services: dbServices.get(db_name, db_version),
+      services: [
+        (if email then {
+          name: 'email',
+          pull: 'always',
+          image: 'mailhog/mailhog',
+        })
+      ] + dbServices.get(db_name, db_version),
       trigger: trigger,
       depends_on: depends_on,
     },

@@ -410,6 +410,7 @@ local unit_deps = [
   pipeline.behat(
     suite='cliProvisioning',
     type='cli',
+    email=true,
     trigger=trigger,
     depends_on=unit_deps
   ),
@@ -437,6 +438,7 @@ local unit_deps = [
     browser='chrome',
     suite='webUIAdminSettings',
     type='webui',
+    email=true,
     trigger=trigger,
     depends_on=unit_deps
   ),
@@ -472,6 +474,7 @@ local unit_deps = [
     browser='chrome',
     suite='webUILogin',
     type='webui',
+    email=true,
     trigger=trigger,
     depends_on=unit_deps
   ),
@@ -486,6 +489,7 @@ local unit_deps = [
     browser='chrome',
     suite='webUIPersonalSettings',
     type='webui',
+    email=true,
     trigger=trigger,
     depends_on=unit_deps
   ),
@@ -528,6 +532,7 @@ local unit_deps = [
     browser='chrome',
     suite='webUISharingExternal',
     type='webui',
+    email=true,
     trigger=trigger,
     depends_on=unit_deps
   ),
@@ -535,6 +540,7 @@ local unit_deps = [
     browser='chrome',
     suite='webUISharingInternalGroups',
     type='webui',
+    email=true,
     trigger=trigger,
     depends_on=unit_deps
   ),
@@ -542,6 +548,7 @@ local unit_deps = [
     browser='chrome',
     suite='webUISharingInternalUsers',
     type='webui',
+    email=true,
     trigger=trigger,
     depends_on=unit_deps
   ),
@@ -549,6 +556,7 @@ local unit_deps = [
     browser='chrome',
     suite='webUISharingNotifications',
     type='webui',
+    email=true,
     trigger=trigger,
     depends_on=unit_deps
   ),
@@ -556,6 +564,7 @@ local unit_deps = [
     browser='chrome',
     suite='webUISharingPublic',
     type='webui',
+    email=true,
     trigger=trigger,
     depends_on=unit_deps
   ),
@@ -602,6 +611,7 @@ local unit_deps = [
     type='webui',
     filter='@smokeTest&&~@notifications-app-required',
     num='2/3',
+    email=true,
     trigger=trigger,
     depends_on=unit_deps
   ),
@@ -620,6 +630,7 @@ local unit_deps = [
     type='webui',
     filter='@smokeTest&&~@notifications-app-required',
     num='3/3',
+    email=true,
     trigger=trigger,
     depends_on=unit_deps
   ),
