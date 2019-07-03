@@ -124,13 +124,13 @@ local dbServices = {
       ],
     },
 
-  installServer(image='owncloudci/php:7.1', db='', server_protocol='https')::
+  installServer(image='owncloudci/php:7.1', db_name='', server_protocol='https')::
     {
       name: 'install-server',
       image: image,
       pull: 'always',
       environment: {
-        DB_TYPE: db,
+        DB_TYPE: db_name,
       },
       commands: [
         './tests/drone/install-server.sh',
@@ -142,6 +142,19 @@ local dbServices = {
         'php occ security:certificates:import /drone/server.crt',
         'php occ security:certificates:import /drone/federated.crt',
         'php occ security:certificates',
+      ],
+    },
+
+  installTestingApp(image='owncloudci/php:7.1')::
+    {
+      name: 'install-testing-app',
+      image: image,
+      pull: 'always',
+      commands: [
+        'git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing',
+        'php occ a:l',
+        'php occ a:e testing',
+        'php occ a:l',
       ],
     },
 
@@ -317,6 +330,8 @@ local dbServices = {
         $.composer(image='owncloudci/php:7.1'),
         $.vendorbin(image='owncloudci/php:7.1'),
         $.yarn(image='owncloudci/php:7.1'),
+        $.installServer(image='owncloudci/php:' + php, db_name=database_name),
+        $.installTestingApp(image='owncloudci/php:' + php),
         {
           name: 'test',
           image: 'owncloudci/php:' + php,
