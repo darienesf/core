@@ -234,20 +234,20 @@ local behatSteps = {
       ],
     },
 
-  prepareFilesPrimaryS3(image)::
+  prepareObjectStore(image, object)::
     {
-      name: 'prepare-files_primary_s3',
+      name: 'prepare-objectstore',
       image: image,
       pull: 'always',
       environment: {
-        OBJECTSTORE: 'files_primary_s3',
+        OBJECTSTORE: object
       },
       commands: [
         'cd /drone/src/apps',
         'git clone https://github.com/owncloud/files_primary_s3.git',
         'cd files_primary_s3',
         'composer install',
-        'cp tests/drone/files_primary_s3.config.php /drone/src/config',
+        'cp tests/drone/' + object + '.config.php /drone/src/config',
         'cd /drone/src',
         'php occ a:l',
         'php occ a:e files_primary_s3',
@@ -412,7 +412,7 @@ local behatSteps = {
       depends_on: depends_on,
     },
 
-  phpunit(php='', db='', coverage=false, external='', object='', trigger={}, depends_on=[], pipeline_name='')::
+  phpunit(php='', db='', coverage=false, external='', primary_object='', object='', trigger={}, depends_on=[], pipeline_name='')::
     local database_split = std.split(db, ':');
 
     local database_name = database_split[0];
@@ -425,11 +425,6 @@ local behatSteps = {
         os: 'linux',
         arch: 'amd64',
       },
-      environment: {
-        FILES_EXTERNAL_TYPE: external,
-        COVERAGE: coverage,
-        PRIMARY_OBJECTSTORE: object,
-      },
       steps: [
         $.cache({ restore: true }),
         $.composer(image='owncloudci/php:7.1'),
@@ -437,11 +432,16 @@ local behatSteps = {
         $.yarn(image='owncloudci/php:7.1'),
         $.installServer(image='owncloudci/php:' + php, db_name=database_name),
         $.installTestingApp(image='owncloudci/php:' + php),
-        (if object == 'minio' then $.prepareFilesPrimaryS3(image='owncloudci/php:' + php)),
+        (if object != '' then $.prepareObjectStore(image='owncloudci/php:' + php, object=object)),
         {
           name: 'test',
           image: 'owncloudci/php:' + php,
           pull: 'always',
+          environment: {
+            FILES_EXTERNAL_TYPE: external,
+            COVERAGE: coverage,
+            PRIMARY_OBJECTSTORE: primary_object,
+          },
           commands: [
             './tests/drone/test-phpunit.sh',
           ],

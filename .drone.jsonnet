@@ -212,34 +212,31 @@ local unit_deps = [
     depends_on=unit_deps
   ),
 
-  # objectstore
+  # Primary Objectstorage
   pipeline.phpunit(
     pipeline_name='phpunit-php7.1-mariadb10.3-swift-objectstore',
     php='7.1',
-    db='mariadb:10.3',
+    db='sqlite',
     coverage=true,
+    primary_object='swift',
     object='swift',
-    trigger=trigger,
-    depends_on=unit_deps
-  ),
-  pipeline.phpunit(
-    php='7.1',
-    db='mariadb:10.3',
-    coverage=true,
-    object='scality',
-    trigger=trigger,
-    depends_on=unit_deps
-  ),
-  pipeline.phpunit(
-    php='7.1',
-    db='mariadb:10.3',
-    coverage=true,
-    object='minio',
+    external='swift',
     trigger=trigger,
     depends_on=unit_deps
   ),
 
-  # acceptance
+  # files_primary_s3
+  pipeline.phpunit(
+    php='7.1',
+    db='sqlite',
+    coverage=true,
+    primary_object='files_primary_s3',
+    object='scality',
+    trigger=trigger,
+    depends_on=unit_deps
+  ),
+
+  # API Acceptance tests
   pipeline.behat(
     suite='apiMain',
     type='api',
