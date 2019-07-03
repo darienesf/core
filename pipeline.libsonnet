@@ -65,7 +65,7 @@ local behatSteps = {
       pull: 'always',
       environment: {
         TEST_SERVER_URL: server_protocol + '://server-' + server_protocol,
-        TEST_SUITE: suite,
+        BEHAT_SUITE: suite,
       },
       commands: [
         'touch /drone/saved-settings.sh',
@@ -82,7 +82,7 @@ local behatSteps = {
       environment: {
         MAILHOG_HOST: 'email',
         TEST_SERVER_URL: server_protocol + '://server-' + server_protocol,
-        TEST_SUITE: suite,
+        BEHAT_SUITE: suite,
       },
       commands: [
         'touch /drone/saved-settings.sh',
@@ -100,7 +100,7 @@ local behatSteps = {
       environment: {
         MAILHOG_HOST: 'email',
         TEST_SERVER_URL: server_protocol + '://server-' + server_protocol,
-        TEST_SUITE: suite,
+        BEHAT_SUITE: suite,
       },
       commands: [
         'touch /drone/saved-settings.sh',
@@ -117,7 +117,7 @@ local behatSteps = {
       pull: 'always',
       environment: {
         TEST_SERVER_URL: server_protocol + '://server-' + server_protocol,
-        TEST_SUITE: suite,
+        BEHAT_SUITE: suite,
         BROWSER: browser,
         SELENIUM_HOST: browser,
         SELENIUM_PORT: 4444,

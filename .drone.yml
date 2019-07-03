@@ -2880,8 +2880,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiMain
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiMain
 
 services:
 - name: server-https
@@ -3012,8 +3012,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiAuth
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiAuth
 
 services:
 - name: server-https
@@ -3144,8 +3144,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiAuthOcs
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiAuthOcs
 
 services:
 - name: server-https
@@ -3276,8 +3276,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiCapabilities
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiCapabilities
 
 services:
 - name: server-https
@@ -3408,8 +3408,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiComments
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiComments
 
 services:
 - name: server-https
@@ -3540,8 +3540,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiFavorites
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiFavorites
 
 services:
 - name: server-https
@@ -3672,8 +3672,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiFederation
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiFederation
 
 services:
 - name: server-https
@@ -3804,8 +3804,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiProvisioning-v1
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiProvisioning-v1
 
 services:
 - name: server-https
@@ -3936,8 +3936,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiProvisioning-v2
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiProvisioning-v2
 
 services:
 - name: server-https
@@ -4068,8 +4068,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiProvisioningGroups-v1
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiProvisioningGroups-v1
 
 services:
 - name: server-https
@@ -4200,8 +4200,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiProvisioningGroups-v2
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiProvisioningGroups-v2
 
 services:
 - name: server-https
@@ -4332,8 +4332,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiSharees
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiSharees
 
 services:
 - name: server-https
@@ -4464,8 +4464,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiShareManagement
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiShareManagement
 
 services:
 - name: server-https
@@ -4596,8 +4596,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiShareManagementBasic
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiShareManagementBasic
 
 services:
 - name: server-https
@@ -4728,8 +4728,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiShareOperations
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiShareOperations
 
 services:
 - name: server-https
@@ -4860,8 +4860,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiShareReshare
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiShareReshare
 
 services:
 - name: server-https
@@ -4992,8 +4992,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiShareUpdate
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiShareUpdate
 
 services:
 - name: server-https
@@ -5124,8 +5124,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiSharingNotifications
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiSharingNotifications
 
 services:
 - name: server-https
@@ -5256,8 +5256,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiTags
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiTags
 
 services:
 - name: server-https
@@ -5388,8 +5388,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiTrashbin
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiTrashbin
 
 services:
 - name: server-https
@@ -5520,8 +5520,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiVersions
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiVersions
 
 services:
 - name: server-https
@@ -5652,8 +5652,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiWebdavLocks
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiWebdavLocks
 
 services:
 - name: server-https
@@ -5784,8 +5784,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiWebdavLocks2
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiWebdavLocks2
 
 services:
 - name: server-https
@@ -5916,8 +5916,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiWebdavMove
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiWebdavMove
 
 services:
 - name: server-https
@@ -6048,8 +6048,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiWebdavOperations
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiWebdavOperations
 
 services:
 - name: server-https
@@ -6180,8 +6180,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiWebdavProperties
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiWebdavProperties
 
 services:
 - name: server-https
@@ -6312,8 +6312,8 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-api TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: apiWebdavUpload
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: apiWebdavUpload
 
 services:
 - name: server-https
@@ -6445,9 +6445,9 @@ steps:
   - make
   - su-exec www-data ./tests/acceptance/run.sh --type cli
   environment:
+    BEHAT_SUITE: cliAppManagement
     MAILHOG_HOST: email
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: cliAppManagement
 
 services:
 - name: server-https
@@ -6578,9 +6578,9 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-cli TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: cliProvisioning
     MAILHOG_HOST: email
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: cliProvisioning
 
 services:
 - name: email
@@ -6715,9 +6715,9 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-cli TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: cliMain
     MAILHOG_HOST: email
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: cliMain
 
 services:
 - name: server-https
@@ -6848,9 +6848,9 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-cli TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: cliBackground
     MAILHOG_HOST: email
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: cliBackground
 
 services:
 - name: server-https
@@ -6981,9 +6981,9 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-cli TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: cliTrashbin
     MAILHOG_HOST: email
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: cliTrashbin
 
 services:
 - name: server-https
@@ -7114,13 +7114,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUIAdminSettings
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUIAdminSettings
 
 services:
 - name: email
@@ -7255,13 +7255,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUIComments
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUIComments
 
 services:
 - name: server-https
@@ -7392,13 +7392,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUICreateDelete
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUICreateDelete
 
 services:
 - name: server-https
@@ -7529,13 +7529,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUIFavorites
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUIFavorites
 
 services:
 - name: server-https
@@ -7666,13 +7666,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUIFiles
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUIFiles
 
 services:
 - name: server-https
@@ -7803,13 +7803,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUILogin
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUILogin
 
 services:
 - name: email
@@ -7944,13 +7944,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUIMoveFilesFolders
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUIMoveFilesFolders
 
 services:
 - name: server-https
@@ -8081,13 +8081,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUIPersonalSettings
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUIPersonalSettings
 
 services:
 - name: email
@@ -8222,13 +8222,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUIRenameFiles
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUIRenameFiles
 
 services:
 - name: server-https
@@ -8359,13 +8359,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUIRenameFolders
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUIRenameFolders
 
 services:
 - name: server-https
@@ -8496,13 +8496,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUIRestrictSharing
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUIRestrictSharing
 
 services:
 - name: server-https
@@ -8633,13 +8633,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUISharingAcceptShares
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUISharingAcceptShares
 
 services:
 - name: server-https
@@ -8770,13 +8770,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUISharingAutocompletion
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUISharingAutocompletion
 
 services:
 - name: server-https
@@ -8907,13 +8907,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUISharingExternal
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUISharingExternal
 
 services:
 - name: email
@@ -9048,13 +9048,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUISharingInternalGroups
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUISharingInternalGroups
 
 services:
 - name: email
@@ -9189,13 +9189,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUISharingInternalUsers
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUISharingInternalUsers
 
 services:
 - name: email
@@ -9330,13 +9330,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUISharingNotifications
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUISharingNotifications
 
 services:
 - name: email
@@ -9471,13 +9471,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUISharingPublic
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUISharingPublic
 
 services:
 - name: email
@@ -9612,13 +9612,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUITags
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUITags
 
 services:
 - name: server-https
@@ -9749,13 +9749,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUITrashbin
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUITrashbin
 
 services:
 - name: server-https
@@ -9886,13 +9886,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUIUpload
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUIUpload
 
 services:
 - name: server-https
@@ -10023,13 +10023,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUIWebdavLocks
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUIWebdavLocks
 
 services:
 - name: server-https
@@ -10160,13 +10160,13 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_SUITE: webUIWebdavLockProtection
     BROWSER: chrome
     MAILHOG_HOST: email
     PLATFORM: Linux
     SELENIUM_HOST: chrome
     SELENIUM_PORT: 4444
     TEST_SERVER_URL: https://server-https
-    TEST_SUITE: webUIWebdavLockProtection
 
 services:
 - name: server-https
