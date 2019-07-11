@@ -196,6 +196,8 @@ class DAV extends Common {
 		$this->init();
 		$path = $this->cleanPath($path);
 		try {
+			// client propfind is in \OC\HTTP\Client
+			/* @phan-suppress-next-line PhanUndeclaredMethod */
 			$response = $this->client->propfind(
 				$this->encodePath($path),
 				[],
@@ -253,6 +255,8 @@ class DAV extends Common {
 		if ($cachedResponse === null || $cachedResponse === true) {
 			$this->init();
 			try {
+				// client propfind is in \OC\HTTP\Client
+				/* @phan-suppress-next-line PhanUndeclaredMethod */
 				$response = $this->client->propfind(
 					$this->encodePath($path),
 					[
@@ -419,6 +423,8 @@ class DAV extends Common {
 		$path = $this->cleanPath($path);
 		try {
 			// TODO: cacheable ?
+			// client propfind is in \OC\HTTP\Client
+			/* @phan-suppress-next-line PhanUndeclaredMethod */
 			$response = $this->client->propfind($this->encodePath($path), ['{DAV:}quota-available-bytes']);
 			if ($response === false) {
 				return FileInfo::SPACE_UNKNOWN;
@@ -445,8 +451,12 @@ class DAV extends Common {
 		if ($this->file_exists($path)) {
 			try {
 				$this->statCache->remove($path);
+				// client proppatch is in \OC\HTTP\Client
+				/* @phan-suppress-next-line PhanUndeclaredMethod */
 				$this->client->proppatch($this->encodePath($path), ['{DAV:}lastmodified' => $mtime]);
 				// non-owncloud clients might not have accepted the property, need to recheck it
+				// client propfind is in \OC\HTTP\Client
+				/* @phan-suppress-next-line PhanUndeclaredMethod */
 				$response = $this->client->propfind($this->encodePath($path), ['{DAV:}getlastmodified'], 0);
 				if ($response === false) {
 					// file disappeared since ?
@@ -523,6 +533,8 @@ class DAV extends Common {
 				// needs trailing slash in destination
 				$path2 = \rtrim($path2, '/') . '/';
 			}
+			// client request is in \OC\HTTP\Client
+			/* @phan-suppress-next-line PhanUndeclaredMethod */
 			$this->client->request(
 				'MOVE',
 				$this->encodePath($path1),
@@ -555,6 +567,8 @@ class DAV extends Common {
 				// needs trailing slash in destination
 				$path2 = \rtrim($path2, '/') . '/';
 			}
+			// client request is in \OC\HTTP\Client
+			/* @phan-suppress-next-line PhanUndeclaredMethod */
 			$this->client->request(
 				'COPY',
 				$this->encodePath($path1),
@@ -652,6 +666,8 @@ class DAV extends Common {
 	private function simpleResponse($method, $path, $body, $expected) {
 		$path = $this->cleanPath($path);
 		try {
+			// client request is in \OC\HTTP\Client
+			/* @phan-suppress-next-line PhanUndeclaredMethod */
 			$response = $this->client->request($method, $this->encodePath($path), $body);
 			return $response['statusCode'] == $expected;
 		} catch (ClientHttpException $e) {
