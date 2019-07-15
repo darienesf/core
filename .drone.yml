@@ -386,9 +386,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -494,9 +492,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -602,9 +598,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -712,9 +706,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -819,9 +811,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -926,9 +916,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -1034,9 +1022,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -1139,9 +1125,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -1239,9 +1223,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -1339,9 +1321,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -1447,9 +1427,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -1547,9 +1525,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -1655,9 +1631,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -1766,9 +1740,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -1877,9 +1849,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -1978,9 +1948,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -2099,9 +2067,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -2230,9 +2196,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -2354,9 +2318,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -2486,9 +2448,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -2618,9 +2578,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -2750,9 +2708,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -2882,9 +2838,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -3014,9 +2968,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -3146,9 +3098,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -3278,9 +3228,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -3410,9 +3358,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -3542,9 +3488,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -3674,9 +3618,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -3806,9 +3748,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -3938,9 +3878,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -4070,9 +4008,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -4202,9 +4138,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -4334,9 +4268,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -4466,9 +4398,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -4598,9 +4528,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -4730,9 +4658,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -4862,9 +4788,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -4994,9 +4918,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -5126,9 +5048,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -5258,9 +5178,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -5390,9 +5308,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -5522,9 +5438,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -5654,9 +5568,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -5786,9 +5698,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -5918,9 +5828,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -6052,9 +5960,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -6189,9 +6095,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -6322,9 +6226,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -6455,9 +6357,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -6588,9 +6488,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -6729,9 +6627,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -6866,9 +6762,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -7003,9 +6897,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -7140,9 +7032,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -7277,9 +7167,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -7418,9 +7306,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -7555,9 +7441,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -7696,9 +7580,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -7833,9 +7715,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -7970,9 +7850,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -8107,9 +7985,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -8244,9 +8120,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -8381,9 +8255,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -8522,9 +8394,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -8663,9 +8533,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -8804,9 +8672,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -8945,9 +8811,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -9086,9 +8950,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -9223,9 +9085,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -9360,9 +9220,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -9497,9 +9355,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -9634,9 +9490,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -9771,9 +9625,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -9907,9 +9759,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -10043,9 +9893,7 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ---
 kind: pipeline
@@ -10179,8 +10027,6 @@ trigger:
   - "refs/pull/**"
 
 depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
+- install-dependencies
 
 ...

@@ -15,12 +15,12 @@ local style_deps = [
   'install-dependencies',
 ];
 
-local unit_deps = [
-  'coding-standard',
-  'phan-php7.1',
+local unit_deps = style_deps + [
+  // 'coding-standard',
+  // 'phan-php7.1',
   // 'phan-php7.2',
   // 'phan-php7.3',
-  'stan-php7.1',
+  // 'stan-php7.1',
 ];
 
 [
