@@ -352,6 +352,7 @@ local unit_deps = style_deps + [
   pipeline.behat(
     suite='apiSharingNotifications',
     type='api',
+    install_notifications_app=true,
     trigger=trigger,
     depends_on=unit_deps
   ),
@@ -565,6 +566,7 @@ local unit_deps = style_deps + [
     suite='webUISharingNotifications',
     type='webui',
     email=true,
+    install_notifications_app=true,
     trigger=trigger,
     depends_on=unit_deps
   ),

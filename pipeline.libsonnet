@@ -496,7 +496,7 @@ local behatSteps = {
       depends_on: depends_on,
     },
 
-  behat(browser='', suite='', type='', filter='', num='', email=false, server_protocol='https', trigger={}, depends_on=[], pipeline_name='')::
+  behat(browser='', suite='', type='', filter='', num='', email=false, server_protocol='https', install_notifications_app=false, trigger={}, depends_on=[], pipeline_name='')::
     local db_name = 'mariadb';
     local db_version = '';
 
@@ -516,6 +516,15 @@ local behatSteps = {
         $.yarn(image=image),
         $.installServer(image=image, db_name=db_name),
         $.installTestingApp(image=image),
+        (if install_notifications_app then {
+          name: 'install-notifications-app',
+          image: image,
+          pull: 'always',
+          commands: [
+            'git clone https://github.com/owncloud/notifications.git apps/notifications',
+            'php occ a:e notifications',
+          ],
+        }),
         $.fixPermissions(image=image),
       ] + behatSteps.get(type=type, suite=suite, image=image, server_protocol=server_protocol, browser=browser),
       services: [

@@ -4572,6 +4572,13 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
+- name: install-notifications-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/notifications.git apps/notifications
+  - php occ a:e notifications
+
 - name: fix-permissions
   pull: always
   image: owncloudci/php:7.1
@@ -8715,6 +8722,13 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
+
+- name: install-notifications-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/notifications.git apps/notifications
+  - php occ a:e notifications
 
 - name: fix-permissions
   pull: always
