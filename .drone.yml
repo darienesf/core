@@ -9995,4 +9995,428 @@ trigger:
 depends_on:
 - install-dependencies
 
+---
+kind: pipeline
+name: caldav-php7.1-mariadb
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: cache-restore
+  pull: always
+  image: plugins/s3-cache:1
+  settings:
+    access_key:
+      from_secret: cache_s3_access_key
+    endpoint:
+      from_secret: cache_s3_endpoint
+    restore: true
+    secret_key:
+      from_secret: cache_s3_secret_key
+  when:
+    instance:
+    - drone.owncloud.services
+    - drone.owncloud.com
+
+- name: composer
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-composer-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: vendorbin
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make vendor-bin-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: yarn
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-nodejs-deps
+  environment:
+    NPM_CONFIG_CACHE: /drone/src/.cache/npm
+    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
+    bower_storage__packages: /drone/src/.cache/bower
+
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: caldav-install
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - bash apps/dav/tests/ci/caldav/install.sh
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
+- name: caldav-test
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - bash apps/dav/tests/ci/caldav/script.sh
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/stable10
+  - refs/heads/drone-jsonnet
+  - "refs/heads/release-*"
+  - "refs/tags/**"
+  - "refs/pull/**"
+
+depends_on:
+- install-dependencies
+
+---
+kind: pipeline
+name: carddav-php7.1-mariadb
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: cache-restore
+  pull: always
+  image: plugins/s3-cache:1
+  settings:
+    access_key:
+      from_secret: cache_s3_access_key
+    endpoint:
+      from_secret: cache_s3_endpoint
+    restore: true
+    secret_key:
+      from_secret: cache_s3_secret_key
+  when:
+    instance:
+    - drone.owncloud.services
+    - drone.owncloud.com
+
+- name: composer
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-composer-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: vendorbin
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make vendor-bin-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: yarn
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-nodejs-deps
+  environment:
+    NPM_CONFIG_CACHE: /drone/src/.cache/npm
+    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
+    bower_storage__packages: /drone/src/.cache/bower
+
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: carddav-install
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - bash apps/dav/tests/ci/carddav/install.sh
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
+- name: carddav-test
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - bash apps/dav/tests/ci/carddav/script.sh
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/stable10
+  - refs/heads/drone-jsonnet
+  - "refs/heads/release-*"
+  - "refs/tags/**"
+  - "refs/pull/**"
+
+depends_on:
+- install-dependencies
+
+---
+kind: pipeline
+name: caldav-old-endpoint-php7.1-mariadb
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: cache-restore
+  pull: always
+  image: plugins/s3-cache:1
+  settings:
+    access_key:
+      from_secret: cache_s3_access_key
+    endpoint:
+      from_secret: cache_s3_endpoint
+    restore: true
+    secret_key:
+      from_secret: cache_s3_secret_key
+  when:
+    instance:
+    - drone.owncloud.services
+    - drone.owncloud.com
+
+- name: composer
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-composer-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: vendorbin
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make vendor-bin-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: yarn
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-nodejs-deps
+  environment:
+    NPM_CONFIG_CACHE: /drone/src/.cache/npm
+    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
+    bower_storage__packages: /drone/src/.cache/bower
+
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: caldav-old-endpoint-install
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - bash apps/dav/tests/ci/caldav-old-endpoint/install.sh
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
+- name: caldav-old-endpoint-test
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - bash apps/dav/tests/ci/caldav-old-endpoint/script.sh
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/stable10
+  - refs/heads/drone-jsonnet
+  - "refs/heads/release-*"
+  - "refs/tags/**"
+  - "refs/pull/**"
+
+depends_on:
+- install-dependencies
+
+---
+kind: pipeline
+name: carddav-old-endpoint-php7.1-mariadb
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: cache-restore
+  pull: always
+  image: plugins/s3-cache:1
+  settings:
+    access_key:
+      from_secret: cache_s3_access_key
+    endpoint:
+      from_secret: cache_s3_endpoint
+    restore: true
+    secret_key:
+      from_secret: cache_s3_secret_key
+  when:
+    instance:
+    - drone.owncloud.services
+    - drone.owncloud.com
+
+- name: composer
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-composer-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: vendorbin
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make vendor-bin-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: yarn
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-nodejs-deps
+  environment:
+    NPM_CONFIG_CACHE: /drone/src/.cache/npm
+    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
+    bower_storage__packages: /drone/src/.cache/bower
+
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: carddav-old-endpoint-install
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - bash apps/dav/tests/ci/carddav-old-endpoint/install.sh
+
+- name: fix-permissions
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - chown www-data /drone/src -R
+
+- name: carddav-old-endpoint-test
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - bash apps/dav/tests/ci/carddav-old-endpoint/script.sh
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/stable10
+  - refs/heads/drone-jsonnet
+  - "refs/heads/release-*"
+  - "refs/tags/**"
+  - "refs/pull/**"
+
+depends_on:
+- install-dependencies
+
 ...

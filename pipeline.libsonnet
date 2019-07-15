@@ -550,4 +550,46 @@ local behatSteps = {
       trigger: trigger,
       depends_on: depends_on,
     },
+
+  dav(suite, php, db, trigger={}, depends_on=[], pipeline_name='')::
+    local database_split = std.split(db, ':');
+
+    local database_name = database_split[0];
+    local database_version = if std.length(database_split) == 2 then database_split[1] else '';
+
+    {
+      kind: 'pipeline',
+      name: suite + '-php' + php + '-' + std.join('', database_split),
+      platform: {
+        os: 'linux',
+        arch: 'amd64',
+      },
+      steps: [
+        $.cache({ restore: true }),
+        $.composer(image='owncloudci/php:7.1'),
+        $.vendorbin(image='owncloudci/php:7.1'),
+        $.yarn(image='owncloudci/php:7.1'),
+        $.installServer(image='owncloudci/php:' + php, db_name=database_name),
+        {
+          name: suite + '-install',
+          image: 'owncloudci/php:' + php,
+          pull: 'always',
+          commands: [
+            'bash apps/dav/tests/ci/' + suite + '/install.sh',
+          ],
+        },
+        $.fixPermissions(image='owncloudci/php:7.1'),
+        {
+          name: suite + '-test',
+          image: 'owncloudci/php:' + php,
+          pull: 'always',
+          commands: [
+            'bash apps/dav/tests/ci/' + suite + '/script.sh',
+          ],
+        },
+      ],
+      services: dbServices.get(database_name, database_version),
+      trigger: trigger,
+      depends_on: depends_on,
+    },
 }

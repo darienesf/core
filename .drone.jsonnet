@@ -612,7 +612,7 @@ local unit_deps = style_deps + [
     depends_on=unit_deps
   ),
 
-  # firefox
+  # Firefox
   pipeline.behat(
     pipeline_name='behat-firefox-smokeTest-1/3',
     browser='firefox',
@@ -643,6 +643,38 @@ local unit_deps = style_deps + [
     num='3/3',
     email=true,
     server_protocol='http',
+    trigger=trigger,
+    depends_on=unit_deps
+  ),
+
+  pipeline.dav(
+    suite='caldav',
+    php='7.1',
+    db='mariadb',
+    trigger=trigger,
+    depends_on=unit_deps
+  ),
+
+  pipeline.dav(
+    suite='carddav',
+    php='7.1',
+    db='mariadb',
+    trigger=trigger,
+    depends_on=unit_deps
+  ),
+
+  pipeline.dav(
+    suite='caldav-old-endpoint',
+    php='7.1',
+    db='mariadb',
+    trigger=trigger,
+    depends_on=unit_deps
+  ),
+
+  pipeline.dav(
+    suite='carddav-old-endpoint',
+    php='7.1',
+    db='mariadb',
     trigger=trigger,
     depends_on=unit_deps
   ),
