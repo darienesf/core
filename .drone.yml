@@ -392,114 +392,6 @@ depends_on:
 
 ---
 kind: pipeline
-name: phpunit-php7.1-mariadb10.3
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: cache-restore
-  pull: always
-  image: plugins/s3-cache:1
-  settings:
-    access_key:
-      from_secret: cache_s3_access_key
-    endpoint:
-      from_secret: cache_s3_endpoint
-    restore: true
-    secret_key:
-      from_secret: cache_s3_secret_key
-  when:
-    instance:
-    - drone.owncloud.services
-    - drone.owncloud.com
-
-- name: composer
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-composer-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: vendorbin
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make vendor-bin-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: yarn
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-nodejs-deps
-  environment:
-    NPM_CONFIG_CACHE: /drone/src/.cache/npm
-    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
-    bower_storage__packages: /drone/src/.cache/bower
-
-- name: install-server
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - ./tests/drone/install-server.sh
-  - php occ a:l
-  - php occ config:system:set trusted_domains 1 --value=server-https
-  - php occ config:system:set trusted_domains 2 --value=federated-https
-  - php occ log:manage --level 2
-  - php occ config:list
-  - php occ security:certificates:import /drone/server.crt
-  - php occ security:certificates:import /drone/federated.crt
-  - php occ security:certificates
-  environment:
-    DB_TYPE: mariadb
-
-- name: install-testing-app
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
-  - php occ a:l
-  - php occ a:e testing
-  - php occ a:l
-
-- name: test
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - ./tests/drone/test-phpunit.sh
-  environment:
-    COVERAGE: true
-    DB_TYPE: mariadb
-
-services:
-- name: mariadb
-  image: mariadb:10.3
-  environment:
-    MYSQL_DATABASE: owncloud
-    MYSQL_PASSWORD: owncloud
-    MYSQL_ROOT_PASSWORD: owncloud
-    MYSQL_USER: owncloud
-
-trigger:
-  ref:
-  - refs/heads/master
-  - refs/heads/stable10
-  - refs/heads/drone-jsonnet
-  - "refs/heads/release-*"
-  - "refs/tags/**"
-  - "refs/pull/**"
-
-depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
-
----
-kind: pipeline
 name: phpunit-php7.1-mysql5.5
 
 platform:
@@ -688,7 +580,7 @@ steps:
   commands:
   - ./tests/drone/test-phpunit.sh
   environment:
-    COVERAGE: true
+    COVERAGE: false
     DB_TYPE: mysql
 
 services:
@@ -796,7 +688,7 @@ steps:
   commands:
   - ./tests/drone/test-phpunit.sh
   environment:
-    COVERAGE: true
+    COVERAGE: false
     DB_TYPE: mysql
 
 services:
@@ -1040,6 +932,114 @@ depends_on:
 
 ---
 kind: pipeline
+name: phpunit-php7.1-mariadb10.3
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: cache-restore
+  pull: always
+  image: plugins/s3-cache:1
+  settings:
+    access_key:
+      from_secret: cache_s3_access_key
+    endpoint:
+      from_secret: cache_s3_endpoint
+    restore: true
+    secret_key:
+      from_secret: cache_s3_secret_key
+  when:
+    instance:
+    - drone.owncloud.services
+    - drone.owncloud.com
+
+- name: composer
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-composer-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: vendorbin
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make vendor-bin-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: yarn
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-nodejs-deps
+  environment:
+    NPM_CONFIG_CACHE: /drone/src/.cache/npm
+    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
+    bower_storage__packages: /drone/src/.cache/bower
+
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
+- name: test
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/test-phpunit.sh
+  environment:
+    COVERAGE: true
+    DB_TYPE: mariadb
+
+services:
+- name: mariadb
+  image: mariadb:10.3
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/stable10
+  - refs/heads/drone-jsonnet
+  - "refs/heads/release-*"
+  - "refs/tags/**"
+  - "refs/pull/**"
+
+depends_on:
+- coding-standard
+- phan-php7.1
+- stan-php7.1
+
+---
+kind: pipeline
 name: phpunit-php7.1-oracle
 
 platform:
@@ -1245,329 +1245,6 @@ depends_on:
 
 ---
 kind: pipeline
-name: phpunit-php7.2-mariadb10.3
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: cache-restore
-  pull: always
-  image: plugins/s3-cache:1
-  settings:
-    access_key:
-      from_secret: cache_s3_access_key
-    endpoint:
-      from_secret: cache_s3_endpoint
-    restore: true
-    secret_key:
-      from_secret: cache_s3_secret_key
-  when:
-    instance:
-    - drone.owncloud.services
-    - drone.owncloud.com
-
-- name: composer
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-composer-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: vendorbin
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make vendor-bin-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: yarn
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-nodejs-deps
-  environment:
-    NPM_CONFIG_CACHE: /drone/src/.cache/npm
-    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
-    bower_storage__packages: /drone/src/.cache/bower
-
-- name: install-server
-  pull: always
-  image: owncloudci/php:7.2
-  commands:
-  - ./tests/drone/install-server.sh
-  - php occ a:l
-  - php occ config:system:set trusted_domains 1 --value=server-https
-  - php occ config:system:set trusted_domains 2 --value=federated-https
-  - php occ log:manage --level 2
-  - php occ config:list
-  - php occ security:certificates:import /drone/server.crt
-  - php occ security:certificates:import /drone/federated.crt
-  - php occ security:certificates
-  environment:
-    DB_TYPE: mariadb
-
-- name: install-testing-app
-  pull: always
-  image: owncloudci/php:7.2
-  commands:
-  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
-  - php occ a:l
-  - php occ a:e testing
-  - php occ a:l
-
-- name: test
-  pull: always
-  image: owncloudci/php:7.2
-  commands:
-  - ./tests/drone/test-phpunit.sh
-  environment:
-    COVERAGE: true
-    DB_TYPE: mariadb
-
-services:
-- name: mariadb
-  image: mariadb:10.3
-  environment:
-    MYSQL_DATABASE: owncloud
-    MYSQL_PASSWORD: owncloud
-    MYSQL_ROOT_PASSWORD: owncloud
-    MYSQL_USER: owncloud
-
-trigger:
-  ref:
-  - refs/heads/master
-  - refs/heads/stable10
-  - refs/heads/drone-jsonnet
-  - "refs/heads/release-*"
-  - "refs/tags/**"
-  - "refs/pull/**"
-
-depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
-
----
-kind: pipeline
-name: phpunit-php7.2-mysql5.5
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: cache-restore
-  pull: always
-  image: plugins/s3-cache:1
-  settings:
-    access_key:
-      from_secret: cache_s3_access_key
-    endpoint:
-      from_secret: cache_s3_endpoint
-    restore: true
-    secret_key:
-      from_secret: cache_s3_secret_key
-  when:
-    instance:
-    - drone.owncloud.services
-    - drone.owncloud.com
-
-- name: composer
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-composer-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: vendorbin
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make vendor-bin-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: yarn
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-nodejs-deps
-  environment:
-    NPM_CONFIG_CACHE: /drone/src/.cache/npm
-    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
-    bower_storage__packages: /drone/src/.cache/bower
-
-- name: install-server
-  pull: always
-  image: owncloudci/php:7.2
-  commands:
-  - ./tests/drone/install-server.sh
-  - php occ a:l
-  - php occ config:system:set trusted_domains 1 --value=server-https
-  - php occ config:system:set trusted_domains 2 --value=federated-https
-  - php occ log:manage --level 2
-  - php occ config:list
-  - php occ security:certificates:import /drone/server.crt
-  - php occ security:certificates:import /drone/federated.crt
-  - php occ security:certificates
-  environment:
-    DB_TYPE: mysql
-
-- name: install-testing-app
-  pull: always
-  image: owncloudci/php:7.2
-  commands:
-  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
-  - php occ a:l
-  - php occ a:e testing
-  - php occ a:l
-
-- name: test
-  pull: always
-  image: owncloudci/php:7.2
-  commands:
-  - ./tests/drone/test-phpunit.sh
-  environment:
-    COVERAGE: true
-    DB_TYPE: mysql
-
-services:
-- name: mysql
-  image: mysql:5.5
-  environment:
-    MYSQL_DATABASE: owncloud
-    MYSQL_PASSWORD: owncloud
-    MYSQL_ROOT_PASSWORD: owncloud
-    MYSQL_USER: owncloud
-
-trigger:
-  ref:
-  - refs/heads/master
-  - refs/heads/stable10
-  - refs/heads/drone-jsonnet
-  - "refs/heads/release-*"
-  - "refs/tags/**"
-  - "refs/pull/**"
-
-depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
-
----
-kind: pipeline
-name: phpunit-php7.2-postgres9.4
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: cache-restore
-  pull: always
-  image: plugins/s3-cache:1
-  settings:
-    access_key:
-      from_secret: cache_s3_access_key
-    endpoint:
-      from_secret: cache_s3_endpoint
-    restore: true
-    secret_key:
-      from_secret: cache_s3_secret_key
-  when:
-    instance:
-    - drone.owncloud.services
-    - drone.owncloud.com
-
-- name: composer
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-composer-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: vendorbin
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make vendor-bin-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: yarn
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-nodejs-deps
-  environment:
-    NPM_CONFIG_CACHE: /drone/src/.cache/npm
-    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
-    bower_storage__packages: /drone/src/.cache/bower
-
-- name: install-server
-  pull: always
-  image: owncloudci/php:7.2
-  commands:
-  - ./tests/drone/install-server.sh
-  - php occ a:l
-  - php occ config:system:set trusted_domains 1 --value=server-https
-  - php occ config:system:set trusted_domains 2 --value=federated-https
-  - php occ log:manage --level 2
-  - php occ config:list
-  - php occ security:certificates:import /drone/server.crt
-  - php occ security:certificates:import /drone/federated.crt
-  - php occ security:certificates
-  environment:
-    DB_TYPE: postgres
-
-- name: install-testing-app
-  pull: always
-  image: owncloudci/php:7.2
-  commands:
-  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
-  - php occ a:l
-  - php occ a:e testing
-  - php occ a:l
-
-- name: test
-  pull: always
-  image: owncloudci/php:7.2
-  commands:
-  - ./tests/drone/test-phpunit.sh
-  environment:
-    COVERAGE: true
-    DB_TYPE: postgres
-
-services:
-- name: postgres
-  image: postgres:9.4
-  environment:
-    POSTGRES_DB: owncloud
-    POSTGRES_PASSWORD: owncloud
-    POSTGRES_USER: owncloud
-
-trigger:
-  ref:
-  - refs/heads/master
-  - refs/heads/stable10
-  - refs/heads/drone-jsonnet
-  - "refs/heads/release-*"
-  - "refs/tags/**"
-  - "refs/pull/**"
-
-depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
-
----
-kind: pipeline
 name: phpunit-php7.2-sqlite
 
 platform:
@@ -1648,7 +1325,7 @@ steps:
   commands:
   - ./tests/drone/test-phpunit.sh
   environment:
-    COVERAGE: true
+    COVERAGE: false
     DB_TYPE: sqlite
 
 services:
@@ -1668,7 +1345,7 @@ depends_on:
 
 ---
 kind: pipeline
-name: phpunit-php7.3-mariadb10.3
+name: phpunit-php7.2-mariadb
 
 platform:
   os: linux
@@ -1719,7 +1396,7 @@ steps:
 
 - name: install-server
   pull: always
-  image: owncloudci/php:7.3
+  image: owncloudci/php:7.2
   commands:
   - ./tests/drone/install-server.sh
   - php occ a:l
@@ -1735,7 +1412,7 @@ steps:
 
 - name: install-testing-app
   pull: always
-  image: owncloudci/php:7.3
+  image: owncloudci/php:7.2
   commands:
   - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
   - php occ a:l
@@ -1744,236 +1421,21 @@ steps:
 
 - name: test
   pull: always
-  image: owncloudci/php:7.3
+  image: owncloudci/php:7.2
   commands:
   - ./tests/drone/test-phpunit.sh
   environment:
-    COVERAGE: true
+    COVERAGE: false
     DB_TYPE: mariadb
 
 services:
 - name: mariadb
-  image: mariadb:10.3
+  image: mariadb:10.2
   environment:
     MYSQL_DATABASE: owncloud
     MYSQL_PASSWORD: owncloud
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
-
-trigger:
-  ref:
-  - refs/heads/master
-  - refs/heads/stable10
-  - refs/heads/drone-jsonnet
-  - "refs/heads/release-*"
-  - "refs/tags/**"
-  - "refs/pull/**"
-
-depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
-
----
-kind: pipeline
-name: phpunit-php7.3-mysql5.5
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: cache-restore
-  pull: always
-  image: plugins/s3-cache:1
-  settings:
-    access_key:
-      from_secret: cache_s3_access_key
-    endpoint:
-      from_secret: cache_s3_endpoint
-    restore: true
-    secret_key:
-      from_secret: cache_s3_secret_key
-  when:
-    instance:
-    - drone.owncloud.services
-    - drone.owncloud.com
-
-- name: composer
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-composer-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: vendorbin
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make vendor-bin-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: yarn
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-nodejs-deps
-  environment:
-    NPM_CONFIG_CACHE: /drone/src/.cache/npm
-    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
-    bower_storage__packages: /drone/src/.cache/bower
-
-- name: install-server
-  pull: always
-  image: owncloudci/php:7.3
-  commands:
-  - ./tests/drone/install-server.sh
-  - php occ a:l
-  - php occ config:system:set trusted_domains 1 --value=server-https
-  - php occ config:system:set trusted_domains 2 --value=federated-https
-  - php occ log:manage --level 2
-  - php occ config:list
-  - php occ security:certificates:import /drone/server.crt
-  - php occ security:certificates:import /drone/federated.crt
-  - php occ security:certificates
-  environment:
-    DB_TYPE: mysql
-
-- name: install-testing-app
-  pull: always
-  image: owncloudci/php:7.3
-  commands:
-  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
-  - php occ a:l
-  - php occ a:e testing
-  - php occ a:l
-
-- name: test
-  pull: always
-  image: owncloudci/php:7.3
-  commands:
-  - ./tests/drone/test-phpunit.sh
-  environment:
-    COVERAGE: true
-    DB_TYPE: mysql
-
-services:
-- name: mysql
-  image: mysql:5.5
-  environment:
-    MYSQL_DATABASE: owncloud
-    MYSQL_PASSWORD: owncloud
-    MYSQL_ROOT_PASSWORD: owncloud
-    MYSQL_USER: owncloud
-
-trigger:
-  ref:
-  - refs/heads/master
-  - refs/heads/stable10
-  - refs/heads/drone-jsonnet
-  - "refs/heads/release-*"
-  - "refs/tags/**"
-  - "refs/pull/**"
-
-depends_on:
-- coding-standard
-- phan-php7.1
-- stan-php7.1
-
----
-kind: pipeline
-name: phpunit-php7.3-postgres9.4
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: cache-restore
-  pull: always
-  image: plugins/s3-cache:1
-  settings:
-    access_key:
-      from_secret: cache_s3_access_key
-    endpoint:
-      from_secret: cache_s3_endpoint
-    restore: true
-    secret_key:
-      from_secret: cache_s3_secret_key
-  when:
-    instance:
-    - drone.owncloud.services
-    - drone.owncloud.com
-
-- name: composer
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-composer-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: vendorbin
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make vendor-bin-deps
-  environment:
-    COMPOSER_HOME: /drone/src/.cache/composer
-
-- name: yarn
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - make install-nodejs-deps
-  environment:
-    NPM_CONFIG_CACHE: /drone/src/.cache/npm
-    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
-    bower_storage__packages: /drone/src/.cache/bower
-
-- name: install-server
-  pull: always
-  image: owncloudci/php:7.3
-  commands:
-  - ./tests/drone/install-server.sh
-  - php occ a:l
-  - php occ config:system:set trusted_domains 1 --value=server-https
-  - php occ config:system:set trusted_domains 2 --value=federated-https
-  - php occ log:manage --level 2
-  - php occ config:list
-  - php occ security:certificates:import /drone/server.crt
-  - php occ security:certificates:import /drone/federated.crt
-  - php occ security:certificates
-  environment:
-    DB_TYPE: postgres
-
-- name: install-testing-app
-  pull: always
-  image: owncloudci/php:7.3
-  commands:
-  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
-  - php occ a:l
-  - php occ a:e testing
-  - php occ a:l
-
-- name: test
-  pull: always
-  image: owncloudci/php:7.3
-  commands:
-  - ./tests/drone/test-phpunit.sh
-  environment:
-    COVERAGE: true
-    DB_TYPE: postgres
-
-services:
-- name: postgres
-  image: postgres:9.4
-  environment:
-    POSTGRES_DB: owncloud
-    POSTGRES_PASSWORD: owncloud
-    POSTGRES_USER: owncloud
 
 trigger:
   ref:
@@ -2071,10 +1533,118 @@ steps:
   commands:
   - ./tests/drone/test-phpunit.sh
   environment:
-    COVERAGE: true
+    COVERAGE: false
     DB_TYPE: sqlite
 
 services:
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/stable10
+  - refs/heads/drone-jsonnet
+  - "refs/heads/release-*"
+  - "refs/tags/**"
+  - "refs/pull/**"
+
+depends_on:
+- coding-standard
+- phan-php7.1
+- stan-php7.1
+
+---
+kind: pipeline
+name: phpunit-php7.3-mariadb
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: cache-restore
+  pull: always
+  image: plugins/s3-cache:1
+  settings:
+    access_key:
+      from_secret: cache_s3_access_key
+    endpoint:
+      from_secret: cache_s3_endpoint
+    restore: true
+    secret_key:
+      from_secret: cache_s3_secret_key
+  when:
+    instance:
+    - drone.owncloud.services
+    - drone.owncloud.com
+
+- name: composer
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-composer-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: vendorbin
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make vendor-bin-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: yarn
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-nodejs-deps
+  environment:
+    NPM_CONFIG_CACHE: /drone/src/.cache/npm
+    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
+    bower_storage__packages: /drone/src/.cache/bower
+
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.3
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: mariadb
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.3
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
+- name: test
+  pull: always
+  image: owncloudci/php:7.3
+  commands:
+  - ./tests/drone/test-phpunit.sh
+  environment:
+    COVERAGE: false
+    DB_TYPE: mariadb
+
+services:
+- name: mariadb
+  image: mariadb:10.2
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_PASSWORD: owncloud
+    MYSQL_ROOT_PASSWORD: owncloud
+    MYSQL_USER: owncloud
+
 trigger:
   ref:
   - refs/heads/master
@@ -2297,6 +1867,107 @@ services:
   - public;/tmp;yes;no;no;test;none;test
   - -S
 
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/heads/stable10
+  - refs/heads/drone-jsonnet
+  - "refs/heads/release-*"
+  - "refs/tags/**"
+  - "refs/pull/**"
+
+depends_on:
+- coding-standard
+- phan-php7.1
+- stan-php7.1
+
+---
+kind: pipeline
+name: phpunit-php7.1-sqlite-smb_windows
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: cache-restore
+  pull: always
+  image: plugins/s3-cache:1
+  settings:
+    access_key:
+      from_secret: cache_s3_access_key
+    endpoint:
+      from_secret: cache_s3_endpoint
+    restore: true
+    secret_key:
+      from_secret: cache_s3_secret_key
+  when:
+    instance:
+    - drone.owncloud.services
+    - drone.owncloud.com
+
+- name: composer
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-composer-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: vendorbin
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make vendor-bin-deps
+  environment:
+    COMPOSER_HOME: /drone/src/.cache/composer
+
+- name: yarn
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - make install-nodejs-deps
+  environment:
+    NPM_CONFIG_CACHE: /drone/src/.cache/npm
+    YARN_CACHE_FOLDER: /drone/src/.cache/yarn
+    bower_storage__packages: /drone/src/.cache/bower
+
+- name: install-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/install-server.sh
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+  environment:
+    DB_TYPE: sqlite
+
+- name: install-testing-app
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - git clone https://github.com/owncloud/testing.git $$DRONE_WORKSPACE/apps-external/testing
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+
+- name: test
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - ./tests/drone/test-phpunit.sh
+  environment:
+    COVERAGE: true
+    DB_TYPE: sqlite
+    FILES_EXTERNAL_TYPE: smb_windows
+
+services:
 trigger:
   ref:
   - refs/heads/master

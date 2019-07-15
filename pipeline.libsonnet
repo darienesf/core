@@ -420,7 +420,7 @@ local behatSteps = {
     local database_split = std.split(db, ':');
 
     local database_name = database_split[0];
-    local database_version = database_split[1];
+    local database_version = if std.length(database_split) == 2 then database_split[1] else '';
 
     {
       kind: 'pipeline',
@@ -446,6 +446,7 @@ local behatSteps = {
             COVERAGE: coverage,
             PRIMARY_OBJECTSTORE: primary_object,
             DB_TYPE: database_name,
+
           },
           commands: [
             './tests/drone/test-phpunit.sh',

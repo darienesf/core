@@ -59,14 +59,8 @@ local unit_deps = [
     depends_on=unit_deps
   ),
 
-  # php-7.1
-  pipeline.phpunit(
-    php='7.1',
-    db='mariadb:10.3',
-    coverage=true,
-    trigger=trigger,
-    depends_on=unit_deps
-  ),
+  # Unit Tests
+  # PHP 7.1
   pipeline.phpunit(
     php='7.1',
     db='mysql:5.5',
@@ -76,15 +70,17 @@ local unit_deps = [
   ),
   pipeline.phpunit(
     php='7.1',
+    # mb4 support, with innodb_file_format=Barracuda
     db='mysql:5.7',
-    coverage=true,
+    // coverage=true, ??
     trigger=trigger,
     depends_on=unit_deps
   ),
   pipeline.phpunit(
     php='7.1',
+    # mb4 support by default
     db='mysql:8.0',
-    coverage=true,
+    coverage=false,
     trigger=trigger,
     depends_on=unit_deps
   ),
@@ -104,6 +100,14 @@ local unit_deps = [
   ),
   pipeline.phpunit(
     php='7.1',
+    # mb4 support by default
+    db='mariadb:10.3',
+    coverage=true,
+    trigger=trigger,
+    depends_on=unit_deps
+  ),
+  pipeline.phpunit(
+    php='7.1',
     db='oracle',
     coverage=true,
     trigger=trigger,
@@ -117,32 +121,35 @@ local unit_deps = [
     depends_on=unit_deps
   ),
 
-  # php-7.2
-  pipeline.phpunit(
-    php='7.2',
-    db='mariadb:10.3',
-    coverage=true,
-    trigger=trigger,
-    depends_on=unit_deps
-  ),
-  pipeline.phpunit(
-    php='7.2',
-    db='mysql:5.5',
-    coverage=true,
-    trigger=trigger,
-    depends_on=unit_deps
-  ),
-  pipeline.phpunit(
-    php='7.2',
-    db='postgres:9.4',
-    coverage=true,
-    trigger=trigger,
-    depends_on=unit_deps
-  ),
+  # PHP 7.2
+
+  # Not in 0.8 .drone.yml
+  // pipeline.phpunit(
+  //   php='7.2',
+  //   db='mysql:5.5',
+  //   coverage=true,
+  //   trigger=trigger,
+  //   depends_on=unit_deps
+  // ),
+  // pipeline.phpunit(
+  //   php='7.2',
+  //   db='postgres:9.4',
+  //   coverage=true,
+  //   trigger=trigger,
+  //   depends_on=unit_deps
+  // ),
+
   pipeline.phpunit(
     php='7.2',
     db='sqlite',
-    coverage=true,
+    // coverage=true, ??
+    trigger=trigger,
+    depends_on=unit_deps
+  ),
+  pipeline.phpunit(
+    php='7.2',
+    db='mariadb',
+    // coverage=false, ??
     trigger=trigger,
     depends_on=unit_deps
   ),
@@ -150,32 +157,35 @@ local unit_deps = [
   # php-7.3
   pipeline.phpunit(
     php='7.3',
-    db='mariadb:10.3',
-    coverage=true,
-    trigger=trigger,
-    depends_on=unit_deps
-  ),
-  pipeline.phpunit(
-    php='7.3',
-    db='mysql:5.5',
-    coverage=true,
-    trigger=trigger,
-    depends_on=unit_deps
-  ),
-  pipeline.phpunit(
-    php='7.3',
-    db='postgres:9.4',
-    coverage=true,
-    trigger=trigger,
-    depends_on=unit_deps
-  ),
-  pipeline.phpunit(
-    php='7.3',
     db='sqlite',
-    coverage=true,
+    // coverage=true,
     trigger=trigger,
     depends_on=unit_deps
   ),
+  pipeline.phpunit(
+    php='7.3',
+    db='mariadb',
+    // coverage=true, ??
+    trigger=trigger,
+    depends_on=unit_deps
+  ),
+  
+  # Not in 0.8 .drone.yml
+  // pipeline.phpunit(
+  //   php='7.3',
+  //   db='mysql:5.5',
+  //   coverage=true,
+  //   trigger=trigger,
+  //   depends_on=unit_deps
+  // ),
+  // pipeline.phpunit(
+  //   php='7.3',
+  //   db='postgres:9.4',
+  //   coverage=true,
+  //   trigger=trigger,
+  //   depends_on=unit_deps
+  // ),
+
 
   # Files External
   pipeline.phpunit(
@@ -194,14 +204,14 @@ local unit_deps = [
     trigger=trigger,
     depends_on=unit_deps
   ),
-  // pipeline.phpunit(
-  //   php='7.1',
-  //   db='sqlite',
-  //   coverage=true,
-  //   external='smb_windows',
-  //   trigger=trigger,
-  //   depends_on=unit_deps
-  // ),
+  pipeline.phpunit(
+    php='7.1',
+    db='sqlite',
+    coverage=true,
+    external='smb_windows',
+    trigger=trigger,
+    depends_on=unit_deps
+  ),
   pipeline.phpunit(
     pipeline_name='phpunit-php7.1-mariadb10.3-swift-external',
     php='7.1',
