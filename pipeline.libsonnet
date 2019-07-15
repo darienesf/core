@@ -445,6 +445,7 @@ local behatSteps = {
             FILES_EXTERNAL_TYPE: (if external == 'webdav' then 'webdav_apache' else (if external == 'samba' then 'smb_samba' else external)),
             COVERAGE: coverage,
             PRIMARY_OBJECTSTORE: primary_object,
+            DB_TYPE: database_name,
           },
           commands: [
             './tests/drone/test-phpunit.sh',

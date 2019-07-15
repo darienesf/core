@@ -473,6 +473,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: mariadb
 
 services:
 - name: mariadb
@@ -580,6 +581,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: mysql
 
 services:
 - name: mysql
@@ -687,6 +689,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: mysql
 
 services:
 - name: mysql
@@ -794,6 +797,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: mysql
 
 services:
 - name: mysql
@@ -903,6 +907,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: postgres
 
 services:
 - name: postgres
@@ -1009,6 +1014,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: postgres
 
 services:
 - name: postgres
@@ -1115,6 +1121,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: oracle
 
 services:
 - name: oracle
@@ -1219,6 +1226,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: sqlite
 
 services:
 trigger:
@@ -1318,6 +1326,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: mariadb
 
 services:
 - name: mariadb
@@ -1425,6 +1434,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: mysql
 
 services:
 - name: mysql
@@ -1532,6 +1542,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: postgres
 
 services:
 - name: postgres
@@ -1638,6 +1649,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: sqlite
 
 services:
 trigger:
@@ -1737,6 +1749,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: mariadb
 
 services:
 - name: mariadb
@@ -1844,6 +1857,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: mysql
 
 services:
 - name: mysql
@@ -1951,6 +1965,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: postgres
 
 services:
 - name: postgres
@@ -2057,6 +2072,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: sqlite
 
 services:
 trigger:
@@ -2156,6 +2172,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: sqlite
     FILES_EXTERNAL_TYPE: webdav_apache
 
 services:
@@ -2266,6 +2283,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: sqlite
     FILES_EXTERNAL_TYPE: smb_samba
 
 services:
@@ -2376,6 +2394,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: mariadb
     FILES_EXTERNAL_TYPE: swift
 
 services:
@@ -2513,6 +2532,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: sqlite
     FILES_EXTERNAL_TYPE: swift
     PRIMARY_OBJECTSTORE: swift
 
@@ -2643,6 +2663,7 @@ steps:
   - ./tests/drone/test-phpunit.sh
   environment:
     COVERAGE: true
+    DB_TYPE: sqlite
     PRIMARY_OBJECTSTORE: files_primary_s3
 
 services:
