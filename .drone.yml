@@ -2145,23 +2145,6 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: prepare-objectstore
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - cd /drone/src/apps
-  - git clone https://github.com/owncloud/files_primary_s3.git
-  - cd files_primary_s3
-  - composer install
-  - cp tests/drone/swift.config.php /drone/src/config
-  - cd /drone/src
-  - php occ a:l
-  - php occ a:e files_primary_s3
-  - php occ a:l
-  - php ./occ s3:create-bucket owncloud --accept-warning
-  environment:
-    OBJECTSTORE: swift
-
 - name: test
   pull: always
   image: owncloudci/php:7.1
@@ -2273,23 +2256,6 @@ steps:
   - php occ a:l
   - php occ a:e testing
   - php occ a:l
-
-- name: prepare-objectstore
-  pull: always
-  image: owncloudci/php:7.1
-  commands:
-  - cd /drone/src/apps
-  - git clone https://github.com/owncloud/files_primary_s3.git
-  - cd files_primary_s3
-  - composer install
-  - cp tests/drone/scality.config.php /drone/src/config
-  - cd /drone/src
-  - php occ a:l
-  - php occ a:e files_primary_s3
-  - php occ a:l
-  - php ./occ s3:create-bucket owncloud --accept-warning
-  environment:
-    OBJECTSTORE: scality
 
 - name: test
   pull: always

@@ -436,7 +436,7 @@ local behatSteps = {
         $.yarn(image='owncloudci/php:7.1'),
         $.installServer(image='owncloudci/php:' + php, db_name=database_name),
         $.installTestingApp(image='owncloudci/php:' + php),
-        (if object != '' then $.prepareObjectStore(image='owncloudci/php:' + php, object=object)),
+        (if object == 'files_primary_s3' then $.prepareObjectStore(image='owncloudci/php:' + php, object=object)),
         {
           name: 'test',
           image: 'owncloudci/php:' + php,
