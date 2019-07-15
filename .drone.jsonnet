@@ -680,4 +680,8 @@ local unit_deps = style_deps + [
     trigger=trigger,
     depends_on=unit_deps
   ),
+
+  pipeline.litmus(
+    php='7.1'
+  ),
 ]

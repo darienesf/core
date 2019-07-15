@@ -57,6 +57,29 @@ local dbServices = {
     if db != '' then $[db](version) else [],
 };
 
+local owncloud_services(server_protocol, image) = if server_protocol == 'http' then [{
+    name: 'server-http',
+    image: image,
+    pull: 'always',
+    environment: {
+      APACHE_WEBROOT: '/drone/src/',
+    },
+    command: [ '/usr/local/bin/apachectl', '-e', 'debug' , '-D', 'FOREGROUND' ]
+  }] else if server_protocol == 'https' then [{
+    name: 'server-https',
+    image: image,
+    pull: 'always',
+    environment: {
+      APACHE_WEBROOT: '/drone/src/',
+      APACHE_CONFIG_TEMPLATE: 'ssl',
+      APACHE_SSL_CERT_CN: 'server-https',
+      APACHE_SSL_CERT: '/drone/server.crt',
+      APACHE_SSL_KEY: '/drone/server.key',
+    },
+    command: [ '/usr/local/bin/apachectl', '-e', 'debug' , '-D', 'FOREGROUND' ]
+  }] else [];
+
+
 local behatSteps = {
   api(suite, image, server_protocol, browser)::
     [{
@@ -533,29 +556,7 @@ local behatSteps = {
           pull: 'always',
           image: 'mailhog/mailhog',
         }),
-        (if server_protocol == 'http' then {
-          name: 'server-http',
-          image: image,
-          pull: 'always',
-          environment: {
-            APACHE_WEBROOT: '/drone/src/',
-          },
-          command: [ '/usr/local/bin/apachectl', '-e', 'debug' , '-D', 'FOREGROUND' ]
-        }),
-        (if server_protocol == 'https' then {
-          name: 'server-https',
-          image: image,
-          pull: 'always',
-          environment: {
-            APACHE_WEBROOT: '/drone/src/',
-            APACHE_CONFIG_TEMPLATE: 'ssl',
-            APACHE_SSL_CERT_CN: 'server-https',
-            APACHE_SSL_CERT: '/drone/server.crt',
-            APACHE_SSL_KEY: '/drone/server.key',
-          },
-          command: [ '/usr/local/bin/apachectl', '-e', 'debug' , '-D', 'FOREGROUND' ]
-        }),
-      ] + dbServices.get(db_name, db_version),
+      ] + owncloud_services(server_protocol=server_protocol, image=image) + dbServices.get(db_name, db_version),
       trigger: trigger,
       depends_on: depends_on,
     },
@@ -598,6 +599,110 @@ local behatSteps = {
         },
       ],
       services: dbServices.get(database_name, database_version),
+      trigger: trigger,
+      depends_on: depends_on,
+    },
+
+  litmus(php, db='', trigger={}, depends_on=[])::
+    local database_split = std.split(db, ':');
+
+    local database_name = database_split[0];
+    local database_version = if std.length(database_split) == 2 then database_split[1] else '';
+
+    {
+      kind: 'pipeline',
+      name: 'litmus',
+      platform: {
+        os: 'linux',
+        arch: 'amd64',
+      },
+      steps: [
+        $.cache({ restore: true }),
+        $.composer(image='owncloudci/php:7.1'),
+        $.vendorbin(image='owncloudci/php:7.1'),
+        $.yarn(image='owncloudci/php:7.1'),
+        $.installServer(image='owncloudci/php:' + php, db_name=database_name),
+        {
+          name: 'litmus-setup',
+          image: 'owncloudci/php:' + php,
+          pull: 'always',
+          commands: [
+            'echo "Create local mount ...."',
+            'mkdir -p /drone/src/work/local_storage',
+            'php occ app:enable files_external',
+            'php occ config:system:set files_external_allow_create_new_local --value=true',
+            'php occ config:app:set core enable_external_storage --value=yes',
+            'php occ files_external:create local_storage local null::null -c datadir=/drone/src/work/local_storage',
+            'echo "Sharing a folder .."',
+            'OC_PASS=123456 php occ user:add --password-from-env user1',
+            'chown www-data /drone/src -R',
+            'curl -k -s -u user1:123456 -X MKCOL "https://server-https/remote.php/webdav/new_folder"',
+            'curl -k -s -u user1:123456 "https://server-https/ocs/v2.php/apps/files_sharing/api/v1/shares" --data \'path=/new_folder&shareType=0&permissions=15&name=new_folder&shareWith=admin\'',
+          ],
+        },
+        $.fixPermissions(image='owncloudci/php:7.1'),
+        {
+          name: 'litmus-old-endpoint',
+          image: 'owncloud/litmus',
+          pull: 'always',
+          environment: {
+            LITMUS_URL: 'https://server-https/remote.php/webdav',
+            LITMUS_USERNAME: 'admin',
+            LITMUS_PASSWORD: 'admin',
+          },
+        },
+        {
+          name: 'litmus-new-endpoint',
+          image: 'owncloud/litmus',
+          pull: 'always',
+          environment: {
+            LITMUS_URL: 'https://server-https/remote.php/dav/files/admin',
+            LITMUS_USERNAME: 'admin',
+            LITMUS_PASSWORD: 'admin',
+          },
+        },
+        {
+          name: 'litmus-new-endpoint-mount',
+          image: 'owncloud/litmus',
+          pull: 'always',
+          environment: {
+            LITMUS_URL: 'https://server-https/remote.php/dav/files/admin/local_storage/',
+            LITMUS_USERNAME: 'admin',
+            LITMUS_PASSWORD: 'admin',
+          },
+        },
+        {
+          name: 'litmus-old-endpoint-mount',
+          image: 'owncloud/litmus',
+          pull: 'always',
+          environment: {
+            LITMUS_URL: 'https://server-https/remote.php/webdav/local_storage/',
+            LITMUS_USERNAME: 'admin',
+            LITMUS_PASSWORD: 'admin',
+          },
+        },
+        {
+          name: 'litmus-new-endpoint-shared',
+          image: 'owncloud/litmus',
+          pull: 'always',
+          environment: {
+            LITMUS_URL: 'https://server-https/remote.php/dav/files/admin/new_folder/',
+            LITMUS_USERNAME: 'admin',
+            LITMUS_PASSWORD: 'admin',
+          },
+        },
+        {
+          name: 'litmus-old-endpoint-shared',
+          image: 'owncloud/litmus',
+          pull: 'always',
+          environment: {
+            LITMUS_URL: 'https://server-https/remote.php/webdav/new_folder/',
+            LITMUS_USERNAME: 'admin',
+            LITMUS_PASSWORD: 'admin',
+          },
+        },
+      ],
+      services: owncloud_services(server_protocol='https', image='owncloudci/php:7.1'),
       trigger: trigger,
       depends_on: depends_on,
     },
