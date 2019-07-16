@@ -23,7 +23,7 @@ local unit_deps = style_deps + [
   'stan-php7.1',
 ];
 
-[
+local pipelines = [
   # dependencies
   pipeline.install(trigger=trigger),
 
@@ -685,4 +685,17 @@ local unit_deps = style_deps + [
   pipeline.litmus(
     php='7.1'
   ),
+];
+
+
+local pipeline_names = std.filterMap(function(p) p.kind == 'pipeline', function(p) p.name, pipelines);
+
+pipelines + [
+  pipeline.notify(
+    name='owncloud',
+    message='Tests failed',
+    include_events=['push', 'tag'],
+    depends_on=pipeline_names,
+    status=['failure'],
+  )
 ]

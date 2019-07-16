@@ -804,4 +804,47 @@ local behatSteps = {
       trigger: trigger,
       depends_on: depends_on,
     },
+
+    notify(name, message, depends_on, exclude_events=[], include_events=[], status=[])::
+    {
+      kind: 'pipeline',
+      name: 'notifications-' + name,
+      platform: {
+        os: 'linux',
+        arch: 'amd64',
+      },
+      clone: {
+        disable: false,
+      },
+      steps: [
+        // Missing secret on drone.owncloud.services
+        // {
+        //   name: 'notify',
+        //   image: 'plugins/slack:1',
+        //   settings: {
+        //     webhook: {
+        //       from_secret: 'slack_webhook'
+        //     },
+        //     channel: 'server',
+        //   },
+        // }
+        // Until then just print a message to console:
+        {
+          name: 'print notification',
+          image: 'owncloud/alpine',
+          commands: [
+            "echo 'Notification: " + message + "'",
+          ],
+        }
+      ],
+      trigger: {
+        event: {
+          exclude: exclude_events,
+          include: include_events,
+        },
+        status: status,
+      },
+      depends_on: depends_on,
+    },
+
 }

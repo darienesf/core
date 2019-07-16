@@ -11974,4 +11974,113 @@ services:
     APACHE_SSL_KEY: /drone/server.key
     APACHE_WEBROOT: /drone/src
 
+---
+kind: pipeline
+name: notifications-owncloud
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: print notification
+  image: owncloud/alpine
+  commands:
+  - "echo 'Notification: Tests failed'"
+
+trigger:
+  event:
+  - push
+  - tag
+  status:
+  - failure
+
+depends_on:
+- install-dependencies
+- coding-standard
+- phan-php7.1
+- stan-php7.1
+- test-javascript
+- phpunit-php7.1-mysql5.5
+- phpunit-php7.1-mysql5.7
+- phpunit-php7.1-mysql8.0
+- phpunit-php7.1-postgres9.4
+- phpunit-php7.1-postgres10.3
+- phpunit-php7.1-mariadb10.3
+- phpunit-php7.1-oracle
+- phpunit-php7.1-sqlite
+- phpunit-php7.2-sqlite
+- phpunit-php7.2-mariadb
+- phpunit-php7.3-sqlite
+- phpunit-php7.3-mariadb
+- phpunit-php7.1-sqlite-webdav
+- phpunit-php7.1-sqlite-samba
+- phpunit-php7.1-sqlite-smb_windows
+- phpunit-php7.1-mariadb10.3-swift-external
+- phpunit-php7.1-mariadb10.3-swift-objectstore
+- phpunit-php7.1-sqlite-files_primary_s3-scality
+- behat-apiMain
+- behat-apiAuth
+- behat-apiAuthOcs
+- behat-apiCapabilities
+- behat-apiComments
+- behat-apiFavorites
+- behat-apiFederation
+- behat-apiProvisioning-v1
+- behat-apiProvisioning-v2
+- behat-apiProvisioningGroups-v1
+- behat-apiProvisioningGroups-v2
+- behat-apiSharees
+- behat-apiShareManagement
+- behat-apiShareManagementBasic
+- behat-apiShareOperations
+- behat-apiShareReshare
+- behat-apiShareUpdate
+- behat-apiSharingNotifications
+- behat-apiTags
+- behat-apiTrashbin
+- behat-apiVersions
+- behat-apiWebdavLocks
+- behat-apiWebdavLocks2
+- behat-apiWebdavMove
+- behat-apiWebdavOperations
+- behat-apiWebdavProperties
+- behat-apiWebdavUpload
+- behat-cliAppManagement
+- behat-cliProvisioning
+- behat-cliMain
+- behat-cliBackground
+- behat-cliTrashbin
+- behat-chrome-webUIAdminSettings
+- behat-chrome-webUIComments
+- behat-chrome-webUICreateDelete
+- behat-chrome-webUIFavorites
+- behat-chrome-webUIFiles
+- behat-chrome-webUILogin
+- behat-chrome-webUIMoveFilesFolders
+- behat-chrome-webUIPersonalSettings
+- behat-chrome-webUIRenameFiles
+- behat-chrome-webUIRenameFolders
+- behat-chrome-webUIRestrictSharing
+- behat-chrome-webUISharingAcceptShares
+- behat-chrome-webUISharingAutocompletion
+- behat-chrome-webUISharingExternal
+- behat-chrome-webUISharingInternalGroups
+- behat-chrome-webUISharingInternalUsers
+- behat-chrome-webUISharingNotifications
+- behat-chrome-webUISharingPublic
+- behat-chrome-webUITags
+- behat-chrome-webUITrashbin
+- behat-chrome-webUIUpload
+- behat-chrome-webUIWebdavLocks
+- behat-chrome-webUIWebdavLockProtection
+- behat-firefox-smokeTest-1/3
+- behat-firefox-smokeTest-2/3
+- behat-firefox-smokeTest-3/3
+- caldav-php7.1-mariadb
+- carddav-php7.1-mariadb
+- caldav-old-endpoint-php7.1-mariadb
+- carddav-old-endpoint-php7.1-mariadb
+- litmus
+
 ...
