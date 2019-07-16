@@ -283,13 +283,13 @@ local behatSteps = {
       ],
     },
 
-  fixPermissions(image='owncloudci/php:7.1')::
+  fixPermissions(image='owncloudci/php:7.1', path='/drone/src')::
     {
       name: 'fix-permissions',
       image: image,
       pull: 'always',
       commands: [
-        "chown www-data /drone/src -R",
+        'chown www-data "' + path + '" -R',
       ],
     },
 
