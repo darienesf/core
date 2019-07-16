@@ -4824,6 +4824,12 @@ services:
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
 
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
+
 trigger:
   ref:
   - refs/heads/master
@@ -4962,6 +4968,12 @@ services:
     MYSQL_PASSWORD: owncloud
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
+
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
 
 trigger:
   ref:
@@ -5102,6 +5114,12 @@ services:
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
 
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
+
 trigger:
   ref:
   - refs/heads/master
@@ -5241,6 +5259,12 @@ services:
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
 
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
+
 trigger:
   ref:
   - refs/heads/master
@@ -5379,6 +5403,12 @@ services:
     MYSQL_PASSWORD: owncloud
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
+
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
 
 trigger:
   ref:
@@ -5523,6 +5553,12 @@ services:
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
 
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
+
 trigger:
   ref:
   - refs/heads/master
@@ -5661,6 +5697,12 @@ services:
     MYSQL_PASSWORD: owncloud
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
+
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
 
 trigger:
   ref:
@@ -5805,6 +5847,12 @@ services:
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
 
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
+
 trigger:
   ref:
   - refs/heads/master
@@ -5943,6 +5991,12 @@ services:
     MYSQL_PASSWORD: owncloud
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
+
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
 
 trigger:
   ref:
@@ -6083,6 +6137,12 @@ services:
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
 
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
+
 trigger:
   ref:
   - refs/heads/master
@@ -6221,6 +6281,12 @@ services:
     MYSQL_PASSWORD: owncloud
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
+
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
 
 trigger:
   ref:
@@ -6361,6 +6427,12 @@ services:
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
 
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
+
 trigger:
   ref:
   - refs/heads/master
@@ -6499,6 +6571,12 @@ services:
     MYSQL_PASSWORD: owncloud
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
+
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
 
 trigger:
   ref:
@@ -6643,6 +6721,12 @@ services:
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
 
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
+
 trigger:
   ref:
   - refs/heads/master
@@ -6786,6 +6870,12 @@ services:
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
 
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
+
 trigger:
   ref:
   - refs/heads/master
@@ -6928,6 +7018,12 @@ services:
     MYSQL_PASSWORD: owncloud
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
+
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
 
 trigger:
   ref:
@@ -7079,6 +7175,12 @@ services:
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
 
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
+
 trigger:
   ref:
   - refs/heads/master
@@ -7222,6 +7324,12 @@ services:
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
 
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
+
 trigger:
   ref:
   - refs/heads/master
@@ -7360,6 +7468,12 @@ services:
     MYSQL_PASSWORD: owncloud
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
+
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
 
 trigger:
   ref:
@@ -7500,6 +7614,12 @@ services:
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
 
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
+
 trigger:
   ref:
   - refs/heads/master
@@ -7638,6 +7758,12 @@ services:
     MYSQL_PASSWORD: owncloud
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
+
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
 
 trigger:
   ref:
@@ -7778,6 +7904,12 @@ services:
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
 
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
+
 trigger:
   ref:
   - refs/heads/master
@@ -7917,6 +8049,12 @@ services:
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
 
+- name: chrome
+  pull: always
+  image: selenium/standalone-chrome-debug:3.141.59-oxygen
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
+
 trigger:
   ref:
   - refs/heads/master
@@ -8054,6 +8192,13 @@ services:
     MYSQL_PASSWORD: owncloud
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
+
+- name: firefox
+  pull: always
+  image: selenium/standalone-firefox-debug:3.8.1
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
+    SE_OPTS: -enablePassThrough false
 
 trigger:
   ref:
@@ -8193,6 +8338,13 @@ services:
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
 
+- name: firefox
+  pull: always
+  image: selenium/standalone-firefox-debug:3.8.1
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
+    SE_OPTS: -enablePassThrough false
+
 trigger:
   ref:
   - refs/heads/master
@@ -8330,6 +8482,13 @@ services:
     MYSQL_PASSWORD: owncloud
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
+
+- name: firefox
+  pull: always
+  image: selenium/standalone-firefox-debug:3.8.1
+  environment:
+    JAVA_OPTS: -Dselenium.LOGGER.level=WARNING
+    SE_OPTS: -enablePassThrough false
 
 trigger:
   ref:

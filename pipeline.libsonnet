@@ -79,6 +79,29 @@ local owncloud_services(server_protocol, image) = if server_protocol == 'http' t
     command: [ '/usr/local/bin/apachectl', '-e', 'debug' , '-D', 'FOREGROUND' ]
   }] else [];
 
+local browserServices = {
+  chrome: [{
+    name: 'chrome',
+    image: 'selenium/standalone-chrome-debug:3.141.59-oxygen',
+    pull: 'always',
+    environment: {
+      JAVA_OPTS: '-Dselenium.LOGGER.level=WARNING',
+    },
+  }],
+
+  firefox: [{
+    name: 'firefox',
+    image: 'selenium/standalone-firefox-debug:3.8.1',
+    pull: 'always',
+    environment: {
+      SE_OPTS: '-enablePassThrough false',
+      JAVA_OPTS: '-Dselenium.LOGGER.level=WARNING',
+    },
+  }],
+
+  get(browser)::
+    if browser != '' then $[browser] else [],
+};
 
 local behatSteps = {
   api(suite, image, server_protocol, browser)::
@@ -560,7 +583,8 @@ local behatSteps = {
           pull: 'always',
           image: 'mailhog/mailhog',
         }),
-      ] + owncloud_services(server_protocol=server_protocol, image=image) + dbServices.get(db_name, db_version),
+      ] + owncloud_services(server_protocol=server_protocol, image=image) + dbServices.get(db_name, db_version)
+      + browserServices.get(browser),
       trigger: trigger,
       depends_on: depends_on,
     },
