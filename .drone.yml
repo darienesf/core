@@ -474,6 +474,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -607,6 +618,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: api-acceptance-tests
   pull: always
@@ -742,6 +764,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -875,6 +908,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: api-acceptance-tests
   pull: always
@@ -1010,6 +1054,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -1143,6 +1198,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: api-acceptance-tests
   pull: always
@@ -1278,6 +1344,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -1411,6 +1488,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: api-acceptance-tests
   pull: always
@@ -1546,6 +1634,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -1679,6 +1778,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: api-acceptance-tests
   pull: always
@@ -1814,6 +1924,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -1947,6 +2068,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: api-acceptance-tests
   pull: always
@@ -2082,6 +2214,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -2215,6 +2358,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: api-acceptance-tests
   pull: always
@@ -2350,6 +2504,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -2484,6 +2649,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -2617,6 +2793,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: api-acceptance-tests
   pull: always
@@ -2759,6 +2946,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -2892,6 +3090,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: api-acceptance-tests
   pull: always
@@ -3027,6 +3236,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -3160,6 +3380,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: api-acceptance-tests
   pull: always
@@ -3295,6 +3526,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -3428,6 +3670,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: api-acceptance-tests
   pull: always
@@ -3563,6 +3816,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -3696,6 +3960,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: api-acceptance-tests
   pull: always
@@ -3831,6 +4106,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -3965,6 +4251,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: api-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -4098,6 +4395,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: cli-acceptance-tests
   pull: always
@@ -4234,6 +4542,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: cli-acceptance-tests
   pull: always
@@ -4374,6 +4693,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -4508,6 +4838,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: cli-acceptance-tests
   pull: always
@@ -4644,6 +4985,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -4778,6 +5130,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: cli-acceptance-tests
   pull: always
@@ -4928,6 +5291,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -5072,6 +5446,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: cli-acceptance-tests
   pull: always
@@ -5218,6 +5603,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -5363,6 +5759,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -5507,6 +5914,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: cli-acceptance-tests
   pull: always
@@ -5657,6 +6075,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -5801,6 +6230,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: cli-acceptance-tests
   pull: always
@@ -5951,6 +6391,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -6095,6 +6546,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: cli-acceptance-tests
   pull: always
@@ -6241,6 +6703,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -6385,6 +6858,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: cli-acceptance-tests
   pull: always
@@ -6531,6 +7015,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -6675,6 +7170,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: cli-acceptance-tests
   pull: always
@@ -6825,6 +7331,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -6973,6 +7490,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: cli-acceptance-tests
   pull: always
@@ -7130,6 +7658,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -7278,6 +7817,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: cli-acceptance-tests
   pull: always
@@ -7428,6 +7978,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -7572,6 +8133,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: cli-acceptance-tests
   pull: always
@@ -7718,6 +8290,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -7862,6 +8445,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: cli-acceptance-tests
   pull: always
@@ -8008,6 +8602,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -8152,6 +8757,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: cli-acceptance-tests
   pull: always
@@ -8298,6 +8914,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -8443,6 +9070,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: cli-acceptance-tests
   pull: always
   image: owncloudci/php:7.1
@@ -8581,6 +9219,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: caldav-test
   pull: always
   image: owncloudci/php:7.1
@@ -8686,6 +9335,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: carddav-test
   pull: always
@@ -8793,6 +9453,17 @@ steps:
   commands:
   - "chown www-data \"/drone/src\" -R"
 
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
 - name: caldav-old-endpoint-test
   pull: always
   image: owncloudci/php:7.1
@@ -8898,6 +9569,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: carddav-old-endpoint-test
   pull: always
@@ -9013,6 +9695,17 @@ steps:
   image: owncloudci/php:7.1
   commands:
   - "chown www-data \"/drone/src\" -R"
+
+- name: owncloud-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
 
 - name: litmus-old-endpoint
   pull: always

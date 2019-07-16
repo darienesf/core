@@ -336,6 +336,23 @@ local behatSteps = {
       depends_on: depends_on,
     },
 
+  printLog(name='owncloud-log', file='/drone/src/data/owncloud.log')::
+    {
+      name: name,
+      image: 'owncloud/ubuntu:16.04',
+      detach: true,
+      pull: 'always',
+      commands: [
+        'tail -f "' + file + '"',
+      ],
+      when: {
+        status: [
+          'success',
+          'failure',
+        ],
+      },
+    },
+
   standard(trigger={}, depends_on=[])::
     {
       kind: 'pipeline',
@@ -576,6 +593,7 @@ local behatSteps = {
           ],
         }),
         $.fixPermissions(image=image),
+        $.printLog(),
       ] + behatSteps.get(type=type, suite=suite, image=image, server_protocol=server_protocol, browser=browser),
       services: [
         (if email then {
@@ -617,6 +635,7 @@ local behatSteps = {
           ],
         },
         $.fixPermissions(image='owncloudci/php:7.1'),
+        $.printLog(),
         {
           name: suite + '-test',
           image: 'owncloudci/php:' + php,
@@ -669,6 +688,7 @@ local behatSteps = {
           ],
         },
         $.fixPermissions(image='owncloudci/php:7.1'),
+        $.printLog(),
         {
           name: 'litmus-old-endpoint',
           image: 'owncloud/litmus',
