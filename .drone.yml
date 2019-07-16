@@ -11976,7 +11976,7 @@ services:
 
 ---
 kind: pipeline
-name: notifications-owncloud
+name: notifications-failure
 
 platform:
   os: linux

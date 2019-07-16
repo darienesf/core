@@ -692,7 +692,7 @@ local pipeline_names = std.filterMap(function(p) p.kind == 'pipeline', function(
 
 pipelines + [
   pipeline.notify(
-    name='owncloud',
+    name='failure',
     message='Tests failed',
     include_events=['push', 'tag'],
     depends_on=pipeline_names,
