@@ -8733,8 +8733,8 @@ steps:
   commands:
   - ./tests/drone/install-server.sh
   - php occ a:l
-  - php occ config:system:set trusted_domains 1 --value=server-https
-  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ config:system:set trusted_domains 1 --value=server-http
+  - php occ config:system:set trusted_domains 2 --value=federated-http
   - php occ log:manage --level 2
   - php occ config:list
   - php occ security:certificates:import /drone/server.crt
@@ -8889,8 +8889,8 @@ steps:
   commands:
   - ./tests/drone/install-server.sh
   - php occ a:l
-  - php occ config:system:set trusted_domains 1 --value=server-https
-  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ config:system:set trusted_domains 1 --value=server-http
+  - php occ config:system:set trusted_domains 2 --value=federated-http
   - php occ log:manage --level 2
   - php occ config:list
   - php occ security:certificates:import /drone/server.crt
@@ -9045,8 +9045,8 @@ steps:
   commands:
   - ./tests/drone/install-server.sh
   - php occ a:l
-  - php occ config:system:set trusted_domains 1 --value=server-https
-  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ config:system:set trusted_domains 1 --value=server-http
+  - php occ config:system:set trusted_domains 2 --value=federated-http
   - php occ log:manage --level 2
   - php occ config:list
   - php occ security:certificates:import /drone/server.crt

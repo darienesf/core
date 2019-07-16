@@ -581,7 +581,7 @@ local behatSteps = {
         $.composer(image=image),
         $.vendorbin(image=image),
         $.yarn(image=image),
-        $.installServer(image=image, db_name=db_name),
+        $.installServer(image=image, db_name=db_name, server_protocol=server_protocol),
         $.installTestingApp(image=image),
         (if install_notifications_app then {
           name: 'install-notifications-app',
