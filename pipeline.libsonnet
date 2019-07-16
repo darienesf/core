@@ -532,6 +532,10 @@ local behatSteps = {
         os: 'linux',
         arch: 'amd64',
       },
+      workspace: {
+        base: '/drone',
+        path: 'src',
+      },
       steps: [
         $.cache({ restore: true }),
         $.composer(image=image),

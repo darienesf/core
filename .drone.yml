@@ -2294,6 +2294,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -2423,6 +2427,10 @@ name: behat-apiAuth
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -2554,6 +2562,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -2683,6 +2695,10 @@ name: behat-apiCapabilities
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -2814,6 +2830,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -2943,6 +2963,10 @@ name: behat-apiFavorites
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -3074,6 +3098,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -3203,6 +3231,10 @@ name: behat-apiProvisioning-v1
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -3334,6 +3366,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -3463,6 +3499,10 @@ name: behat-apiProvisioningGroups-v1
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -3594,6 +3634,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -3723,6 +3767,10 @@ name: behat-apiSharees
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -3854,6 +3902,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -3983,6 +4035,10 @@ name: behat-apiShareManagementBasic
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -4114,6 +4170,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -4243,6 +4303,10 @@ name: behat-apiShareReshare
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -4374,6 +4438,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -4503,6 +4571,10 @@ name: behat-apiSharingNotifications
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -4641,6 +4713,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -4770,6 +4846,10 @@ name: behat-apiTrashbin
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -4901,6 +4981,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -5030,6 +5114,10 @@ name: behat-apiWebdavLocks
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -5161,6 +5249,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -5290,6 +5382,10 @@ name: behat-apiWebdavMove
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -5421,6 +5517,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -5550,6 +5650,10 @@ name: behat-apiWebdavProperties
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -5681,6 +5785,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -5810,6 +5918,10 @@ name: behat-cliAppManagement
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -5942,6 +6054,10 @@ name: behat-cliProvisioning
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -6078,6 +6194,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -6208,6 +6328,10 @@ name: behat-cliBackground
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -6340,6 +6464,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -6470,6 +6598,10 @@ name: behat-chrome-webUIAdminSettings
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -6610,6 +6742,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -6744,6 +6880,10 @@ name: behat-chrome-webUICreateDelete
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -6880,6 +7020,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -7015,6 +7159,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -7149,6 +7297,10 @@ name: behat-chrome-webUILogin
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -7289,6 +7441,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -7423,6 +7579,10 @@ name: behat-chrome-webUIPersonalSettings
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -7563,6 +7723,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -7697,6 +7861,10 @@ name: behat-chrome-webUIRenameFolders
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -7833,6 +8001,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -7967,6 +8139,10 @@ name: behat-chrome-webUISharingAcceptShares
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -8103,6 +8279,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -8237,6 +8417,10 @@ name: behat-chrome-webUISharingExternal
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -8377,6 +8561,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -8516,6 +8704,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -8654,6 +8846,10 @@ name: behat-chrome-webUISharingNotifications
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -8801,6 +8997,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -8940,6 +9140,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -9074,6 +9278,10 @@ name: behat-chrome-webUITrashbin
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -9210,6 +9418,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -9344,6 +9556,10 @@ name: behat-chrome-webUIWebdavLocks
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
@@ -9480,6 +9696,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -9615,6 +9835,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -9749,6 +9973,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src
+
 steps:
 - name: cache-restore
   pull: always
@@ -9882,6 +10110,10 @@ name: behat-firefox-smokeTest-3/3
 platform:
   os: linux
   arch: amd64
+
+workspace:
+  base: /drone
+  path: src
 
 steps:
 - name: cache-restore
