@@ -57,27 +57,29 @@ local dbServices = {
     if db != '' then $[db](version) else [],
 };
 
-local owncloud_services(server_protocol, image) = if server_protocol == 'http' then [{
-    name: 'server-http',
+local owncloud_services(server_protocol, image, server_basename='server', webroot='/drone/src') = if server_protocol == 'http' then [{
+    name: server_basename + '-http',
     image: image,
     pull: 'always',
     environment: {
-      APACHE_WEBROOT: '/drone/src/',
+      APACHE_WEBROOT: webroot,
     },
     command: [ '/usr/local/bin/apachectl', '-e', 'debug' , '-D', 'FOREGROUND' ]
   }] else if server_protocol == 'https' then [{
-    name: 'server-https',
+    name: server_basename + '-https',
     image: image,
     pull: 'always',
     environment: {
-      APACHE_WEBROOT: '/drone/src/',
+      APACHE_WEBROOT: webroot,
       APACHE_CONFIG_TEMPLATE: 'ssl',
-      APACHE_SSL_CERT_CN: 'server-https',
-      APACHE_SSL_CERT: '/drone/server.crt',
-      APACHE_SSL_KEY: '/drone/server.key',
+      APACHE_SSL_CERT_CN: server_basename + '-https',
+      APACHE_SSL_CERT: '/drone/' + server_basename + '.crt',
+      APACHE_SSL_KEY: '/drone/' + server_basename + '.key',
     },
     command: [ '/usr/local/bin/apachectl', '-e', 'debug' , '-D', 'FOREGROUND' ]
   }] else [];
+
+
 
 local browserServices = {
   chrome: [{
@@ -275,6 +277,39 @@ local behatSteps = {
       ],
     },
 
+  installFederationServer(federation_oc_version)::
+    {
+      name: 'install-federation-server',
+      image: 'owncloudci/core',
+      pull: 'always',
+      settings: {
+        exclude: 'apps/testing',
+        version: federation_oc_version,
+        core_path: '/drone/fed-server',
+      },
+    },
+
+  configureFederationServer(image, server_protocol='https')::
+    {
+      name: 'configure-federation-server',
+      image: image,
+      pull: 'always',
+      commands: [
+        'cd /drone/fed-server',
+        'php occ a:l',
+        'php occ a:e testing',
+        'php occ a:l',
+        'php occ config:system:set trusted_domains 1 --value=server-' + server_protocol,
+        'php occ config:system:set trusted_domains 2 --value=federated-' + server_protocol,
+        'php occ log:manage --level 2',
+        'php occ config:list',
+        'echo "export TEST_SERVER_FED_URL=' + server_protocol + '://federated-' + server_protocol + '" > /drone/saved-settings.sh',
+        'php occ security:certificates:import /drone/server.crt',
+        'php occ security:certificates:import /drone/federated.crt',
+        'php occ security:certificates',
+      ],
+    },
+
   installTestingApp(image='owncloudci/php:7.1')::
     {
       name: 'install-testing-app',
@@ -312,7 +347,7 @@ local behatSteps = {
 
   fixPermissions(image='owncloudci/php:7.1', path='/drone/src')::
     {
-      name: 'fix-permissions',
+      name: 'fix-permissions-' + path,
       image: image,
       pull: 'always',
       commands: [
@@ -563,11 +598,12 @@ local behatSteps = {
       depends_on: depends_on,
     },
 
-  behat(browser='', suite='', type='', filter='', num='', email=false, server_protocol='https', install_notifications_app=false, trigger={}, depends_on=[], pipeline_name='')::
+  behat(browser='', suite='', type='', filter='', num='', email=false, server_protocol='https', install_notifications_app=false, federation_oc_version='', trigger={}, depends_on=[], pipeline_name='')::
     local db_name = 'mariadb';
     local db_version = '';
 
-    local image = 'owncloudci/php:7.1';
+    local php = '7.1';
+    local image = 'owncloudci/php:' + php;
 
     {
       kind: 'pipeline',
@@ -586,7 +622,8 @@ local behatSteps = {
         $.vendorbin(image=image),
         $.yarn(image=image),
         $.installServer(image=image, db_name=db_name, server_protocol=server_protocol),
-        $.installTestingApp(image=image),
+        $.installTestingApp(image=image)
+      ] + [
         (if install_notifications_app then {
           name: 'install-notifications-app',
           image: image,
@@ -598,14 +635,23 @@ local behatSteps = {
         }),
         $.fixPermissions(image=image),
         $.printLog(),
-      ] + behatSteps.get(type=type, suite=suite, image=image, server_protocol=server_protocol, browser=browser, filter=filter),
+      ] 
+      + (if federation_oc_version != '' then [
+          $.installFederationServer(federation_oc_version),
+          $.configureFederationServer(image=image, server_protocol=server_protocol),
+          $.fixPermissions(image=image, path='/drone/fed-server/'),
+          $.printLog(name='federated-log', file='/drone/fed-server/data/owncloud.log'),
+      ] else [])
+      + behatSteps.get(type=type, suite=suite, image=image, server_protocol=server_protocol, browser=browser, filter=filter),
       services: [
         (if email then {
           name: 'email',
           pull: 'always',
           image: 'mailhog/mailhog',
         }),
-      ] + owncloud_services(server_protocol=server_protocol, image=image) + dbServices.get(db_name, db_version)
+      ]
+      + owncloud_services(server_protocol=server_protocol, image=image) + dbServices.get(db_name, db_version)
+      + (if federation_oc_version != '' then owncloud_services(server_protocol=server_protocol, image=image, server_basename='federated', webroot='/drone/fed-server') else [])
       + browserServices.get(browser),
       trigger: trigger,
       depends_on: depends_on,

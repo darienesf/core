@@ -468,7 +468,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -511,7 +511,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -613,7 +613,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -656,7 +656,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -758,7 +758,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -801,7 +801,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -903,7 +903,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -946,7 +946,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -1048,7 +1048,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -1091,7 +1091,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -1193,7 +1193,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -1236,7 +1236,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -1338,7 +1338,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -1381,7 +1381,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -1483,7 +1483,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -1526,7 +1526,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -1628,7 +1628,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -1671,7 +1671,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -1773,7 +1773,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -1816,7 +1816,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -1918,7 +1918,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -1961,7 +1961,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -2063,7 +2063,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -2106,7 +2106,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -2208,7 +2208,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -2251,7 +2251,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -2353,7 +2353,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -2396,7 +2396,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -2498,7 +2498,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -2541,7 +2541,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -2643,7 +2643,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -2686,7 +2686,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -2788,7 +2788,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -2831,7 +2831,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -2940,7 +2940,7 @@ steps:
   - git clone https://github.com/owncloud/notifications.git apps/notifications
   - php occ a:e notifications
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -2983,7 +2983,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -3085,7 +3085,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -3128,7 +3128,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -3230,7 +3230,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -3273,7 +3273,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -3375,7 +3375,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -3418,7 +3418,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -3520,7 +3520,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -3563,7 +3563,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -3665,7 +3665,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -3708,7 +3708,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -3810,7 +3810,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -3853,7 +3853,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -3955,7 +3955,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -3998,7 +3998,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -4100,7 +4100,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -4143,7 +4143,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -4245,7 +4245,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -4288,7 +4288,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -4390,7 +4390,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -4435,7 +4435,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -4537,7 +4537,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -4585,7 +4585,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -4687,7 +4687,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -4731,7 +4731,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -4833,7 +4833,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -4877,7 +4877,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -4979,7 +4979,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -5023,7 +5023,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -5125,7 +5125,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -5177,7 +5177,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -5285,7 +5285,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -5333,7 +5333,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -5441,7 +5441,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -5489,7 +5489,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -5597,7 +5597,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -5645,7 +5645,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -5753,7 +5753,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -5801,7 +5801,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -5909,7 +5909,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -5961,7 +5961,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -6069,7 +6069,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -6117,7 +6117,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -6225,7 +6225,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -6277,7 +6277,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -6385,7 +6385,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -6433,7 +6433,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -6541,7 +6541,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -6589,7 +6589,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -6697,7 +6697,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -6745,7 +6745,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -6853,7 +6853,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -6901,7 +6901,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -7009,7 +7009,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -7057,7 +7057,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -7165,7 +7165,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -7177,6 +7177,48 @@ steps:
   detach: true
   commands:
   - "tail -f \"/drone/src/data/owncloud.log\""
+  when:
+    status:
+    - success
+    - failure
+
+- name: install-federation-server
+  pull: always
+  image: owncloudci/core
+  settings:
+    core_path: /drone/fed-server
+    exclude: apps/testing
+    version: daily-stable10-qa
+
+- name: configure-federation-server
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - cd /drone/fed-server
+  - php occ a:l
+  - php occ a:e testing
+  - php occ a:l
+  - php occ config:system:set trusted_domains 1 --value=server-https
+  - php occ config:system:set trusted_domains 2 --value=federated-https
+  - php occ log:manage --level 2
+  - php occ config:list
+  - "echo \"export TEST_SERVER_FED_URL=https://federated-https\" > /drone/saved-settings.sh"
+  - php occ security:certificates:import /drone/server.crt
+  - php occ security:certificates:import /drone/federated.crt
+  - php occ security:certificates
+
+- name: fix-permissions-/drone/fed-server/
+  pull: always
+  image: owncloudci/php:7.1
+  commands:
+  - "chown www-data \"/drone/fed-server/\" -R"
+
+- name: federated-log
+  pull: always
+  image: owncloud/ubuntu:16.04
+  detach: true
+  commands:
+  - "tail -f \"/drone/fed-server/data/owncloud.log\""
   when:
     status:
     - success
@@ -7217,7 +7259,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -7226,6 +7268,22 @@ services:
     MYSQL_PASSWORD: owncloud
     MYSQL_ROOT_PASSWORD: owncloud
     MYSQL_USER: owncloud
+
+- name: federated-https
+  pull: always
+  image: owncloudci/php:7.1
+  command:
+  - /usr/local/bin/apachectl
+  - -e
+  - debug
+  - -D
+  - FOREGROUND
+  environment:
+    APACHE_CONFIG_TEMPLATE: ssl
+    APACHE_SSL_CERT: /drone/federated.crt
+    APACHE_SSL_CERT_CN: federated-https
+    APACHE_SSL_KEY: /drone/federated.key
+    APACHE_WEBROOT: /drone/fed-server
 
 - name: chrome
   pull: always
@@ -7325,7 +7383,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -7377,7 +7435,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -7485,7 +7543,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -7537,7 +7595,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -7652,7 +7710,7 @@ steps:
   - git clone https://github.com/owncloud/notifications.git apps/notifications
   - php occ a:e notifications
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -7704,7 +7762,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -7812,7 +7870,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -7864,7 +7922,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -7972,7 +8030,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -8020,7 +8078,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -8128,7 +8186,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -8176,7 +8234,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -8284,7 +8342,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -8332,7 +8390,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -8440,7 +8498,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -8488,7 +8546,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -8596,7 +8654,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -8644,7 +8702,7 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -8752,7 +8810,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -8800,7 +8858,7 @@ services:
   - -D
   - FOREGROUND
   environment:
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -8909,7 +8967,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -8957,7 +9015,7 @@ services:
   - -D
   - FOREGROUND
   environment:
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -9066,7 +9124,7 @@ steps:
   - php occ a:e testing
   - php occ a:l
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -9114,7 +9172,7 @@ services:
   - -D
   - FOREGROUND
   environment:
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 - name: mariadb
   image: mariadb:10.2
@@ -9216,7 +9274,7 @@ steps:
   commands:
   - bash apps/dav/tests/ci/caldav/install.sh
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -9333,7 +9391,7 @@ steps:
   commands:
   - bash apps/dav/tests/ci/carddav/install.sh
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -9450,7 +9508,7 @@ steps:
   commands:
   - bash apps/dav/tests/ci/caldav-old-endpoint/install.sh
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -9567,7 +9625,7 @@ steps:
   commands:
   - bash apps/dav/tests/ci/carddav-old-endpoint/install.sh
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -9693,7 +9751,7 @@ steps:
   - "curl -k -s -u user1:123456 -X MKCOL \"https://server-https/remote.php/webdav/new_folder\""
   - "curl -k -s -u user1:123456 \"https://server-https/ocs/v2.php/apps/files_sharing/api/v1/shares\" --data 'path=/new_folder&shareType=0&permissions=15&name=new_folder&shareWith=admin'"
 
-- name: fix-permissions
+- name: fix-permissions-/drone/src
   pull: always
   image: owncloudci/php:7.1
   commands:
@@ -9773,6 +9831,6 @@ services:
     APACHE_SSL_CERT: /drone/server.crt
     APACHE_SSL_CERT_CN: server-https
     APACHE_SSL_KEY: /drone/server.key
-    APACHE_WEBROOT: /drone/src/
+    APACHE_WEBROOT: /drone/src
 
 ...

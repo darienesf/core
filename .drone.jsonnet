@@ -542,6 +542,7 @@ local unit_deps = style_deps + [
     suite='webUISharingExternal',
     type='webui',
     email=true,
+    federation_oc_version='daily-stable10-qa',
     trigger=trigger,
     depends_on=unit_deps
   ),
