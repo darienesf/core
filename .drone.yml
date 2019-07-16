@@ -8777,6 +8777,7 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_FILTER_TAGS: "@smokeTest&&~@notifications-app-required"
     BROWSER: firefox
     MAILHOG_HOST: email
     PLATFORM: Linux
@@ -8933,6 +8934,7 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_FILTER_TAGS: "@smokeTest&&~@notifications-app-required"
     BROWSER: firefox
     MAILHOG_HOST: email
     PLATFORM: Linux
@@ -9089,6 +9091,7 @@ steps:
   - . /drone/saved-settings.sh
   - make test-acceptance-webui TESTING_REMOTE_SYSTEM=true
   environment:
+    BEHAT_FILTER_TAGS: "@smokeTest&&~@notifications-app-required"
     BROWSER: firefox
     MAILHOG_HOST: email
     PLATFORM: Linux

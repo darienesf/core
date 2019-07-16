@@ -104,13 +104,14 @@ local browserServices = {
 };
 
 local behatSteps = {
-  api(suite, image, server_protocol, browser)::
+  api(suite, image, server_protocol, browser, filter)::
     [{
       name: 'api-acceptance-tests',
       image: image,
       pull: 'always',
       environment: {
         TEST_SERVER_URL: server_protocol + '://server-' + server_protocol,
+        BEHAT_FILTER_TAGS: filter,
         BEHAT_SUITE: suite,
       },
       commands: [
@@ -120,7 +121,7 @@ local behatSteps = {
       ],
     }],
 
-  cli(suite, image, server_protocol, browser)::
+  cli(suite, image, server_protocol, browser, filter)::
     [{
       name: 'cli-acceptance-tests',
       image: image,
@@ -128,6 +129,7 @@ local behatSteps = {
       environment: {
         MAILHOG_HOST: 'email',
         TEST_SERVER_URL: server_protocol + '://server-' + server_protocol,
+        BEHAT_FILTER_TAGS: filter,
         BEHAT_SUITE: suite,
       },
       commands: [
@@ -138,7 +140,7 @@ local behatSteps = {
     }],
 
 
-  'local-cli'(suite,image, server_protocol, browser)::
+  'local-cli'(suite,image, server_protocol, browser, filter)::
     [{
       name: 'cli-acceptance-tests',
       image: image,
@@ -146,6 +148,7 @@ local behatSteps = {
       environment: {
         MAILHOG_HOST: 'email',
         TEST_SERVER_URL: server_protocol + '://server-' + server_protocol,
+        BEHAT_FILTER_TAGS: filter,
         BEHAT_SUITE: suite,
       },
       commands: [
@@ -156,13 +159,14 @@ local behatSteps = {
       ],
     }],
 
-  webui(suite, image, server_protocol, browser)::
+  webui(suite, image, server_protocol, browser, filter)::
     [{
       name: 'cli-acceptance-tests',
       image: image,
       pull: 'always',
       environment: {
         TEST_SERVER_URL: server_protocol + '://server-' + server_protocol,
+        BEHAT_FILTER_TAGS: filter,
         BEHAT_SUITE: suite,
         BROWSER: browser,
         SELENIUM_HOST: browser,
@@ -177,8 +181,8 @@ local behatSteps = {
       ],
     }],
 
-  get(type, suite, image, server_protocol, browser)::
-     if type != '' then $[type](suite, image, server_protocol, browser) else [],
+  get(type, suite, image, server_protocol, browser, filter)::
+     if type != '' then $[type](suite, image, server_protocol, browser, filter) else [],
 };
 
 
@@ -594,7 +598,7 @@ local behatSteps = {
         }),
         $.fixPermissions(image=image),
         $.printLog(),
-      ] + behatSteps.get(type=type, suite=suite, image=image, server_protocol=server_protocol, browser=browser),
+      ] + behatSteps.get(type=type, suite=suite, image=image, server_protocol=server_protocol, browser=browser, filter=filter),
       services: [
         (if email then {
           name: 'email',
