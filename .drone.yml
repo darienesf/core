@@ -152,7 +152,6 @@ steps:
   pull: always
   image: owncloudci/php:7.3
   commands:
-  - exit 1
   - make test-php-style
 
 trigger:

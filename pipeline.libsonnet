@@ -410,7 +410,6 @@ local behatSteps = {
           image: 'owncloudci/php:7.3',
           pull: 'always',
           commands: [
-            'exit 1',
             'make test-php-style',
           ],
         },
