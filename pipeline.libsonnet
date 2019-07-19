@@ -25,7 +25,7 @@ local dbServices = {
         MYSQL_DATABASE: 'owncloud',
         MYSQL_ROOT_PASSWORD: 'owncloud',
       },
-      # see http://php.net/manual/en/mysqli.requirements.php
+      // see http://php.net/manual/en/mysqli.requirements.php
       [if version == '8.0' then 'command']: ['--default-authentication-plugin=mysql_native_password'],
     }],
 
@@ -57,28 +57,27 @@ local dbServices = {
     if db != '' then $[db](version) else [],
 };
 
-local owncloud_services(server_protocol, image, server_basename='server', webroot='/drone/src') = if server_protocol == 'http' then [{
-    name: server_basename + '-http',
-    image: image,
-    pull: 'always',
-    environment: {
-      APACHE_WEBROOT: webroot,
-    },
-    command: [ '/usr/local/bin/apachectl', '-e', 'debug' , '-D', 'FOREGROUND' ]
-  }] else if server_protocol == 'https' then [{
-    name: server_basename + '-https',
-    image: image,
-    pull: 'always',
-    environment: {
-      APACHE_WEBROOT: webroot,
-      APACHE_CONFIG_TEMPLATE: 'ssl',
-      APACHE_SSL_CERT_CN: server_basename + '-https',
-      APACHE_SSL_CERT: '/drone/' + server_basename + '.crt',
-      APACHE_SSL_KEY: '/drone/' + server_basename + '.key',
-    },
-    command: [ '/usr/local/bin/apachectl', '-e', 'debug' , '-D', 'FOREGROUND' ]
-  }] else [];
-
+local owncloudServices(server_protocol, image, server_basename='server', webroot='/drone/src') = if server_protocol == 'http' then [{
+  name: server_basename + '-http',
+  image: image,
+  pull: 'always',
+  environment: {
+    APACHE_WEBROOT: webroot,
+  },
+  command: ['/usr/local/bin/apachectl', '-e', 'debug', '-D', 'FOREGROUND'],
+}] else if server_protocol == 'https' then [{
+  name: server_basename + '-https',
+  image: image,
+  pull: 'always',
+  environment: {
+    APACHE_WEBROOT: webroot,
+    APACHE_CONFIG_TEMPLATE: 'ssl',
+    APACHE_SSL_CERT_CN: server_basename + '-https',
+    APACHE_SSL_CERT: '/drone/' + server_basename + '.crt',
+    APACHE_SSL_KEY: '/drone/' + server_basename + '.key',
+  },
+  command: ['/usr/local/bin/apachectl', '-e', 'debug', '-D', 'FOREGROUND'],
+}] else [];
 
 
 local browserServices = {
@@ -142,7 +141,7 @@ local behatSteps = {
     }],
 
 
-  'local-cli'(suite,image, server_protocol, browser, filter)::
+  'local-cli'(suite, image, server_protocol, browser, filter)::
     [{
       name: 'cli-acceptance-tests',
       image: image,
@@ -184,13 +183,13 @@ local behatSteps = {
     }],
 
   get(type, suite, image, server_protocol, browser, filter)::
-     if type != '' then $[type](suite, image, server_protocol, browser, filter) else [],
+    if type != '' then $[type](suite, image, server_protocol, browser, filter) else [],
 };
 
 
 {
   cache(settings={})::
-    local step_name = "cache-" + if "restore" in settings then "restore" else if "rebuild" in settings then "rebuild" else if "flush" in settings then "flush" else "unknown";
+    local step_name = 'cache-' + if 'restore' in settings then 'restore' else if 'rebuild' in settings then 'rebuild' else if 'flush' in settings then 'flush' else 'unknown';
 
     {
       name: step_name,
@@ -198,13 +197,13 @@ local behatSteps = {
       pull: 'always',
       settings: {
         endpoint: {
-          from_secret: 'cache_s3_endpoint'
+          from_secret: 'cache_s3_endpoint',
         },
         access_key: {
-          from_secret: 'cache_s3_access_key'
+          from_secret: 'cache_s3_access_key',
         },
         secret_key: {
-          from_secret: 'cache_s3_secret_key'
+          from_secret: 'cache_s3_secret_key',
         },
       } + settings,
       when: {
@@ -329,7 +328,7 @@ local behatSteps = {
       image: image,
       pull: 'always',
       environment: {
-        OBJECTSTORE: object
+        OBJECTSTORE: object,
       },
       commands: [
         'cd /drone/src/apps',
@@ -468,7 +467,7 @@ local behatSteps = {
         },
       ],
       trigger: trigger,
-      depends_on: depends_on
+      depends_on: depends_on,
     },
 
   javascript(trigger={}, depends_on=[])::
@@ -548,7 +547,6 @@ local behatSteps = {
             COVERAGE: coverage,
             PRIMARY_OBJECTSTORE: primary_object,
             DB_TYPE: database_name,
-
           },
           commands: [
             './tests/drone/test-phpunit.sh',
@@ -557,42 +555,42 @@ local behatSteps = {
       ],
       services: [
         (if external == 'webdav' then {
-          name: 'apache-webdav',
-          image: 'owncloudci/php',
-          pull: 'always',
-          environment: {
-            APACHE_CONFIG_TEMPLATE: 'webdav',
-          },
-          command: [ '/usr/local/bin/apachectl', '-D', 'FOREGROUND' ]
-        }),
+           name: 'apache-webdav',
+           image: 'owncloudci/php',
+           pull: 'always',
+           environment: {
+             APACHE_CONFIG_TEMPLATE: 'webdav',
+           },
+           command: ['/usr/local/bin/apachectl', '-D', 'FOREGROUND'],
+         }),
         (if external == 'samba' then {
-          name: 'smb-samba',
-          image: 'owncloudci/samba',
-          pull: 'always',
-          command: ['-u', 'test;test', '-s', 'public;/tmp;yes;no;no;test;none;test', '-S'],
-        }),
+           name: 'smb-samba',
+           image: 'owncloudci/samba',
+           pull: 'always',
+           command: ['-u', 'test;test', '-s', 'public;/tmp;yes;no;no;test;none;test', '-S'],
+         }),
         (if external == 'swift' then {
-          name: 'ceph',
-          image: 'owncloudci/ceph',
-          pull: 'always',
-          environment: {
-            KEYSTONE_PUBLIC_PORT: 5034,
-            KEYSTONE_ADMIN_USER: 'test',
-            KEYSTONE_ADMIN_PASS: 'testing',
-            KEYSTONE_ADMIN_TENANT: 'testtenant',
-            KEYSTONE_ENDPOINT_REGION: 'testregion',
-            KEYSTONE_SERVICE: 'testceph',
-            OSD_SIZE: 500,
-          },
-        }),
+           name: 'ceph',
+           image: 'owncloudci/ceph',
+           pull: 'always',
+           environment: {
+             KEYSTONE_PUBLIC_PORT: 5034,
+             KEYSTONE_ADMIN_USER: 'test',
+             KEYSTONE_ADMIN_PASS: 'testing',
+             KEYSTONE_ADMIN_TENANT: 'testtenant',
+             KEYSTONE_ENDPOINT_REGION: 'testregion',
+             KEYSTONE_SERVICE: 'testceph',
+             OSD_SIZE: 500,
+           },
+         }),
         (if object == 'scality' then {
-          name: 'scality',
-          image: 'owncloudci/scality-s3server',
-          pull: 'always',
-          environment: {
-            HOST_NAME: 'scality',
-          },
-        })
+           name: 'scality',
+           image: 'owncloudci/scality-s3server',
+           pull: 'always',
+           environment: {
+             HOST_NAME: 'scality',
+           },
+         }),
       ] + dbServices.get(database_name, database_version),
       trigger: trigger,
       depends_on: depends_on,
@@ -607,7 +605,7 @@ local behatSteps = {
 
     {
       kind: 'pipeline',
-      name: if pipeline_name != '' then pipeline_name else'behat' + optionalSuffix(browser) + optionalSuffix(suite) + optionalSuffix(filter) + optionalSuffix(num),
+      name: if pipeline_name != '' then pipeline_name else 'behat' + optionalSuffix(browser) + optionalSuffix(suite) + optionalSuffix(filter) + optionalSuffix(num),
       platform: {
         os: 'linux',
         arch: 'amd64',
@@ -650,8 +648,8 @@ local behatSteps = {
           image: 'mailhog/mailhog',
         }),
       ]
-      + owncloud_services(server_protocol=server_protocol, image=image) + dbServices.get(db_name, db_version)
-      + (if federation_oc_version != '' then owncloud_services(server_protocol=server_protocol, image=image, server_basename='federated', webroot='/drone/fed-server') else [])
+      + owncloudServices(server_protocol=server_protocol, image=image) + dbServices.get(db_name, db_version)
+      + (if federation_oc_version != '' then owncloudServices(server_protocol=server_protocol, image=image, server_basename='federated', webroot='/drone/fed-server') else [])
       + browserServices.get(browser),
       trigger: trigger,
       depends_on: depends_on,
@@ -800,12 +798,12 @@ local behatSteps = {
           },
         },
       ],
-      services: owncloud_services(server_protocol='https', image='owncloudci/php:7.1'),
+      services: owncloudServices(server_protocol='https', image='owncloudci/php:7.1'),
       trigger: trigger,
       depends_on: depends_on,
     },
 
-    notify(name, message, depends_on, exclude_events=[], include_events=[], status=[])::
+  notify(name, message, depends_on, exclude_events=[], include_events=[], status=[])::
     {
       kind: 'pipeline',
       name: 'notifications-' + name,
@@ -822,7 +820,7 @@ local behatSteps = {
           image: 'plugins/slack:1',
           settings: {
             webhook: {
-              from_secret: 'slack_webhook'
+              from_secret: 'slack_webhook',
             },
             channel: 'server',
           },
@@ -833,7 +831,7 @@ local behatSteps = {
           commands: [
             "echo 'Notification: " + message + "'",
           ],
-        }
+        },
       ],
       trigger: {
         event: {

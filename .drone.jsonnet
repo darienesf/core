@@ -24,10 +24,10 @@ local unit_deps = style_deps + [
 ];
 
 local pipelines = [
-  # dependencies
+  // dependencies
   pipeline.install(trigger=trigger),
 
-  # codestyle
+  // codestyle
   pipeline.standard(
     trigger=trigger,
     depends_on=style_deps
@@ -53,14 +53,14 @@ local pipelines = [
     depends_on=style_deps
   ),
 
-  # frontend
+  // frontend
   pipeline.javascript(
     trigger=trigger,
     depends_on=unit_deps
   ),
 
-  # Unit Tests
-  # PHP 7.1
+  // Unit Tests
+  // PHP 7.1
   pipeline.phpunit(
     php='7.1',
     db='mysql:5.5',
@@ -70,7 +70,7 @@ local pipelines = [
   ),
   pipeline.phpunit(
     php='7.1',
-    # mb4 support, with innodb_file_format=Barracuda
+    // mb4 support, with innodb_file_format=Barracuda
     db='mysql:5.7',
     // coverage=true, ??
     trigger=trigger,
@@ -78,7 +78,7 @@ local pipelines = [
   ),
   pipeline.phpunit(
     php='7.1',
-    # mb4 support by default
+    // mb4 support by default
     db='mysql:8.0',
     coverage=false,
     trigger=trigger,
@@ -100,7 +100,7 @@ local pipelines = [
   ),
   pipeline.phpunit(
     php='7.1',
-    # mb4 support by default
+    // mb4 support by default
     db='mariadb:10.3',
     coverage=true,
     trigger=trigger,
@@ -121,9 +121,9 @@ local pipelines = [
     depends_on=unit_deps
   ),
 
-  # PHP 7.2
+  // PHP 7.2
 
-  # Not in 0.8 .drone.yml
+  // Not in 0.8 .drone.yml
   // pipeline.phpunit(
   //   php='7.2',
   //   db='mysql:5.5',
@@ -154,7 +154,7 @@ local pipelines = [
     depends_on=unit_deps
   ),
 
-  # php-7.3
+  // php-7.3
   pipeline.phpunit(
     php='7.3',
     db='sqlite',
@@ -169,8 +169,8 @@ local pipelines = [
     trigger=trigger,
     depends_on=unit_deps
   ),
-  
-  # Not in 0.8 .drone.yml
+
+  // Not in 0.8 .drone.yml
   // pipeline.phpunit(
   //   php='7.3',
   //   db='mysql:5.5',
@@ -187,7 +187,7 @@ local pipelines = [
   // ),
 
 
-  # Files External
+  // Files External
   pipeline.phpunit(
     php='7.1',
     db='sqlite',
@@ -222,7 +222,7 @@ local pipelines = [
     depends_on=unit_deps
   ),
 
-  # Primary Objectstorage
+  // Primary Objectstorage
   pipeline.phpunit(
     pipeline_name='phpunit-php7.1-mariadb10.3-swift-objectstore',
     php='7.1',
@@ -235,7 +235,7 @@ local pipelines = [
     depends_on=unit_deps
   ),
 
-  # files_primary_s3
+  // files_primary_s3
   pipeline.phpunit(
     php='7.1',
     db='sqlite',
@@ -246,7 +246,7 @@ local pipelines = [
     depends_on=unit_deps
   ),
 
-  # API Acceptance tests
+  // API Acceptance tests
   pipeline.behat(
     suite='apiMain',
     type='api',
@@ -442,7 +442,7 @@ local pipelines = [
     depends_on=unit_deps
   ),
 
-  # chrome
+  // chrome
   pipeline.behat(
     browser='chrome',
     suite='webUIAdminSettings',
@@ -615,7 +615,7 @@ local pipelines = [
     depends_on=unit_deps
   ),
 
-  # Firefox
+  // Firefox
   pipeline.behat(
     pipeline_name='behat-firefox-smokeTest-1/3',
     browser='firefox',
@@ -698,5 +698,5 @@ pipelines + [
     include_events=['push', 'tag'],
     depends_on=pipeline_names,
     status=['failure'],
-  )
+  ),
 ]
