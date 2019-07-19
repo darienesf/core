@@ -815,7 +815,7 @@ local behatSteps = {
         arch: 'amd64',
       },
       clone: {
-        disable: false,
+        disable: true,
       },
       steps: [
         {
