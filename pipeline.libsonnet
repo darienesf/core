@@ -817,18 +817,16 @@ local behatSteps = {
         disable: false,
       },
       steps: [
-        // Missing secret on drone.owncloud.services
-        // {
-        //   name: 'notify',
-        //   image: 'plugins/slack:1',
-        //   settings: {
-        //     webhook: {
-        //       from_secret: 'slack_webhook'
-        //     },
-        //     channel: 'server',
-        //   },
-        // }
-        // Until then just print a message to console:
+        {
+          name: 'notify',
+          image: 'plugins/slack:1',
+          settings: {
+            webhook: {
+              from_secret: 'slack_webhook'
+            },
+            channel: 'server',
+          },
+        },
         {
           name: 'print notification',
           image: 'owncloud/alpine',
