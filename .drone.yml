@@ -11975,6 +11975,12 @@ services:
     APACHE_SSL_KEY: /drone/server.key
     APACHE_WEBROOT: /drone/src
 
+depends_on:
+- install-dependencies
+- coding-standard
+- phan-php7.1
+- stan-php7.1
+
 ---
 kind: pipeline
 name: notifications-failure

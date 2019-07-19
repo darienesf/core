@@ -683,7 +683,8 @@ local pipelines = [
   ),
 
   pipeline.litmus(
-    php='7.1'
+    php='7.1',
+    depends_on=unit_deps,
   ),
 ];
 
