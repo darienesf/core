@@ -541,3 +541,25 @@ Feature: Sharing files and folders with internal users
     When the user re-logs in as "user1" using the webUI
     Then the content of "lorem.txt" should be the same as the original "lorem.txt"
 #   And the content of file "lorem.txt" for user "user1" should be "edited original content"
+
+  Scenario: Create share when admin disables delete in share permissions
+    Given these users have been created with default attributes and without skeleton files:
+      | username |
+      | user1    |
+      | user2    |
+    And user "user2" has created folder "simple-folder"
+    And user "user2" has uploaded file "filesForUpload/lorem.txt" to "simple-folder/lorem.txt"
+    And the administrator has browsed to the admin sharing settings page
+    When the administrator disables permission delete for default user and group share using the webUI
+    And the user re-logs in as "user2" using the webUI
+    And the user shares folder "simple-folder" with user "User One" using the webUI
+    Then the following permissions is seen for "simple-folder" in the sharing dialog for user "User One"
+      | change | yes |
+      | create | yes |
+      | delete | no  |
+      | share  | yes |
+    And the user re-logs in as "user1" using the webUI
+    And the user opens folder "simple-folder" using the webUI
+    Then the option to rename file "lorem.txt" should be available on the webUI
+    And the option to delete file "lorem.txt" should not be available on the webUI
+    And the option to upload file should be available on the webUI

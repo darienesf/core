@@ -75,6 +75,10 @@ class AdminSharingSettingsPage extends SharingSettingsPage {
 	protected $deleteTrustedServerBtnXpath = "//ul[@id='listOfTrustedServers']//li[contains(., '%s')]//span[contains(@class, 'icon-delete')]";
 	protected $trustedServerErrorMsgXpath = "//p[@id='ocFederationAddServer']//span[@class='msg error']";
 
+	protected $createSharePermissionXpath = "//label[contains(text(),'Create')]";
+	protected $changeSharePermissionXpath = "//label[contains(text(),'Change')]";
+	protected $deleteSharePermissionXpath = "//label[contains(text(),'Delete')]";
+	protected $shareSharePermissionXpath = "//p[@id='shareApiDefaultPermissionsSection']//label[contains(text(),'Share')]";
 	/**
 	 * toggle the Share API
 	 *
@@ -88,6 +92,25 @@ class AdminSharingSettingsPage extends SharingSettingsPage {
 			$session,
 			$action,
 			$this->shareApiCheckboxXpath,
+			$this->shareApiCheckboxId
+		);
+	}
+
+	public function toggleDefaultSharePermissions(Session $session, $action, $value) {
+		$checkboxXpath = null;
+		if ($value == "create") {
+			$checkboxXpath = $this->createSharePermissionXpath;
+		} elseif ($value == "change") {
+			$checkboxXpath = $this->changeSharePermissionXpath;
+		} elseif ($value == "delete") {
+			$checkboxXpath = $this->deleteSharePermissionXpath;
+		} elseif ($value == "share") {
+			$checkboxXpath = $this->shareSharePermissionXpath;
+		}
+		$this->toggleCheckbox(
+			$session,
+			$action,
+			$checkboxXpath,
 			$this->shareApiCheckboxId
 		);
 	}
