@@ -281,12 +281,16 @@ class WebUIAdminSharingSettingsContext extends RawMinkContext implements Context
 	/**
 	 * @When /^the administrator (enables|disables) permission (create|change|delete|share) for default user and group share using the webUI$/
 	 *
+	 * @param string (enable | disable) $action
+	 * @param string $permissionValue
+	 *
+	 * @return void
 	 */
-	public function theAdministratorEnablesDefaultSharePermission($action, $value) {
+	public function theAdministratorEnablesDefaultSharePermission($action, $permissionValue) {
 		$this->adminSharingSettingsPage->toggleDefaultSharePermissions(
 			$this->getSession(),
 			$action,
-			$value
+			$permissionValue
 		);
 	}
 

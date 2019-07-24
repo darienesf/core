@@ -408,6 +408,15 @@ class SharingDialog extends OwncloudPage {
 		}
 	}
 
+	/**
+	 *
+	 * @param string $shareReceiverName
+	 * @param array $permissions [['permission' => 'yes|no']]
+	 * @param Session $session
+	 *
+	 * @throws ElementNotFoundException
+	 * @return void
+	 */
 	public function checkSharingPermissions(
 		$shareReceiverName,
 		$permissions,

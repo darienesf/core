@@ -591,7 +591,7 @@ class WebUISharingContext extends RawMinkContext implements Context {
 	}
 
 	/**
-	 * @Then the following permissions is seen for :fileName in the sharing dialog for user :userName
+	 * @Then the following permissions are seen for :fileName in the sharing dialog for user :userName
 	 *
 	 * @param string $fileName
 	 * @param string $userName
@@ -601,8 +601,11 @@ class WebUISharingContext extends RawMinkContext implements Context {
 	 *                                    second column yes|no
 	 *                                    not mentioned permissions will not be
 	 *                                    touched
+	 *
+	 * @return void
+	 * @throws \Exception
 	 */
-	public function theFollowingPermissionIsSeenForInTheSharingDialogFor(
+	public function theFollowingPermissionsAreSeenForInTheSharingDialogFor(
 		$fileName, $userName, TableNode $permissionsTable
 	) {
 		$userName = $this->featureContext->substituteInLineCodes($userName);
