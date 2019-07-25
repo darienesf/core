@@ -576,6 +576,64 @@ Feature: sharing
       | 1               | 404             | 200              | PARENT        | 32          |
       | 2               | 404             | 404              | PARENT        | 32          |
 
+  @issue-12345
+  Scenario Outline: Cannot create a share of a file with only create permission
+    Given using OCS API version "<ocs_api_version>"
+    And user "user1" has been created with default attributes and without skeleton files
+    When user "user0" creates a share using the sharing API with settings
+      | path        | textfile0.txt |
+      | shareWith   | user1         |
+      | shareType   | user          |
+      | permissions | <permissions> |
+    Then the OCS status code should be "<ocs_status_code>"
+    And the HTTP status code should be "<http_status_code>"
+    # delete the following step when the issue is fixed. The share should not be created at all.
+    And the fields of the last response should include
+      | share_with  | user1          |
+      | share_type  | user           |
+      | file_target | /textfile0.txt |
+      | path        | /textfile0.txt |
+      | permissions | 0              |
+    And as "user1" entry "textfile0.txt" should not exist
+    Examples:
+      | ocs_api_version | ocs_status_code | http_status_code | permissions |
+      | 1               | 100             | 200              | create      |
+      | 2               | 200             | 200              | create      |
+      #| 1               | 400             | 200              | create      |
+      #| 2               | 400             | 400              | create      |
+
+  @issue-12345
+  Scenario Outline: Cannot create a share of a file with only (create,)delete permission
+    Given using OCS API version "<ocs_api_version>"
+    And user "user1" has been created with default attributes and without skeleton files
+    When user "user0" creates a share using the sharing API with settings
+      | path        | textfile0.txt |
+      | shareWith   | user1         |
+      | shareType   | user          |
+      | permissions | <permissions> |
+    Then the OCS status code should be "<ocs_status_code>"
+    And the HTTP status code should be "<http_status_code>"
+    # delete the following step when the issue is fixed. The share should not be created at all.
+    And the fields of the last response should include
+      | share_with  | user1          |
+      | share_type  | user           |
+      | file_target | /textfile0.txt |
+      | path        | /textfile0.txt |
+      | permissions | 1              |
+    # because the share got created wrongly with read permission, the file exists for the sharee
+    And as "user1" entry "textfile0.txt" should exist
+    #And as "user1" entry "textfile0.txt" should not exist
+    Examples:
+      | ocs_api_version | ocs_status_code | http_status_code | permissions   |
+      | 1               | 100             | 200              | delete        |
+      | 2               | 200             | 200              | delete        |
+      | 1               | 100             | 200              | create,delete |
+      | 2               | 200             | 200              | create,delete |
+      #| 1               | 404             | 200              | delete        |
+      #| 2               | 404             | 404              | delete        |
+      #| 1               | 404             | 200              | create,delete |
+      #| 2               | 404             | 404              | create,delete |
+
   Scenario Outline: user who is excluded from sharing tries to share a file with another user
     Given using OCS API version "<ocs_api_version>"
     And user "user1" has been created with default attributes and skeleton files
